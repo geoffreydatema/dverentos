@@ -1,6 +1,6 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
-from PySide6.QtGui import Qt
+from PySide6.QtGui import Qt, QGuiApplication
 from PySide6.QtCore import QCoreApplication
 
 class DConsole(QWidget):
@@ -59,10 +59,44 @@ class DConsole(QWidget):
         if variable == "resolution":
             if len(values) != 2:
                 error("Incorrect number of args passed for resolution change")
+                return
+            try:
+                width = int(values[0])
+                height = int(values[1])
+            except ValueError:
+                error("Resolution args must be int")
+                return
+            
+            self.parent().update_geometry(w=width, h=height)
+            info(f"Resolution set to {width} x {height}")
 
-            self.parent().update_geometry(w=int(values[0]), h=int(values[1]), fullscreen_windowed=True)
-
-        #@! add set fullscreen true and set fullscreen false (which switches to windowed, at hardward screen size)
+        if variable == "fullscreen":
+            if len(values) != 1:
+                error("Incorrect number of args passed for fullscreen setting")
+                return
+            if values[0] == "true":
+                self.parent().update_geometry(fullscreen=True)
+                info("Application set to fullscreen")
+            elif values[0] == "false":
+                self.parent().update_geometry(fullscreen_windowed=True)
+                info("Application set to fullscreen windowed")
+            else:
+                error('Fullscreen arg must be "true" or "false"')
+                return
+            
+        if variable == "fullscreen_windowed":
+            if len(values) != 1:
+                error("Incorrect number of args passed for fullscreen setting")
+                return
+            if values[0] == "true":
+                self.parent().update_geometry(fullscreen_windowed=True)
+                info("Application set to fullscreen windowed")
+            elif values[0] == "false":
+                self.parent().update_geometry(fullscreen=True)
+                info("Application set to fullscreen")
+            else:
+                error('Fullscreen arg must be "true" or "false"')
+                return
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:

@@ -55,7 +55,9 @@ class Dverentos(QMainWindow):
             return
         
         if fullscreen_windowed:
-            self.showNormal()
+            self.showMaximized()
+            return
         
+        self.showNormal()
         self.setGeometry(0, 0, final_width, final_height)
         self.center_window()
