@@ -1,5 +1,5 @@
 from utils import *
-from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QLineEdit
+from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
 from PySide6.QtGui import Qt
 from PySide6.QtCore import QCoreApplication
 
@@ -8,12 +8,16 @@ class DConsole(QWidget):
         super().__init__(parent)
         self.game_manager = game_manager
 
-        self.setGeometry(0, 0, self.parent().width(), self.parent().height())
+        self.update_geometry()
         self.layout = QVBoxLayout(self)
         
         self.input_field = QLineEdit()
         self.input_field.setFixedHeight(24)
-        self.input_field.setStyleSheet("background: rgba(128, 128, 128, 255); border: 0; font-size: 16px")
+        self.input_field.setStyleSheet("""
+                                       background: rgb(0, 0, 0);
+                                       font-size: 16px;
+                                       border: 1px solid rgb(255, 255, 255);
+                                       """)
         
         self.layout.addStretch()
         self.layout.addWidget(self.input_field)
@@ -21,6 +25,9 @@ class DConsole(QWidget):
         self.input_field.returnPressed.connect(self.parse)
 
         self.setVisible(False)
+
+    def update_geometry(self):
+        self.setGeometry(0, 0, self.parent().width(), self.parent().height())
 
     def parse(self):
         raw_command = self.input_field.text().split(" ")

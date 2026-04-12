@@ -2,13 +2,18 @@ from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QGuiApplication, Qt
 from engine.DScreenManager import DScreenManager
 from engine.DConsole import DConsole
+from engine.DEscapeMenu import DEscapeMenu
 from core import DGameManager
+from utils import *
 
 class Dverentos(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("DVERENTOS")
         self.setGeometry(0, 0, 1280, 720)
+        self.setStyleSheet("""
+                           background: rgb(0, 0, 0);
+                           """)
         self.center_window()
 
         self.game_manager = DGameManager()
@@ -17,6 +22,7 @@ class Dverentos(QMainWindow):
 
         self.setCentralWidget(self.screen_manager)
 
+        self.escape_menu = DEscapeMenu(parent=self, game_manager=self.game_manager)
         self.console = DConsole(parent=self, game_manager=self.game_manager)
 
     def center_window(self):
@@ -28,9 +34,14 @@ class Dverentos(QMainWindow):
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
-            # escape menu will go here 
-            pass
+            self.escape_menu.setVisible(not self.escape_menu.isVisible())
+
         elif event.key() == Qt.Key_QuoteLeft:
             self.console.setVisible(not self.console.isVisible())
             if self.console.isVisible():
                 self.console.input_field.setFocus()
+
+    def resizeEvent(self, event):
+        super().resizeEvent(event)
+        self.escape_menu.update_geometry()
+        self.console.update_geometry()
