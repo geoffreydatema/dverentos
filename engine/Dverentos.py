@@ -27,7 +27,10 @@ class Dverentos(QMainWindow):
         self.move(size.topLeft())
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_QuoteLeft:
+        if event.key() == Qt.Key_Escape:
+            # escape menu will go here 
+            pass
+        elif event.key() == Qt.Key_QuoteLeft:
             self.console.setVisible(not self.console.isVisible())
             if self.console.isVisible():
                 self.console.input_field.setFocus()
