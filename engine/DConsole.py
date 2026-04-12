@@ -1,6 +1,7 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QLineEdit
 from PySide6.QtGui import Qt
+from PySide6.QtCore import QCoreApplication
 
 class DConsole(QWidget):
     def __init__(self, parent=None, game_manager=None):
@@ -23,9 +24,24 @@ class DConsole(QWidget):
 
     def parse(self):
         raw_command = self.input_field.text().split(" ")
-        command_types = ("set", "get") #@! move to /data
-        if raw_command[0] not in command_types:
-            syntax_error("Command not recognized")
+        if not raw_command:
+            error("No command entered")
+        
+        operation = raw_command[0].lower()
+        args = raw_command[1:]
+
+        if operation == "hi":
+            info("Hello right back at ya")
+        elif operation == "close":
+            self.setVisible(False)
+            self.parent().setFocus()
+        elif operation == "quit" or operation == "exit":
+            info("Force quit")
+            QCoreApplication.quit()
+        else:
+            warning("Command not recognized")
+        
+        self.input_field.setText("")
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
