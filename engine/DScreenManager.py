@@ -12,6 +12,6 @@ class DScreenManager(QStackedWidget):
     def create_screen(self):
         widget = QWidget()
         layout = QVBoxLayout(widget)
-        label = QLabel("hello world")
-        layout.addWidget(label)
+        # label = QLabel("hello world")
+        # layout.addWidget(label)
         return widget

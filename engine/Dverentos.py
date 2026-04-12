@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
-from PySide6.QtGui import QGuiApplication
+from PySide6.QtGui import QGuiApplication, Qt
 from engine.DScreenManager import DScreenManager
+from engine.DConsole import DConsole
 from core import DGameManager
 
 class Dverentos(QMainWindow):
@@ -16,9 +17,17 @@ class Dverentos(QMainWindow):
 
         self.setCentralWidget(self.screen_manager)
 
+        self.console = DConsole(parent=self, game_manager=self.game_manager)
+
     def center_window(self):
         screen = QGuiApplication.primaryScreen().availableGeometry()
         size = self.frameGeometry()
         center_point = screen.center()
         size.moveCenter(center_point)
         self.move(size.topLeft())
+
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_QuoteLeft:
+            self.console.setVisible(not self.console.isVisible())
+            if self.console.isVisible():
+                self.console.input_field.setFocus()
