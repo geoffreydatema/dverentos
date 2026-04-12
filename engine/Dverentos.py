@@ -12,11 +12,11 @@ class Dverentos(QMainWindow):
         super().__init__()
         self.setWindowTitle("DVERENTOS")
         self.setStyleSheet("""
-                           background: rgb(50, 50, 50);
+                           background: rgb(0, 0, 0);
                            """)
 
         self.game_manager = DGameManager()
-        self.screen_manager = DScreenManager(self.game_manager)
+        self.screen_manager = DScreenManager(parent=self, game_manager=self.game_manager)
         self.setCentralWidget(self.screen_manager)
 
         self.engine_manager = DEngineManager(engine=self)
