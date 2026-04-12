@@ -45,10 +45,24 @@ class DConsole(QWidget):
         elif operation == "quit" or operation == "exit":
             info("Force quit")
             QCoreApplication.quit()
+        elif operation == "set":
+            self.handle_set(args)
         else:
             warning("Command not recognized")
         
         self.input_field.setText("")
+
+    def handle_set(self, args):
+        variable = args[0].lower()
+        values = args[1:]
+
+        if variable == "resolution":
+            if len(values) != 2:
+                error("Incorrect number of args passed for resolution change")
+
+            self.parent().update_geometry(w=int(values[0]), h=int(values[1]), fullscreen_windowed=True)
+
+        #@! add set fullscreen true and set fullscreen false (which switches to windowed, at hardward screen size)
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:

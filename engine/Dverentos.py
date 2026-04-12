@@ -10,11 +10,9 @@ class Dverentos(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("DVERENTOS")
-        self.setGeometry(0, 0, 1280, 720)
         self.setStyleSheet("""
-                           background: rgb(0, 0, 0);
+                           background: rgb(50, 50, 50);
                            """)
-        self.center_window()
 
         self.game_manager = DGameManager()
 
@@ -24,6 +22,8 @@ class Dverentos(QMainWindow):
 
         self.escape_menu = DEscapeMenu(parent=self, game_manager=self.game_manager)
         self.console = DConsole(parent=self, game_manager=self.game_manager)
+
+        self.update_geometry()
 
     def center_window(self):
         screen = QGuiApplication.primaryScreen().availableGeometry()
@@ -45,3 +45,17 @@ class Dverentos(QMainWindow):
         super().resizeEvent(event)
         self.escape_menu.update_geometry()
         self.console.update_geometry()
+
+    def update_geometry(self, w=1280, h=720, fullscreen=False, fullscreen_windowed=False):
+        final_width = w
+        final_height = h
+
+        if fullscreen:
+            self.showFullScreen()
+            return
+        
+        if fullscreen_windowed:
+            self.showNormal()
+        
+        self.setGeometry(0, 0, final_width, final_height)
+        self.center_window()
