@@ -1,12 +1,11 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
-from PySide6.QtGui import Qt, QGuiApplication
-from PySide6.QtCore import QCoreApplication
+from PySide6.QtGui import Qt
 
 class DConsole(QWidget):
-    def __init__(self, parent=None, game_manager=None):
+    def __init__(self, parent=None, engine_manager=None):
         super().__init__(parent)
-        self.game_manager = game_manager
+        self.engine_manager = engine_manager
 
         self.update_geometry()
         self.layout = QVBoxLayout(self)
@@ -43,8 +42,7 @@ class DConsole(QWidget):
             self.setVisible(False)
             self.parent().setFocus()
         elif operation == "quit" or operation == "exit":
-            info("Force quit")
-            QCoreApplication.quit()
+            self.engine_manager.quit()
         elif operation == "set":
             self.handle_set(args)
         else:
@@ -60,43 +58,19 @@ class DConsole(QWidget):
             if len(values) != 2:
                 error("Incorrect number of args passed for resolution change")
                 return
-            try:
-                width = int(values[0])
-                height = int(values[1])
-            except ValueError:
-                error("Resolution args must be int")
-                return
-            
-            self.parent().update_geometry(w=width, h=height)
-            info(f"Resolution set to {width} x {height}")
+            self.engine_manager.set_resolution(values[0], values[1])
 
         if variable == "fullscreen":
             if len(values) != 1:
                 error("Incorrect number of args passed for fullscreen setting")
                 return
-            if values[0] == "true":
-                self.parent().update_geometry(fullscreen=True)
-                info("Application set to fullscreen")
-            elif values[0] == "false":
-                self.parent().update_geometry(fullscreen_windowed=True)
-                info("Application set to fullscreen windowed")
-            else:
-                error('Fullscreen arg must be "true" or "false"')
-                return
+            self.engine_manager.set_fullscreen(values[0])
             
         if variable == "fullscreen_windowed":
             if len(values) != 1:
                 error("Incorrect number of args passed for fullscreen setting")
                 return
-            if values[0] == "true":
-                self.parent().update_geometry(fullscreen_windowed=True)
-                info("Application set to fullscreen windowed")
-            elif values[0] == "false":
-                self.parent().update_geometry(fullscreen=True)
-                info("Application set to fullscreen")
-            else:
-                error('Fullscreen arg must be "true" or "false"')
-                return
+            self.engine_manager.set_fullscreen_windowed(values[0])
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:

@@ -4,8 +4,9 @@ from PySide6.QtGui import Qt
 from PySide6.QtCore import QCoreApplication
 
 class DEscapeMenu(QFrame):
-    def __init__(self, parent=None, game_manager=None):
+    def __init__(self, parent=None, engine_manager=None):
         super().__init__(parent)
+        self.engine_manager = engine_manager
 
         self.setVisible(False)
         self.update_geometry()
@@ -40,4 +41,4 @@ class DEscapeMenu(QFrame):
         self.setGeometry(0, 0, self.parent().width(), self.parent().height())
 
     def handle_exit(self):
-        QCoreApplication.quit()
+        self.engine_manager.quit()

@@ -1,6 +1,7 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QGuiApplication, Qt
 from engine.DScreenManager import DScreenManager
+from engine.DEngineManager import DEngineManager
 from engine.DConsole import DConsole
 from engine.DEscapeMenu import DEscapeMenu
 from core import DGameManager
@@ -15,15 +16,14 @@ class Dverentos(QMainWindow):
                            """)
 
         self.game_manager = DGameManager()
-
         self.screen_manager = DScreenManager(self.game_manager)
-
         self.setCentralWidget(self.screen_manager)
 
-        self.escape_menu = DEscapeMenu(parent=self, game_manager=self.game_manager)
-        self.console = DConsole(parent=self, game_manager=self.game_manager)
+        self.engine_manager = DEngineManager(engine=self)
+        self.escape_menu = DEscapeMenu(parent=self, engine_manager=self.engine_manager)
+        self.console = DConsole(parent=self, engine_manager=self.engine_manager)
 
-        self.update_geometry()
+        self.engine_manager.apply_settings()
 
     def center_window(self):
         screen = QGuiApplication.primaryScreen().availableGeometry()
