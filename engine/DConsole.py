@@ -1,3 +1,4 @@
+from utils import *
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QTextEdit, QLineEdit
 from PySide6.QtGui import Qt
 
@@ -23,8 +24,8 @@ class DConsole(QWidget):
     def parse(self):
         raw_command = self.input_field.text().split(" ")
         command_types = ("set", "get") #@! move to /data
-        if len(raw_command) < 2 or raw_command[0] not in command_types:
-            print("Syntax error") #@! add DLog
+        if raw_command[0] not in command_types:
+            syntax_error("Command not recognized")
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:
