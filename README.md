@@ -120,41 +120,80 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Telekinetic
         - Damage scales with RAT (because in the lore, telekenesis involves using brain computer interfaces to calculate the wave functions of objects at the macro scale in order to move them with your mind)
 
+# Tile Threat Level
+- **Tile Level:**
+    - Every tile has a tier indicating the threat level in absolute terms (@! need to decide how to calculate this)
+- **Tile Threat:**
+    - Indicates how much danger the character is in on a specific tile.
+    - Possible calculation: `(<num enemy actions> * <enemy damage per action>) / HP = <whether or not you can die during encounter>`
+        - If the number is < 1, you technically cannot die even if enemy attacked on every round and landed every attack
+        - If the number is > 1, the enemy technically could kill you, but evasion, self buffing, consumables, etc. could allow you to win
+        - To be accurate, it would need to take into account stuff like damage over time statuses the enemy may be able to apply
+
+# Suits
+- **Suit Stats:**
+    - Suits have fixed base stats. Alternate versions of Suits could have slightly different or better base stat rolls. The general idea is that you'd expect a tanky build to be based on certain Suits, and a stealth build to be based on others, but there are also unexpected ways to build.
+- **Suit Leveling:**
+    - The Suit gains XP whenever an action is performed while wearing it
+    - Each level provides a tiny stat increase
+    - You can slot any non integrated components into a suit. A low level suit does not prevent you from slotting high level components as long as they are not integrated. This allows you to equip a new suit to start levelling it up while still keeping the benefits of high level components.
+- **Suit Integration:**
+    - Fully integrating a suit provides a significant stat bonus
+    - In order to integrate a Suit, you must slot in 6 integrated Components
+    - Suit integration locks the Component selection - you cannot change them moving forward
+    - Integrated Suits can be sold to vendors who will accept them
+    - There is also a gamble mechanic to sacrifice a fully integrated Suit for a shot at high value rewards
+- **Suit Post Integration Grind:**
+    - @! maybe the suit grind is using a currency to reroll perks or stats
+    - @! maybe the suit grind is using a currency to increment individual stats, but it's extremely expensive and slow, and capped at like +10 or something, giving a final long term grind goal for an integrated suit
+
+# Components
+- **Component Stats:**
+    - Components don't have base stat rolls. Components roll with random stats with the Component's prime stat usually being the highest (for example, Reactor Core prime stat is VIT, Power Transport's prime stat is CON, etc.)
+    - There is an unofficial tier system for Components:
+        - Most roll with three stats
+        - Fewer roll with four stats
+        - Even fewer roll with five stats
+    - There is a rare RNG which can cause any tier of Component to roll where it's prime stat is not its highest. In this "corrupted" scenario, the Component will actually have two other stats at quite high value within 3 of each other. These Components are extremely rare and valuable with the potential for making broken builds.
+    - There is an even rarer RNG where any tier of Component can roll with two stat of the same stats, doubling up the contribution to that stat
+- **Component Leveling:**
+    - Slotted Components gain XP whenever an action is performed while they are equipped
+    - Each level provides a tiny stat increase
+- **Suit Integration:**
+    - Getting a Component to max level and therefore fully integrating it provides a significant stat bonus
+    - Unlike Suits, Components integrate automatically as there is no commitment involved in choosing to integrate one (you always want your Components to be integrated)
+- **Component Post Integration Grind:**
+    - Once a Component is integrated, a currency can be applied which will lock in its highest stat, but reroll the rest. The total of all rerolled stats will not change, meaning that realistically you'll save the currency for rerolling Components with high base rolls.
+    - During rerolls, the rare corruption or double stat thing can happen, which could turn a decent Component into an amazing buildcrafting option
+
+# Weapons
+- **Weapon Stats:**
+    - Weapons have fixed stats
+    - Weapon variation comes from Traits which are randomly rolled
+    - Each archetype has its own pool of traits
+    - Generally weapon damage scales with the level of Tile it was dropped on with very little variation between weapon categories. No weapon category is strictly better than another. It's the possible traits that can roll on that weapon category that make or break it for your build.
+- **Weapon Leveling:**
+    - Equipped Weapons gain XP whenever you kill an enemy using one. Doing damage doesn't count, only the kill.
+    - The two equipped weapons uniquely share XP. The weapon that got the kill gets 2/3 of the XP and the passive weapon gets 1/3 of the XP. It is standard procedure to use a high power build of an integrated Suit and integrated primary Weapon to speedrun encounters to passively level up a secondary equipped weapon. The passive XP gain is lower than if you used the weapon itself to get kills, but you get to multitask and do other things at the same time.
+    - Each level provides a tiny Weapon stat increase (damage, crit chance, crit multiplier)
+    - Getting a Weapon to max level provides a significant bonus to its stats
+- **Weapon Integration:**
+    - To integrate a Weapon, you need a second copy of it. You consume the one you don't want, and use it to "rebuild" the good one as an integrated version.
+    - Weapon integration feels different from other equipment
+        - The Weapon's stats are already boosted at max level, so integration adds an extra RNG Trait
+        - Subsequent integrations by consuming another base version of the weapon allow for a targeted Trait reroll
+        - If you integrate by consuming another integrated version of the weapon, it adds a third Trait, but any subsequent integrations will require consuming a fully integrated version of the weapon, causing the process to become very expensive and meaning that it is a committment to double integrate it. Three Traits is the limit.
+
 ---
 @! continue here
 
-# World Design: Area Tier and Threat
-* **Area Tier:** Every tile has a tier indicating:
-    * The absolute damage threats present.
-    * The tier of equipment found there.
-    * The rarity of harvestable resources (high rarity loot is impractical to farm in low-tier areas).
-* **Area Threat:** A comparison calculation between the Area Tier and your average VIT and CON.
-    * Indicates how much danger the character is in on a specific tile.
-* **Tier Progression:** Suits and weapons from a location are only useful for that tier. High-tier equipment from higher-tier locations is required for endgame builds.
-* **Transmog:** Players can transmog equipment to look like any lower-tier equipment they have unlocked.
-
-# Suit and Weapon Mechanics
-- I generally want to encourage keeping multiple suits around, like one for tanking, one for high damage, one for resource gathering, basically focused builds
-* **Suit Leveling:** Suits gain XP toward an Integration Level.
-    * Level dictates the highest stat components that can be equipped.
-    * Each level provides a tiny stat increase.
-* **Weapon Leveling:** Weapons gain XP to level up, offering small stat boosts per level and a large boost at full integration.
-* **Equipment Integration:**
-    * At max level, equipment can be "committed" for a currency cost.
-    * This permanently "bakes in" all stats as minimum values.
-    * Only integrated weapons can be rerolled using currency.
-    * Fully integrated items receive a fixed stat cap boost, making them viable for the next tier of play via Protoform components.
-* **Stat Caps:** Equipment has a hard stat cap. To explore much higher-level locations, new base equipment is eventually required.
-- Each component type tends to have its highest stat in one designated category. Chancing on a component with two or more really high stats or an unexpected highest stat is essential for endgame builds.
+# Tools
+* **Design Philosophy:** Tools are not leveled or integrated like weapons; instead, the player's skills are leveled.
+* **Stats and Perks:** Tools carry vital stat bonuses and "Activity Skill Perks" not found on other gear.
+* **Function:** Used for resource gathering speed, bonus chances, and performing skill checks (Lockpicking/Hacking).
 
 # Rarity and Protoforms
-* **Rarity Tiers:**
-    * Red: Mythic (S+ Tier)
-    * Gold: Legendary (S Tier)
-    * Purple: Epic (A Tier)
-    * Blue: Rare (B Tier)
-    * Green: Uncommon (C Tier)
-    * Grey: Common (D Tier)
+
 * **Protoform Components/Weapons:**
     * High-end items that must be unlocked by absorbing XP to reveal random rolls.
     * Often feature "broken" high stats balanced by negative stat rolls.
@@ -163,15 +202,6 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     * Grey, Green, and Blue items cannot be upgraded to Legendary.
     * Purple (Epic) items can be upgraded to Legendary with resources.
     * Legendaries can have single stats boosted, or the entire item rerolled (risky but rewarding).
-
-# Tools
-* **Design Philosophy:** Tools are not leveled or integrated like weapons; instead, the player's skills are leveled.
-* **Stats and Perks:** Tools carry vital stat bonuses and "Activity Skill Perks" not found on other gear.
-* **Function:** Used for resource gathering speed, bonus chances, and performing skill checks (Lockpicking/Hacking).
-
-
-
-
 
 * **Weapon Stats:** Damage, Crit Chance, Crit Multiplier, Accuracy, and core stat bonuses (VIT, CON, etc).
 
