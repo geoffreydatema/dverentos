@@ -11,30 +11,47 @@
 
 # Stats
 - **Vitality (VIT):**
-    - Generally affects HP, how quickly HP is recovered, and strength
+    - Generally affects bodily strength and health
+    - Sets HP
+    - Affects how quickly HP is recovered
+    - Sets carry weight
     - Scales Heavy Melee damage
+    - Scales Weapon Critical Multiplier
     - Primarily affected by Reactor Core components
 - **Constitution (CON):**
-    - Generally affects damage mitigation and resistances
-    - Scales Heavy Gun damage
+    - Generally affects restistance to adverse effects
+    - Sets Defense
+    - Sets resistance to Statuses
+    - Sets how much Durability your non integrated equipment loses when it's used
+    - Scales Energy damage
     - Primarily affected by Power Transport components
 - **Agility (AGI):**
     - Generally affects things related to speed and reaction time
-    - During combat, Agility affects how fast the timeline moves (high Agility makes the timeline move slower, meaning that you were moving quicker)
+    - Scales Light Melee damage
+    - During combat, AGI affects how fast the timeline moves (high agility makes you move quicker, meaning that the timeline moves slower)
+    - Contributes equally to the Stealth skill along with PER
+    - Some nodes will be locked behind an AGI check (you had to leap precisely to gain access to something)
     - Primarily affected by Actuator components
 - **Dexterity (DEX):**
     - Generally affects things related to fine motor skills
+    - Scales Big Gun damage
+    - During combat, DEX affects how many actions you can take across the entire timeline (high dexterity means you were able to use your hands more precisely and fit in more actions)
+    - Some nodes will be locked behind a DEX check (it wasn't quite a lockpick, but you had to fiddle with a container to get it open)
     - Primarily affected by Nano Fiber components
 - **Perception (PER):**
     - Generally affects the senses and awareness
+    - Scales Hand Cannon damage
+    - Scales Weapon Effectiveness
     - Contributes to your chances of being able to leave a combat encounter without taking damage while fleeing
-    - Contributes to the Stealth skill
+    - Contributes equally to the Stealth skill along with AGI
     - Contrbitues to the Threat mechanic where you may get a warning before an enemy appears on a quiet tile (high Perception gives you more warning and a chance to leave before the threat appears)
-    - On any given tile, some nodes (often high value ones) will be hidden behind a Perception check, showing you that if you Perception had been higher, you would have "found" the node and had access to it
+    - Some nodes will be locked behind a PER check, showing you that if the Stat had been higher, you would have seen the node and had access to it
     - Primarily affected by Sensor components
 - **Rationality (RAT):**
-    - Generally affects the mind, intelligence, and mental fortitutde
-    - Similar to Perception checks for node access on a tile, some nodes are locked behind Rationality checks if intelligence and problem solving would realistically provide access to the node
+    - Generally affects the mind, intelligence, and mental fortitude
+    - Scales Telekenetic damage
+    - Scales Weapon Critical Chance
+    - Some nodes will be locked behind a RAT check if intelligence and problem solving would realistically provide access to the node
     - Primarily affected by Neural Network components
 
 At all times, your stat totals reflect individual stat contributions from all components weapons, and tools. Stats change as you swap out different equipment, and are not permanently increased
@@ -44,7 +61,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 
 - **Salvaging**
     - Anything related to exploration, looting equipment, collecting resources, and dismantling items
-    - This is the main skill that affects how much and the rarety of resources you get from collecting things and dismantling items
+    - This is the main skill that affects how much and the rarety of resources you get from collecting resources and dismantling items
     - DEX provides a slight bonus
 - **Harvesting**
     - Anything related to gathering resources that isn’t mining, so gathering natural resources and cutting wood
@@ -65,7 +82,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 - **Cryptography**
     - Access to some areas are only available if you pass a Cryptography check (think of this as your hacking skill)
     - While hacking digital locks, a higher Engineering skill offers a higher chance of success
-    - Protoforms are essentially just heavily encrypted programmable matter. Cryptography is also involved in integrating them and is also increased by integrating protoform component and weapons and running protoform decryption activities
+    - Equally increases chance of successfully decrypting a Protoform along with Alchemy
     - RAT provides a significant bonus
 - **Engineering**
     - Anything related to machinery and electronics
@@ -77,10 +94,11 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - If the Threat mechanic causes an enemy to appear on a quiet tile, a Stealth check determines if you are detected
     - AGI provides a significant bonus
 - **Alchemy**
-    - Anything related to consumable crafting, refining
+    - Anything related to crafting and resource refining
     - Also somewhat related to protoform work (the raw material side of things)
     - This is not a throwaway skill. A completely viable way to play the game is to walk around in high level areas embarrassingly underlevelled and just continuously popping consumables to stay alive and win fights. If you have high Alchemy, you can craft all the consumables you need very economically.
     - If your Alchemy is high compared to the tier of consumable you’re crafting, you get advantages like bonus quantity crafted or higher tier of consumable crafted, if applicable
+    - Equally increases chance of successfully decrypting a Protoform along with Cryptography
     - PER provides a slight bonus
 - **Weaponcrafting**
     - Anything related to crafting weapons
@@ -144,12 +162,11 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Integrated Suits can be sold to vendors who will accept them
     - There is also a gamble mechanic to sacrifice a fully integrated Suit for a shot at high value rewards
 - **Suit Post Integration Grind:**
-    - @! maybe the suit grind is using a currency to reroll perks or stats
-    - @! maybe the suit grind is using a currency to increment individual stats, but it's extremely expensive and slow, and capped at like +10 or something, giving a final long term grind goal for an integrated suit
+    - Once a Suit is integrated, a currency can be applied to increment individual stats, but it's extremely expensive and slow, and capped at +10, giving a final long term grind goal for an integrated suit
 
 # Components
 - **Component Stats:**
-    - Components don't have base stat rolls. Components roll with random stats with the Component's prime stat usually being the highest (for example, Reactor Core prime stat is VIT, Power Transport's prime stat is CON, etc.)
+    - Components don't have base Stat rolls. Components roll with random Stats with the Component's prime stat usually being the highest (for example, Reactor Core prime stat is VIT, Power Transport's prime stat is CON, etc.)
     - There is an unofficial tier system for Components:
         - Most roll with three stats
         - Fewer roll with four stats
@@ -168,10 +185,24 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 
 # Weapons
 - **Weapon Stats:**
-    - Weapons have fixed stats
+    - Weapons have fixed combat stats
     - Weapon variation comes from Traits which are randomly rolled
     - Each archetype has its own pool of traits
     - Generally weapon damage scales with the level of Tile it was dropped on with very little variation between weapon categories. No weapon category is strictly better than another. It's the possible traits that can roll on that weapon category that make or break it for your build.
+    - **Base Damage:**
+        - Each character Stat scales the base damage of one weapon category
+    - **Effectiveness:** Each of the three weapon archetypes has an Effectiveness stat which can affect whether you hit or miss a target. Although the name of the stat is different on each archetype and relevant to the weapon itself, the combat mechanic of hitting or missing is the same on all archetypes. Effectivenss scales with PER.
+        - Melee Weapons have Range
+        - Ranged Weapons have Accuracy
+        - Caster Weapons have Targetting
+    - **Critical Chance:**
+        - Chance to perform a Critical hit which applies the Critical Multiplier to Base Damage
+        - Scales with RAT
+    - **Critical Multiplier:**
+        - How much Base Damage is multiplied during a Critical hit
+        - Scales with VIT
+- **Weapon Traits:**
+    - Weapon Traits only affect the weapon's own combat stats
 - **Weapon Leveling:**
     - Equipped Weapons gain XP whenever you kill an enemy using one. Doing damage doesn't count, only the kill.
     - The two equipped weapons uniquely share XP. The weapon that got the kill gets 2/3 of the XP and the passive weapon gets 1/3 of the XP. It is standard procedure to use a high power build of an integrated Suit and integrated primary Weapon to speedrun encounters to passively level up a secondary equipped weapon. The passive XP gain is lower than if you used the weapon itself to get kills, but you get to multitask and do other things at the same time.
@@ -184,68 +215,111 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - Subsequent integrations by consuming another base version of the weapon allow for a targeted Trait reroll
         - If you integrate by consuming another integrated version of the weapon, it adds a third Trait, but any subsequent integrations will require consuming a fully integrated version of the weapon, causing the process to become very expensive and meaning that it is a committment to double integrate it. Three Traits is the limit.
 
----
-@! continue here
-
 # Tools
-* **Design Philosophy:** Tools are not leveled or integrated like weapons; instead, the player's skills are leveled.
-* **Stats and Perks:** Tools carry vital stat bonuses and "Activity Skill Perks" not found on other gear.
-* **Function:** Used for resource gathering speed, bonus chances, and performing skill checks (Lockpicking/Hacking).
+- **Tool Slots:**
+    - Resource Scanner
+    - Harvesting Knife
+    - Hunting Javelin
+    - Mining Laser
+- **Tool Effects:**
+    - Every Tool equipped gives AGI -1 (because you're slower and clumsier when carrying them)
+    - Every Tool equipped gives DEX +1 (because for example while doing something mechanical, having a tool around would make it easier to fix something or open something)
+    - Every equipped Tool uses carry weight, meaning that for combat runs you might consider leaving your Tools behind (unless you want the DEX boost)
+- **Tool Levelling:**
+    - Tools are not levelled
+    - The progression related to Tools is the gathering Skills which increase when you successfully gather resources
+- **Tool Traits:**
+    - Tools roll with one or two random Tool Traits which only affect Skills (for example, a Scanner might roll with a perk that increases Cryptography because the Scanner helps with hacking)
+- **Tool Integration:**
+    - Tools don't have an integration mechanic
 
-# Rarity and Protoforms
+# Vendors
+- Permanent Vendors are available on overworld maps. They are the main way to sell unwanted equipment and resources to earn primary currencies
+- Some rare Vendors only appear randomly either on overworld tiles or in dungeons. These can be highly sought after encounters as RNG vendors are unique sources of some equipment and resources
+- Vendors exist in an economy
+    - Resources which are known to be plentiful on a particular location will be worth less by Vendors on that location. It is best to haul resources to location where they are more scarce to make more money on them. 
+    - Flooding a local economy with one particular resource reduces the demand and therefore price for that item. Likewise, buying a ton of one particular item increases the demand and price of that item.
+    - RNG events can flood a market with one particular item or create a high demand for something for a period of time
+- Most Vendors deal in either the interstellar currency or a local currency
+- Some Vendors offer some or all items for barter only
+- Some tiles offer gamble mechanics to gamble either resources or sacrifice equipment for potential rewards. These are still considered Vendors even if there isn't a character selling stuff
+- The economy is always changing between different Locations and Destinations and it can be fun and rewarding in and of itself to just buy, sell, and craft your way between the different markets for a profit or for a particular item you want
 
-* **Protoform Components/Weapons:**
-    * High-end items that must be unlocked by absorbing XP to reveal random rolls.
-    * Often feature "broken" high stats balanced by negative stat rolls.
-    * Mythic (Red) items only drop as Protoforms and cannot be rerolled.
-* **Rerolling and Upgrades:**
-    * Grey, Green, and Blue items cannot be upgraded to Legendary.
-    * Purple (Epic) items can be upgraded to Legendary with resources.
-    * Legendaries can have single stats boosted, or the entire item rerolled (risky but rewarding).
+# Maps
+Every screen in the game exists at one of four location "layers"
+1. **Orbit:**
+    - From here you can navigate between star systems and see each planetary overworld location
+    - You navigate directly to a Destination, not the planet/moon itself
+    - Some planets or moons may have multiple Destinations.
+2. **Destination:**
+    - This is a large map of an open world area
+    - Destination maps generally present wide open spaces with many directly visitable Tiles
+    - Destination maps have clearly marked nodes showing individual Locations which can be visited
+3. **Location:**
+    - A Location is any self contained area such as a building, a town, a hand crafted dungeon, or a procedurally generated raid
+    - The contents of the Location is not important - a dangerous dungeon and a non combat NPC area are both considered to be Locations
+    - Just like on the Destination itself, Locations have tiles which can be directly visited
+4. **Tile/Encounter:**
+    - Clicking on a visitable Tile from either a Destination or Location will bring you to a single screen Encounter
+    - The terms Tile and Encounter are almost interchangable, but Tile generally refers to the clickable are on a Destination or Location which has specific coordinates, and Encounter generally refers to what happens on the Tile
+    - The Encounter itself could be a combat encounter with one or more enemies, a resource encounter with one or more resource nodes to collect, or many other possible things
+    - Locations can have Encounters that are just a locked door - unlocking the door provides access to more tiles on the Location
 
-* **Weapon Stats:** Damage, Crit Chance, Crit Multiplier, Accuracy, and core stat bonuses (VIT, CON, etc).
+# Crafting
+- Many items can be crafted if the blueprint is known
+- All crafting actions increase the Alchemy Skill
+- Normal items blueprints can be unlocked by bringing multiple copies of the item to a specific vendor and trading them for the blueprint:
+    - Consumables: 5-10
+    - Weapons: 2-5
+    - Suits: 2
+- Components and Tools cannot be crafted due to them rolling with random Traits (craftable items, especially Weapons, are designed to support the idea that you may very well need multiple of them while Components and Tools present a different aquisition challenge and potential reward due to the RNG Traits)
+- Protoform items also cannot be crafted due to their unique and rare nature
+- Blueprints are learned by dismantling a certain number of the item
+- Some blueprints can be bought from Vendors
 
-# Crafting and Economy
-* **Economy:** Players can trade unintegrated or integrated weapons to vendors.
-    * A "pacifist" trader playstyle is viable.
-    * Dismantling integrated items has a low chance of dropping valuable components.
-* **Craftables:**
-    * Components, Weapons, and Tools.
-    * Upgrade/Rerolling resources.
-    * Consumables (Healing, Stat Boosts, Alchemy items).
-    * Ammo (Pistol, Rifle, Heavy).
-    * Mythic Protoforms (crafted via Mythic Shards or special activities).
+# Protoforms
+These are the highest tier endgame loot chase items. Protoforms drop as unidentified masses of encrypted matter, and can be "resolved" into an item in the following ways:
+    - The primary way of resolving Protoforms is to run a specific activity on a Destination. This activity will have you slot a Protoform into a device and then defeat waves of enemies while it decrypts.
+    - If you leave an encrypted Protoform in your inventory, it passively picks up XP from any Encounter, and will, given enought time, gain enough to decrypt on its own. This is very time consuming however and the normal way to decrypt is to run a decrypt activity. However, the waves of enemies scales with how much XP needs to be absorbed by the Protoform, so you can reduce the number of enemy Encounters by slotting a partially decrypted Protoform.
+Once the Protoform is decrypted, you can attempt to resolve it into a weapon. The Cryptography and Alchemy Skills equally contribute to your chances at a successful resolution. If the resolution is unsuccessful, the Protoform may revert to its encrypted state where you'll need to try again, be lost entirely, or even split into two encrypted protoforms which is quite rare. The mechanic is designed to be unpredictable, high effort, often high risk, and high potential reward.
+- **Protoform Components:**
+    - Protoform Components considered integrated and can be slotted into Suits
+    - They roll with five Stats, often with wild distributions
+    - They are the only Components that can roll with negative stats
+    - They cannot be rerolled like normal integrated Components
+- **Protoform Weapons:**
+    - Protoform Weapons are considered integrated don't level
+    - Their Specs are randomly rolled, often with wild distributions
+    - They are the only Weapons that can roll with negative stats
+    - They cannot reroll their Traits like normal integrated Weapons
+- **Protoform Suits:**
+    - Protoform Suits are considered integrated don't level
+    - They are extremely rare and are considered the highest tier of endgame chase item
+    - Their Stats are the same as the base stat version, keeping the identity of the Suit recognizable, but with random buffs or nerfs applied to any of the six Stats, so a Stat can roll negative
+    - They cannot gain the post integration Stat boosts like normal integrated Suits
 
-# Combat Perks [PLACEHOLDER]
-* Crit perks
-* Health regen perks
-* Drop related perks
-* [TBD: Bonus damage to enemy types]
-* [TBD: Resistances and damage types]
+# Archive
+The Archive contains a ton of information about the game.
+- Explanations of all stats information important to understanding builds
+- Library of all enemies, animals, locations etc. discovered by the account
+- Progress on crafting blueprints
 
-# Movement and Combat Flow [PLACEHOLDER]
-* [TBD: Detail top-down vs side-scroller mechanics]
-* [TBD: Action combat vs tactical combat details]
+# Equipment Durability
+- Anytime you use non integrated equipment during an encounter, its Durability decreases
+- If a piece of equipment hits 0 Durability, you lose it forever
+- Equipment can be repaired for a small cost or resource
+- If you die during an encounter, your non integrated equipment loses a significant amount of Durability (like a third or so)
+- Higher CON reduces the amount of Durability your equipment loses during use or when you die
+- Integrated equipment does not lose durability anymore so it's sort of a way of graduating to more endgame content which is extremely challenging and you will die a lot but at least you're not worried about constantly reparinging equipment
 
-# Narrative and Setting [PLACEHOLDER]
-* [TBD: World lore and the nature of Protoform matter]
-* [TBD: Factions and NPC lore]
-
-# Technical Specifications [PLACEHOLDER]
-* [TBD: Art assets, resolution, and animation states]
-* [TBD: Data structure for JSON/CSV exports]
-
-# Codex/Dictionary [PLACEHOLDER]
-* Stores explanations of all stats information important to understanding builds
-* Stores a library of all enemies, animals, locations etc. discovered by the account
-
-# What happens when you die in combat?
-- ??? All suit components get damaged and have to be repaired with some currency?
-- ??? Does a stat reduce how much damage they take? Like if your Constitution is high enough only a few components get damaged (rng) so its easier to recover from?
+# What happens when you die?
+- You keep your Suit, Components, Weapons, and Tools
+- Any non integrated equipment loses a significant amount of Durability
+- You lose your current inventory including all consumables and loot currently held
  
 # Threat mechanic
-- Perception contrbitues to the Threat mechanic where you may get a warning before an enemy appears on a quiet tile (high Perception gives you more warning and a chance to leave before the threat appears)
+- PER contrbitues to the Threat mechanic where you may get a warning before an enemy appears on a quiet Tile or after you've killed enemies and are lingering on a Tile (high PER gives you more warning and a chance to leave before the threat appears)
 
 # Account item transfer tool
 - Accounts are encrypted
-- A dedicated tool lets you load two files and transfer items such that they cannot be duplicated
+- A dedicated feature lets you load two files and transfer items such that they cannot be duplicated
