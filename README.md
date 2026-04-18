@@ -15,6 +15,7 @@
     - Sets HP
     - Affects how quickly HP is recovered
     - Sets carry weight
+    - Sets how many inventory slots are available (max 56)
     - Scales Heavy Melee damage
     - Scales Weapon Critical Multiplier
     - Primarily affected by Reactor Core components

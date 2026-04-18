@@ -1,9 +1,11 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QGuiApplication, Qt
-from engine.DScreenManager import DScreenManager
 from engine.DEngineManager import DEngineManager
-from engine.DConsole import DConsole
+from engine.DGameplayUIManager import DGameplayUIManager
+from engine.DAccountUIManager import DAccountUIManager
+# from engine.DCharacterSheet import DCharacterSheet
 from engine.DEscapeMenu import DEscapeMenu
+from engine.DConsole import DConsole
 from core import DGameManager
 from utils import *
 
@@ -15,11 +17,12 @@ class Dverentos(QMainWindow):
                            background: rgb(0, 0, 0);
                            """)
 
-        self.game_manager = DGameManager()
-        self.screen_manager = DScreenManager(parent=self, game_manager=self.game_manager)
-        self.setCentralWidget(self.screen_manager)
-
         self.engine_manager = DEngineManager(engine=self)
+        self.game_manager = DGameManager()
+        self.gameplay_ui_manager = DGameplayUIManager(parent=self, game_manager=self.game_manager)
+        self.account_ui_manager = DAccountUIManager(parent=self, game_manager=self.game_manager)
+        self.setCentralWidget(self.gameplay_ui_manager)
+
         self.escape_menu = DEscapeMenu(parent=self, engine_manager=self.engine_manager)
         self.console = DConsole(parent=self, engine_manager=self.engine_manager)
 
@@ -36,6 +39,9 @@ class Dverentos(QMainWindow):
         if event.key() == Qt.Key_Escape:
             self.escape_menu.setVisible(not self.escape_menu.isVisible())
 
+        elif event.key() == Qt.Key_Tab:
+            self.account_ui_manager.setVisible(True)
+
         elif event.key() == Qt.Key_QuoteLeft:
             self.console.setVisible(not self.console.isVisible())
             if self.console.isVisible():
@@ -43,6 +49,7 @@ class Dverentos(QMainWindow):
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
+        self.account_ui_manager.update_geometry()
         self.escape_menu.update_geometry()
         self.console.update_geometry()
 

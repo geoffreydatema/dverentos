@@ -3,7 +3,7 @@ from PySide6.QtWidgets import QStackedWidget
 from engine.DScreen import DScreen
 from data.engine_constants import DScreenID
 
-class DScreenManager(QStackedWidget):
+class DGameplayUIManager(QStackedWidget):
     def __init__(self, parent, game_manager):
         super().__init__(parent)
         self.game_manager = game_manager

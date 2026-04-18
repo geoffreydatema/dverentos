@@ -2,7 +2,7 @@ from utils import *
 from PySide6.QtWidgets import QFrame, QVBoxLayout, QPushButton
 from PySide6.QtGui import Qt
 
-class DEscapeMenu(QFrame):
+class DCharacterSheet(QFrame):
     def __init__(self, parent=None, engine_manager=None):
         super().__init__(parent)
         self.engine_manager = engine_manager
@@ -10,8 +10,8 @@ class DEscapeMenu(QFrame):
         self.setVisible(False)
         self.update_geometry()
         self.setStyleSheet("""
-                           DEscapeMenu {
-                                background: rgb(30, 30, 30);
+                           DCharacterSheet {
+                                background: rgb(10, 10, 10);
                                 
                            }
 
@@ -29,15 +29,15 @@ class DEscapeMenu(QFrame):
                            """)
         self.layout = QVBoxLayout(self)
 
-        self.exit_button = QPushButton("Exit")
-        self.exit_button.setFixedWidth(100)
+        # self.exit_button = QPushButton("Exit")
+        # self.exit_button.setFixedWidth(100)
 
-        self.layout.addWidget(self.exit_button, alignment=Qt.AlignCenter)
+        # self.layout.addWidget(self.exit_button, alignment=Qt.AlignCenter)
 
-        self.exit_button.clicked.connect(self.handle_exit)
+        # self.exit_button.clicked.connect(self.handle_exit)
 
     def update_geometry(self):
         self.setGeometry(0, 0, self.parent().width(), self.parent().height())
 
-    def handle_exit(self):
-        self.engine_manager.quit()
+    # def handle_exit(self):
+    #     self.engine_manager.quit()
