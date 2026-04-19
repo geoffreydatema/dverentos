@@ -29,11 +29,9 @@ class DAccountUIManager(QFrame):
         
         self.setVisible(False)
         self.game_manager = game_manager
-
-        self.character_screen = DCharacterSheet(self)
         
-        self.screen_map = {}
-        self.screen_map[DScreenID.CHARACTER] = self.character_screen
+        # self.screen_map = {}
+        # self.screen_map[DScreenID.CHARACTER] = self.character_screen
 
         self.layout = QVBoxLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
@@ -41,12 +39,15 @@ class DAccountUIManager(QFrame):
         self.build_navigation()
         self.account_ui_stack = QStackedWidget()
         self.layout.addWidget(self.account_ui_stack)
+        
+        self.character_screen = DCharacterSheet(parent=self)
         self.account_ui_stack.addWidget(self.character_screen)
 
     def build_navigation(self):
         self.navigation_bar = QWidget()
         self.navigation_layout = QHBoxLayout(self.navigation_bar)
         self.navigation_layout.setContentsMargins(10, 10, 10, 4)
+        self.navigation_layout.setSpacing(0)
         
         self.map_button = QPushButton("MAP")
         self.character_button = QPushButton("CHARACTER")

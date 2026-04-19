@@ -12,7 +12,6 @@ class DEscapeMenu(QFrame):
         self.setStyleSheet("""
                            DEscapeMenu {
                                 background: rgb(30, 30, 30);
-                                
                            }
 
                            QPushButton {

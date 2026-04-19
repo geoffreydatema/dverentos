@@ -4,8 +4,8 @@ from PySide6.QtGui import QPixmap, QPainter
 from PySide6.QtCore import Qt
 
 class DScreen(QWidget):
-    def __init__(self, image_path):
-        super().__init__()
+    def __init__(self, parent=None, image_path=None):
+        super().__init__(parent)
         self.fullres_background_pixmap = QPixmap(image_path)
         self.scaled_background_pixmap = None
         self.layout = QVBoxLayout(self)

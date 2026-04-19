@@ -1,3 +1,4 @@
+from utils import *
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QGuiApplication, Qt
 from PySide6.QtCore import QEvent
@@ -7,7 +8,6 @@ from engine.DAccountUIManager import DAccountUIManager
 from engine.DEscapeMenu import DEscapeMenu
 from engine.DConsole import DConsole
 from core import DGameManager
-from utils import *
 
 class Dverentos(QMainWindow):
     def __init__(self):
