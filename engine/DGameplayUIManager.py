@@ -13,9 +13,10 @@ class DGameplayUIManager(QStackedWidget):
         self.map_placeholder = DScreen(parent=self, image_path="assets/placeholder/map_placeholder_v001.jpg")
         self.addWidget(self.map_placeholder)
 
-        self.screen_map = {}
-        self.screen_map[DScreenID.MAIN_MENU] = self.main_menu
-        self.screen_map[DScreenID.PLACEHOLDER] = self.map_placeholder
+        self.screen_map = {
+            DScreenID.MAIN_MENU: self.main_menu,
+            DScreenID.PLACEHOLDER: self.map_placeholder
+        }
 
         self.switch(DScreenID.MAIN_MENU)
 
