@@ -1,8 +1,10 @@
 from utils import *
-from PySide6.QtWidgets import QWidget, QFrame, QStackedWidget, QVBoxLayout, QHBoxLayout, QPushButton
+from PySide6.QtWidgets import QWidget, QFrame, QStackedWidget, QHBoxLayout, QPushButton
 from PySide6.QtGui import Qt
-from engine.DScreen import DScreen
-from engine.DCharacterSheet import DCharacterSheet
+from engine.DCharacterUI import DCharacterUI
+from engine.DVaultUI import DVaultUI
+from engine.DCraftingUI import DCraftingUI
+from engine.DArchiveUI import DArchiveUI
 from data.engine_constants import DScreenID
 
 class DAccountUIManager(QFrame):
@@ -33,12 +35,23 @@ class DAccountUIManager(QFrame):
         
         self.build_navigation() 
 
-        self.character_screen = DCharacterSheet(parent=self.account_ui_stack)
-        self.account_ui_stack.addWidget(self.character_screen)
+        self.character_ui = DCharacterUI(parent=self.account_ui_stack)
+        self.vault_ui = DVaultUI(parent=self.account_ui_stack)
+        self.crafting_ui = DCraftingUI(parent=self.account_ui_stack)
+        self.archive_ui = DArchiveUI(parent=self.account_ui_stack)
+        self.account_ui_stack.addWidget(self.character_ui)
+        self.account_ui_stack.addWidget(self.vault_ui)
+        self.account_ui_stack.addWidget(self.crafting_ui)
+        self.account_ui_stack.addWidget(self.archive_ui)
 
         self.screen_map = {
-            DScreenID.CHARACTER: self.character_screen
+            DScreenID.CHARACTER: self.character_ui,
+            DScreenID.VAULT: self.vault_ui,
+            DScreenID.CRAFTING: self.crafting_ui,
+            DScreenID.ARCHIVE: self.archive_ui
         }
+
+        self.switch(DScreenID.CHARACTER)
 
     def build_navigation(self):
         self.navigation_bar = QWidget(self)
@@ -59,7 +72,11 @@ class DAccountUIManager(QFrame):
             btn.setFocusPolicy(Qt.NoFocus)
             self.navigation_layout.addWidget(btn)
         
+        self.map_button.clicked.connect(self.toggle)
         self.character_button.clicked.connect(lambda: self.switch(DScreenID.CHARACTER))
+        self.vault_button.clicked.connect(lambda: self.switch(DScreenID.VAULT))
+        self.crafting_button.clicked.connect(lambda: self.switch(DScreenID.CRAFTING))
+        self.archive_button.clicked.connect(lambda: self.switch(DScreenID.ARCHIVE))
 
     def switch(self, screen_id):
         target_widget = self.screen_map.get(screen_id)
@@ -101,3 +118,4 @@ class DAccountUIManager(QFrame):
         else:
             self.setVisible(True)
             self.update_geometry()
+            self.switch(DScreenID.CHARACTER)
