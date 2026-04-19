@@ -4,7 +4,6 @@ from PySide6.QtCore import QEvent
 from engine.DEngineManager import DEngineManager
 from engine.DGameplayUIManager import DGameplayUIManager
 from engine.DAccountUIManager import DAccountUIManager
-# from engine.DCharacterSheet import DCharacterSheet
 from engine.DEscapeMenu import DEscapeMenu
 from engine.DConsole import DConsole
 from core import DGameManager
@@ -15,7 +14,9 @@ class Dverentos(QMainWindow):
         super().__init__()
         self.setWindowTitle("DVERENTOS")
         self.setStyleSheet("""
-                           background: rgb(0, 0, 0);
+                           Dverentos {
+                                background: rgb(0, 0, 0);
+                           }
                            """)
 
         self.engine_manager = DEngineManager(engine=self)

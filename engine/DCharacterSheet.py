@@ -11,33 +11,10 @@ class DCharacterSheet(QFrame):
         self.update_geometry()
         self.setStyleSheet("""
                            DCharacterSheet {
-                                background: rgb(10, 10, 10);
-                                
-                           }
-
-                           QPushButton {
-                                background: rgb(60, 60, 60);
-                           }
-
-                           QPushButton:hover {
-                                background: rgb(80, 80, 80);
-                           }
-
-                           QPushButton:pressed {
-                                background: rgb(50, 50, 50);
+                                background: rgb(10, 20, 30);
                            }
                            """)
         self.layout = QVBoxLayout(self)
 
-        # self.exit_button = QPushButton("Exit")
-        # self.exit_button.setFixedWidth(100)
-
-        # self.layout.addWidget(self.exit_button, alignment=Qt.AlignCenter)
-
-        # self.exit_button.clicked.connect(self.handle_exit)
-
     def update_geometry(self):
         self.setGeometry(0, 0, self.parent().width(), self.parent().height())
-
-    # def handle_exit(self):
-    #     self.engine_manager.quit()

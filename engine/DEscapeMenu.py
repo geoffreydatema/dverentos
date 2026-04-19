@@ -48,4 +48,3 @@ class DEscapeMenu(QFrame):
             self.parent().setFocus()
         else:
             self.setVisible(True)
-            # setFocus()
