@@ -41,3 +41,11 @@ class DEscapeMenu(QFrame):
 
     def handle_exit(self):
         self.engine_manager.quit()
+
+    def toggle(self):
+        if self.isVisible():
+            self.setVisible(False)
+            self.parent().setFocus()
+        else:
+            self.setVisible(True)
+            # setFocus()

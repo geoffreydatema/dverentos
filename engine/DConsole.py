@@ -37,7 +37,7 @@ class DConsole(QWidget):
         args = raw_command[1:]
 
         if operation == "hi":
-            info("Hello right back at ya")
+            info("Hi right back at ya")
         elif operation == "close":
             self.setVisible(False)
             self.parent().setFocus()
@@ -71,6 +71,14 @@ class DConsole(QWidget):
                 error("Incorrect number of args passed for fullscreen setting")
                 return
             self.engine_manager.set_fullscreen_windowed(values[0])
+    
+    def toggle(self):
+        if self.isVisible():
+            self.setVisible(False)
+            self.parent().setFocus()
+        else:
+            self.setVisible(True)
+            self.input_field.setFocus()
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Escape:

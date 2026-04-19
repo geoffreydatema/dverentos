@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QMainWindow
 from PySide6.QtGui import QGuiApplication, Qt
+from PySide6.QtCore import QEvent
 from engine.DEngineManager import DEngineManager
 from engine.DGameplayUIManager import DGameplayUIManager
 from engine.DAccountUIManager import DAccountUIManager
@@ -28,24 +29,29 @@ class Dverentos(QMainWindow):
 
         self.engine_manager.apply_settings()
 
+        self.installEventFilter(self)
+
+    def eventFilter(self, watched, event):
+        if event.type() == QEvent.KeyPress:
+            key = event.key()
+
+            if key == Qt.Key_Escape:
+                self.escape_menu.toggle()
+
+            elif key == Qt.Key_QuoteLeft:
+                self.console.toggle()
+
+            elif key == Qt.Key_Tab:
+                self.account_ui_manager.toggle()
+        
+        return super().eventFilter(watched, event)
+    
     def center_window(self):
         screen = QGuiApplication.primaryScreen().availableGeometry()
         size = self.frameGeometry()
         center_point = screen.center()
         size.moveCenter(center_point)
         self.move(size.topLeft())
-
-    def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
-            self.escape_menu.setVisible(not self.escape_menu.isVisible())
-
-        elif event.key() == Qt.Key_Tab:
-            self.account_ui_manager.setVisible(True)
-
-        elif event.key() == Qt.Key_QuoteLeft:
-            self.console.setVisible(not self.console.isVisible())
-            if self.console.isVisible():
-                self.console.input_field.setFocus()
 
     def resizeEvent(self, event):
         super().resizeEvent(event)

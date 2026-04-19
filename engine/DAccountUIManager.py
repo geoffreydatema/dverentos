@@ -1,5 +1,6 @@
 from utils import *
 from PySide6.QtWidgets import QStackedWidget
+from PySide6.QtGui import Qt
 from engine.DScreen import DScreen
 from data.engine_constants import DScreenID
 
@@ -33,4 +34,10 @@ class DAccountUIManager(QStackedWidget):
     def update_geometry(self):
         self.setGeometry(0, 0, self.parent().width(), self.parent().height())
 
-    #@! add keyboard event to turn off account ui
+    def toggle(self):
+        if self.isVisible():
+            self.setVisible(False)
+            self.parent().setFocus()
+        else:
+            self.setVisible(True)
+            # setFocus()
