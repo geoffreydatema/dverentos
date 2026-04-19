@@ -69,18 +69,29 @@ class DAccountUIManager(QFrame):
             error(f"Screen ID {screen_id} not recognized by Account Manager")
 
     def update_geometry(self):
-        """ Manually layer the widgets since we aren't using a vertical layout """
         parent_size = self.parent().size()
         self.setGeometry(0, 0, parent_size.width(), parent_size.height())
 
-        # Make the stack fill the FULL area (for full-res art)
         self.account_ui_stack.setGeometry(0, 0, self.width(), self.height())
 
-        # Float the navigation bar at the top
+        target_ratio = 16 / 9
+        window_w = self.width()
+        window_h = self.height()
+        window_ratio = window_w / window_h
+
+        if window_ratio > target_ratio:
+            canvas_h = window_h
+            canvas_w = int(canvas_h * target_ratio)
+        else:
+            canvas_w = window_w
+            canvas_h = int(canvas_w / target_ratio)
+
+        x_offset = (window_w - canvas_w) // 2
+        y_offset = (window_h - canvas_h) // 2
+
         bar_height = 48
-        self.navigation_bar.setGeometry(0, 0, self.width(), bar_height)
+        self.navigation_bar.setGeometry(x_offset, y_offset, canvas_w, bar_height)
         
-        # Ensure the nav bar stays visually on top of the stack
         self.navigation_bar.raise_()
 
     def toggle(self):
