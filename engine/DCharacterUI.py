@@ -2,6 +2,7 @@ from utils import *
 from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QFrame, QSizePolicy, QVBoxLayout
 from PySide6.QtCore import Qt
 from engine.DScreen import DScreen
+from engine.DVaultSlot import DVaultSlot
 from data.engine_constants import DFontSize
 
 class DCharacterUI(DScreen):
@@ -23,25 +24,41 @@ class DCharacterUI(DScreen):
         self.build_ui()
 
     def build_ui(self):
-        self.label_wrapper = QFrame()
-        self.label_wrapper.setStyleSheet("background: rgb(30, 30, 30); border: none;")
-        self.label_wrapper.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
-        
-        wrapper_layout = QVBoxLayout(self.label_wrapper)
-        wrapper_layout.setContentsMargins(0, 0, 0, 0)
-        wrapper_layout.setSpacing(0)
 
-        self.label = QLabel("STAT PLACEHOLDER")
-        self.label.setAlignment(Qt.AlignCenter)
-        self.label.setStyleSheet("color: white; background: transparent;")
-        
-        wrapper_layout.addWidget(self.label)
-        self.grid_layout.addWidget(self.label_wrapper, 5, 2, 1, 3)
+        # character sheet vault
+        self.vault_tab_container = QFrame()
+        self.vault_tab_container.setStyleSheet("background: rgb(40, 40, 40);")
+        self.vault_tab_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
 
-        self.slot = QFrame()
-        self.slot.setStyleSheet("background: rgb(20, 20, 128);")
-        self.slot.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
-        self.grid_layout.addWidget(self.slot, 2, 20, 1, 1)
+        self.vault_slots = {} # Key: (r, c), Value: DVaultSlot instance
+
+        for c in range(24, 32):
+            for r in range(2, 18):
+                # Instantiate our custom class
+                slot = DVaultSlot(r, c)
+                
+                # Add to Grid
+                self.grid_layout.addWidget(slot, r, c)
+                
+                # Register reference
+                self.vault_slots[(r, c)] = slot
+
+        #@! general idea for a text wrapper
+        # self.label_wrapper = QFrame()
+        # self.label_wrapper.setStyleSheet("background: rgb(30, 30, 30); border: none;")
+        # self.label_wrapper.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        
+        # wrapper_layout = QVBoxLayout(self.label_wrapper)
+        # wrapper_layout.setContentsMargins(0, 0, 0, 0)
+        # wrapper_layout.setSpacing(0)
+
+        # self.label = QLabel("STAT PLACEHOLDER")
+        # self.label.setAlignment(Qt.AlignCenter)
+        # self.label.setStyleSheet("color: white; background: transparent;")
+        
+        # wrapper_layout.addWidget(self.label)
+        # self.grid_layout.addWidget(self.label_wrapper, 5, 2, 1, 3)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
@@ -49,6 +66,8 @@ class DCharacterUI(DScreen):
         self.update_geometry()
         
     def update_geometry(self):
+        # @! likely we will move this function (and possibly update_fonts) as well to DScreen if most of it can be inherited
+
         if not self.fullres_background_pixmap.isNull():
             self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
                 self.size(), 
@@ -77,6 +96,6 @@ class DCharacterUI(DScreen):
         
         new_size = max(1, new_size) 
         
-        font = self.label.font()
-        font.setPixelSize(new_size)
-        self.label.setFont(font)
+        # font = self.label.font()
+        # font.setPixelSize(new_size)
+        # self.label.setFont(font)
