@@ -7,3 +7,7 @@ class DScreenID(IntEnum):
     VAULT = auto()
     CRAFTING = auto()
     ARCHIVE = auto()
+
+class DFontSize():
+    ACCOUNT_UI_NAVBAR = 0.4
+    CHARACTER_UI_STATS = 0.3

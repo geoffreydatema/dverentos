@@ -2,6 +2,7 @@ from utils import *
 from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QFrame, QSizePolicy, QVBoxLayout
 from PySide6.QtCore import Qt
 from engine.DScreen import DScreen
+from data.engine_constants import DFontSize
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -56,7 +57,7 @@ class DCharacterUI(DScreen):
     
     def update_fonts(self):
         cell_height = self.grid_container.height() / 18
-        new_size = max(6, int(cell_height * 0.6))
+        new_size = int(cell_height * DFontSize.CHARACTER_UI_STATS)
         
         font = self.label.font()
         font.setPixelSize(new_size)
