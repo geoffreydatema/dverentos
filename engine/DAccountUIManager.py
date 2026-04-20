@@ -88,27 +88,35 @@ class DAccountUIManager(QFrame):
     def update_geometry(self):
         parent_size = self.parent().size()
         self.setGeometry(0, 0, parent_size.width(), parent_size.height())
-
         self.account_ui_stack.setGeometry(0, 0, self.width(), self.height())
 
         target_ratio = 16 / 9
-        window_w = self.width()
-        window_h = self.height()
-        window_ratio = window_w / window_h
-
-        if window_ratio > target_ratio:
-            canvas_h = window_h
-            canvas_w = int(canvas_h * target_ratio)
-        else:
-            canvas_w = window_w
-            canvas_h = int(canvas_w / target_ratio)
-
-        x_offset = (window_w - canvas_w) // 2
-        y_offset = (window_h - canvas_h) // 2
-
-        bar_height = 48
-        self.navigation_bar.setGeometry(x_offset, y_offset, canvas_w, bar_height)
+        w, h = self.width(), self.height()
         
+        if (w / h) > target_ratio:
+            canvas_h = h
+            canvas_w = int(h * target_ratio)
+        else:
+            canvas_w = w
+            canvas_h = int(w / target_ratio)
+
+        x_offset = (w - canvas_w) // 2
+        y_offset = (h - canvas_h) // 2
+
+        dynamic_bar_height = canvas_h // 18 
+        
+        self.navigation_bar.setGeometry(x_offset, y_offset, canvas_w, dynamic_bar_height)
+        
+        font_size = max(8, int(dynamic_bar_height * 0.4))
+        
+        for i in range(self.navigation_layout.count()):
+            item = self.navigation_layout.itemAt(i)
+            widget = item.widget()
+            if isinstance(widget, QPushButton):
+                font = widget.font()
+                font.setPixelSize(font_size)
+                widget.setFont(font)
+                
         self.navigation_bar.raise_()
 
     def toggle(self):
