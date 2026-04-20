@@ -10,9 +10,9 @@ from data.engine_constants import DScreenID, DFontSize
 class DAccountUIManager(QFrame):
     def __init__(self, parent, game_manager):
         super().__init__(parent)
-        self.setVisible(False)
+        
         self.game_manager = game_manager
-
+        
         self.setStyleSheet("""
             DAccountUIManager {
                 background: rgb(10, 10, 10);
@@ -21,7 +21,10 @@ class DAccountUIManager(QFrame):
                 background: rgb(60, 60, 60);
                 color: white;
                 border: 1px solid rgb(80, 80, 80);
-                padding: 5px 15px;
+                padding: 8px 12px;
+                font-family: "Arial";
+                font-weight: 600;
+                border-radius: 2px;
             }
             QPushButton:hover {
                 background: rgb(80, 80, 80);
@@ -30,6 +33,8 @@ class DAccountUIManager(QFrame):
                 background: rgb(50, 50, 50);
             }
         """)
+
+        self.setVisible(False)
         
         self.account_ui_stack = QStackedWidget(self)
         
@@ -56,7 +61,7 @@ class DAccountUIManager(QFrame):
     def build_navigation(self):
         self.navigation_bar = QWidget(self)
         self.navigation_layout = QHBoxLayout(self.navigation_bar)
-        self.navigation_layout.setContentsMargins(10, 10, 10, 4)
+        self.navigation_layout.setContentsMargins(0, 0, 10, 0)
         self.navigation_layout.setSpacing(10)
         
         self.map_button = QPushButton("MAP")
@@ -118,6 +123,10 @@ class DAccountUIManager(QFrame):
                 widget.setFont(font)
                 
         self.navigation_bar.raise_()
+
+        active_screen = self.account_ui_stack.currentWidget()
+        if active_screen:
+            active_screen.update_geometry()
 
     def toggle(self):
         if self.isVisible():

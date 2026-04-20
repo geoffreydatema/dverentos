@@ -75,3 +75,10 @@ class Dverentos(QMainWindow):
         self.showNormal()
         self.setGeometry(0, 0, final_width, final_height)
         self.center_window()
+
+    def changeEvent(self, event):
+        if event.type() == QEvent.WindowStateChange:
+            if self.isMaximized() or self.windowState() == Qt.WindowNoState:
+                self.account_ui_manager.update_geometry()
+        
+        super().changeEvent(event)

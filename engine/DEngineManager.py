@@ -14,7 +14,11 @@ class DEngineManager():
         }
 
     def apply_settings(self):
+        # start in half res windowed
         self.set_resolution(self.settings.get("resolution")[0], self.settings.get("resolution")[1])
+        
+        # start in fullscreen
+        # self.set_fullscreen("true")
 
     def quit(self):
         info("Exiting now")

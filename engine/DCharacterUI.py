@@ -19,7 +19,7 @@ class DCharacterUI(DScreen):
         for i in range(18):
             self.grid_layout.setRowStretch(i, 1)
 
-        self.layout.addWidget(self.grid_container)
+        self.grid_container.setParent(self)
         self.build_ui()
 
     def build_ui(self):
@@ -46,18 +46,36 @@ class DCharacterUI(DScreen):
     def resizeEvent(self, event):
         super().resizeEvent(event)
 
+        self.update_geometry()
+        
+    def update_geometry(self):
+        if not self.fullres_background_pixmap.isNull():
+            self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
+                self.size(), 
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
+            )
+
         if self.scaled_background_pixmap:
             bg_w = self.scaled_background_pixmap.width()
             bg_h = self.scaled_background_pixmap.height()
+            
             x_offset = (self.width() - bg_w) // 2
             y_offset = (self.height() - bg_h) // 2
 
             self.grid_container.setGeometry(x_offset, y_offset, bg_w, bg_h)
-            self.update_fonts()
-    
+            
+            if bg_h > 0:
+                self.update_fonts()
+
     def update_fonts(self):
-        cell_height = self.grid_container.height() / 18
+        h = self.grid_container.height()
+        if h <= 0: return
+
+        cell_height = h / 18
         new_size = int(cell_height * DFontSize.CHARACTER_UI_STATS)
+        
+        new_size = max(1, new_size) 
         
         font = self.label.font()
         font.setPixelSize(new_size)

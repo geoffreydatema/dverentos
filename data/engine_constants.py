@@ -9,5 +9,5 @@ class DScreenID(IntEnum):
     ARCHIVE = auto()
 
 class DFontSize():
-    ACCOUNT_UI_NAVBAR = 0.4
+    ACCOUNT_UI_NAVBAR = 0.25
     CHARACTER_UI_STATS = 0.3
