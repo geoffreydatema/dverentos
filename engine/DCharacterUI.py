@@ -1,12 +1,13 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QFrame, QSizePolicy, QVBoxLayout
 from PySide6.QtCore import Qt
+from data.engine_constants import DFontSize
 from engine.DScreen import DScreen
 from engine.DVaultSlot import DVaultSlot
 from engine.DInventorySlot import DInventorySlot
 from engine.DComponentSlot import DComponentSlot
 from engine.DWeaponSlot import DWeaponSlot
-from data.engine_constants import DFontSize
+from engine.DStatus import DStatus
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -77,6 +78,14 @@ class DCharacterUI(DScreen):
 
         self.secondary_weapon_slot = DWeaponSlot(12, 12)
         self.grid_layout.addWidget(self.secondary_weapon_slot, 12, 12, 2, 5)
+
+        # statuses
+        self.statuses = {}
+        for c in range(5, 9):
+            for r in range(15, 18):
+                status = DStatus(r, c)
+                self.grid_layout.addWidget(status, r, c)
+                self.statuses[(r, c)] = status
 
         #===================================================================================
         #@! general idea for a text wrapper
