@@ -5,6 +5,7 @@ from engine.DScreen import DScreen
 from engine.DVaultSlot import DVaultSlot
 from engine.DInventorySlot import DInventorySlot
 from engine.DComponentSlot import DComponentSlot
+from engine.DWeaponSlot import DWeaponSlot
 from data.engine_constants import DFontSize
 
 class DCharacterUI(DScreen):
@@ -69,6 +70,13 @@ class DCharacterUI(DScreen):
 
         self.power_transport = DComponentSlot(6, 11)
         self.grid_layout.addWidget(self.power_transport, 6, 11)
+
+        # weapon slots
+        self.primary_weapon_slot = DWeaponSlot(12, 5)
+        self.grid_layout.addWidget(self.primary_weapon_slot, 12, 5, 2, 5)
+
+        self.secondary_weapon_slot = DWeaponSlot(12, 12)
+        self.grid_layout.addWidget(self.secondary_weapon_slot, 12, 12, 2, 5)
 
         #===================================================================================
         #@! general idea for a text wrapper
