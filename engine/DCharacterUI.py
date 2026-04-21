@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QFrame, QSizePolicy,
 from PySide6.QtCore import Qt
 from data.engine_constants import DFontSize
 from engine.DScreen import DScreen
+from engine.DGridContainer import DGridContainer
 from engine.DVaultSlot import DVaultSlot
 from engine.DInventorySlot import DInventorySlot
 from engine.DComponentSlot import DComponentSlot
@@ -32,9 +33,7 @@ class DCharacterUI(DScreen):
 
         # character sheet vault
         self.vault_slots = {}
-        self.vault_tab_container = QFrame()
-        self.vault_tab_container.setStyleSheet("background: rgb(40, 40, 40);")
-        self.vault_tab_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.vault_tab_container = DGridContainer(1, 24)
         self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
         for c in range(24, 32):
             for r in range(2, 18):
@@ -44,9 +43,7 @@ class DCharacterUI(DScreen):
 
         # character sheet inventory
         self.inventory_slots = {}
-        self.carry_weight_container = QFrame()
-        self.carry_weight_container.setStyleSheet("background: rgb(40, 40, 40);")
-        self.carry_weight_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.carry_weight_container = DGridContainer(1, 19)
         self.grid_layout.addWidget(self.carry_weight_container, 1, 19, 1, 4)
         for c in range(19, 23):
             for r in range(2, 18):
@@ -89,17 +86,37 @@ class DCharacterUI(DScreen):
                 self.statuses[(r, c)] = status
 
         # tools
-        self.scanner = DToolSlot(17, 13)
-        self.grid_layout.addWidget(self.scanner, 17, 13)
+        self.scanner = DToolSlot(16, 13)
+        self.grid_layout.addWidget(self.scanner, 16, 13)
 
-        self.harvesting_knife = DToolSlot(17, 14)
-        self.grid_layout.addWidget(self.harvesting_knife, 17, 14)
+        self.harvesting_knife = DToolSlot(16, 14)
+        self.grid_layout.addWidget(self.harvesting_knife, 16, 14)
 
-        self.hunting_javelin = DToolSlot(17, 15)
-        self.grid_layout.addWidget(self.hunting_javelin, 17, 15)
+        self.hunting_javelin = DToolSlot(16, 15)
+        self.grid_layout.addWidget(self.hunting_javelin, 16, 15)
 
-        self.mining_laser = DToolSlot(17, 16)
-        self.grid_layout.addWidget(self.mining_laser, 17, 16)
+        self.mining_laser = DToolSlot(16, 16)
+        self.grid_layout.addWidget(self.mining_laser, 16, 16)
+        
+        # character values
+        self.character_values_container = DGridContainer(5, 0)
+        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 3)
+
+        # name plate
+        self.name_plate_container = DGridContainer(0, 0)
+        self.grid_layout.addWidget(self.name_plate_container, 0, 0, 2, 8)
+
+        # attributes
+        self.attributes_container = DGridContainer(2, 0)
+        self.grid_layout.addWidget(self.attributes_container, 2, 0, 1, 4)
+
+        # inventory preview
+        self.inventory_preview_container = DGridContainer(3, 0)
+        self.grid_layout.addWidget(self.inventory_preview_container, 3, 0, 1, 4)
+
+        # statuses preview
+        self.statuses_preview_container = DGridContainer(3, 4)
+        self.grid_layout.addWidget(self.statuses_preview_container, 3, 4, 1, 1)
 
         #===================================================================================
         #@! general idea for a text wrapper
