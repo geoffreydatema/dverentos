@@ -31,7 +31,7 @@ class DCharacterUI(DScreen):
         self.vault_tab_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
         self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
 
-        self.vault_slots = {} # Key: (r, c), Value: DVaultSlot instance
+        self.vault_slots = {}
 
         for c in range(24, 32):
             for r in range(2, 18):
@@ -43,6 +43,9 @@ class DCharacterUI(DScreen):
                 
                 # Register reference
                 self.vault_slots[(r, c)] = slot
+
+        # character sheet inventory
+
 
         #@! general idea for a text wrapper
         # self.label_wrapper = QFrame()
