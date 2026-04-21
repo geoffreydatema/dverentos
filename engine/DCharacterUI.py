@@ -30,28 +30,28 @@ class DCharacterUI(DScreen):
         self.build_ui()
 
     def build_ui(self):
+        
+        # name plate ==============================================================
+        self.name_plate_container = DGridContainer(0, 0)
+        self.grid_layout.addWidget(self.name_plate_container, 0, 0, 2, 8)
 
-        # character sheet vault
-        self.vault_slots = {}
-        self.vault_tab_container = DGridContainer(1, 24)
-        self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
-        for c in range(24, 32):
-            for r in range(2, 18):
-                slot = DVaultSlot(r, c)
-                self.grid_layout.addWidget(slot, r, c)
-                self.vault_slots[(r, c)] = slot
+        # attributes ==============================================================
+        self.attributes_container = DGridContainer(2, 0)
+        self.grid_layout.addWidget(self.attributes_container, 2, 0, 1, 4)
 
-        # character sheet inventory
-        self.inventory_slots = {}
-        self.carry_weight_container = DGridContainer(1, 19)
-        self.grid_layout.addWidget(self.carry_weight_container, 1, 19, 1, 4)
-        for c in range(19, 23):
-            for r in range(2, 18):
-                slot = DInventorySlot(r, c)
-                self.grid_layout.addWidget(slot, r, c)
-                self.vault_slots[(r, c)] = slot
+        # inventory preview =======================================================
+        self.inventory_preview_container = DGridContainer(3, 0)
+        self.grid_layout.addWidget(self.inventory_preview_container, 3, 0, 1, 4)
 
-        # component slots
+        # statuses preview ========================================================
+        self.statuses_preview_container = DGridContainer(3, 4)
+        self.grid_layout.addWidget(self.statuses_preview_container, 3, 4, 1, 1)
+
+        # character values ========================================================
+        self.character_values_container = DGridContainer(5, 0)
+        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 3)
+
+        # component slots =========================================================
         self.sensors_slot = DComponentSlot(3, 8)
         self.grid_layout.addWidget(self.sensors_slot, 3, 8)
 
@@ -70,14 +70,14 @@ class DCharacterUI(DScreen):
         self.power_transport = DComponentSlot(6, 11)
         self.grid_layout.addWidget(self.power_transport, 6, 11)
 
-        # weapon slots
+        # weapon slots ============================================================
         self.primary_weapon_slot = DWeaponSlot(12, 5)
         self.grid_layout.addWidget(self.primary_weapon_slot, 12, 5, 2, 5)
 
         self.secondary_weapon_slot = DWeaponSlot(12, 12)
         self.grid_layout.addWidget(self.secondary_weapon_slot, 12, 12, 2, 5)
 
-        # statuses
+        # statuses ================================================================
         self.statuses = {}
         for c in range(5, 9):
             for r in range(15, 18):
@@ -85,7 +85,7 @@ class DCharacterUI(DScreen):
                 self.grid_layout.addWidget(status, r, c)
                 self.statuses[(r, c)] = status
 
-        # tools
+        # tools ===================================================================
         self.scanner = DToolSlot(16, 13)
         self.grid_layout.addWidget(self.scanner, 16, 13)
 
@@ -97,26 +97,26 @@ class DCharacterUI(DScreen):
 
         self.mining_laser = DToolSlot(16, 16)
         self.grid_layout.addWidget(self.mining_laser, 16, 16)
-        
-        # character values
-        self.character_values_container = DGridContainer(5, 0)
-        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 3)
 
-        # name plate
-        self.name_plate_container = DGridContainer(0, 0)
-        self.grid_layout.addWidget(self.name_plate_container, 0, 0, 2, 8)
+        # character sheet inventory ===============================================
+        self.inventory_slots = {}
+        self.carry_weight_container = DGridContainer(1, 19)
+        self.grid_layout.addWidget(self.carry_weight_container, 1, 19, 1, 4)
+        for c in range(19, 23):
+            for r in range(2, 18):
+                slot = DInventorySlot(r, c)
+                self.grid_layout.addWidget(slot, r, c)
+                self.inventory_slots[(r, c)] = slot
 
-        # attributes
-        self.attributes_container = DGridContainer(2, 0)
-        self.grid_layout.addWidget(self.attributes_container, 2, 0, 1, 4)
-
-        # inventory preview
-        self.inventory_preview_container = DGridContainer(3, 0)
-        self.grid_layout.addWidget(self.inventory_preview_container, 3, 0, 1, 4)
-
-        # statuses preview
-        self.statuses_preview_container = DGridContainer(3, 4)
-        self.grid_layout.addWidget(self.statuses_preview_container, 3, 4, 1, 1)
+        # character sheet vault ===================================================
+        self.vault_slots = {}
+        self.vault_tab_container = DGridContainer(1, 24)
+        self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
+        for c in range(24, 32):
+            for r in range(2, 18):
+                slot = DVaultSlot(r, c)
+                self.grid_layout.addWidget(slot, r, c)
+                self.vault_slots[(r, c)] = slot
 
         #===================================================================================
         #@! general idea for a text wrapper
