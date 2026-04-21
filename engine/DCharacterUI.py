@@ -4,6 +4,7 @@ from PySide6.QtCore import Qt
 from engine.DScreen import DScreen
 from engine.DVaultSlot import DVaultSlot
 from engine.DInventorySlot import DInventorySlot
+from engine.DComponentSlot import DComponentSlot
 from data.engine_constants import DFontSize
 
 class DCharacterUI(DScreen):
@@ -27,43 +28,49 @@ class DCharacterUI(DScreen):
     def build_ui(self):
 
         # character sheet vault
+        self.vault_slots = {}
         self.vault_tab_container = QFrame()
         self.vault_tab_container.setStyleSheet("background: rgb(40, 40, 40);")
         self.vault_tab_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
         self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
-
-        self.vault_slots = {}
-
         for c in range(24, 32):
             for r in range(2, 18):
-                # Instantiate our custom class
                 slot = DVaultSlot(r, c)
-                
-                # Add to Grid
                 self.grid_layout.addWidget(slot, r, c)
-                
-                # Register reference
                 self.vault_slots[(r, c)] = slot
 
         # character sheet inventory
+        self.inventory_slots = {}
         self.carry_weight_container = QFrame()
         self.carry_weight_container.setStyleSheet("background: rgb(40, 40, 40);")
         self.carry_weight_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
         self.grid_layout.addWidget(self.carry_weight_container, 1, 19, 1, 4)
-
-        self.inventory_slots = {}
-
         for c in range(19, 23):
             for r in range(2, 18):
-                # Instantiate our custom class
                 slot = DInventorySlot(r, c)
-                
-                # Add to Grid
                 self.grid_layout.addWidget(slot, r, c)
-                
-                # Register reference
                 self.vault_slots[(r, c)] = slot
 
+        # component slots
+        self.sensors_slot = DComponentSlot(3, 8)
+        self.grid_layout.addWidget(self.sensors_slot, 3, 8)
+
+        self.neural_network = DComponentSlot(3, 13)
+        self.grid_layout.addWidget(self.neural_network, 3, 13)
+
+        self.reactor_core = DComponentSlot(4, 10)
+        self.grid_layout.addWidget(self.reactor_core, 4, 10)
+
+        self.nano_fibres = DComponentSlot(5, 8)
+        self.grid_layout.addWidget(self.nano_fibres, 5, 8)
+
+        self.actuators = DComponentSlot(5, 13)
+        self.grid_layout.addWidget(self.actuators, 5, 13)
+
+        self.power_transport = DComponentSlot(6, 11)
+        self.grid_layout.addWidget(self.power_transport, 6, 11)
+
+        #===================================================================================
         #@! general idea for a text wrapper
         # self.label_wrapper = QFrame()
         # self.label_wrapper.setStyleSheet("background: rgb(30, 30, 30); border: none;")
