@@ -7,6 +7,7 @@ from engine.DVaultSlot import DVaultSlot
 from engine.DInventorySlot import DInventorySlot
 from engine.DComponentSlot import DComponentSlot
 from engine.DWeaponSlot import DWeaponSlot
+from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
 
 class DCharacterUI(DScreen):
@@ -86,6 +87,19 @@ class DCharacterUI(DScreen):
                 status = DStatus(r, c)
                 self.grid_layout.addWidget(status, r, c)
                 self.statuses[(r, c)] = status
+
+        # tools
+        self.scanner = DToolSlot(17, 13)
+        self.grid_layout.addWidget(self.scanner, 17, 13)
+
+        self.harvesting_knife = DToolSlot(17, 14)
+        self.grid_layout.addWidget(self.harvesting_knife, 17, 14)
+
+        self.hunting_javelin = DToolSlot(17, 15)
+        self.grid_layout.addWidget(self.hunting_javelin, 17, 15)
+
+        self.mining_laser = DToolSlot(17, 16)
+        self.grid_layout.addWidget(self.mining_laser, 17, 16)
 
         #===================================================================================
         #@! general idea for a text wrapper
