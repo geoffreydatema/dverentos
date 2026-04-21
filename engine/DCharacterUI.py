@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QFrame, QSizePolicy,
 from PySide6.QtCore import Qt
 from engine.DScreen import DScreen
 from engine.DVaultSlot import DVaultSlot
+from engine.DInventorySlot import DInventorySlot
 from data.engine_constants import DFontSize
 
 class DCharacterUI(DScreen):
@@ -45,7 +46,23 @@ class DCharacterUI(DScreen):
                 self.vault_slots[(r, c)] = slot
 
         # character sheet inventory
+        self.carry_weight_container = QFrame()
+        self.carry_weight_container.setStyleSheet("background: rgb(40, 40, 40);")
+        self.carry_weight_container.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.grid_layout.addWidget(self.carry_weight_container, 1, 19, 1, 4)
 
+        self.inventory_slots = {}
+
+        for c in range(19, 23):
+            for r in range(2, 18):
+                # Instantiate our custom class
+                slot = DInventorySlot(r, c)
+                
+                # Add to Grid
+                self.grid_layout.addWidget(slot, r, c)
+                
+                # Register reference
+                self.vault_slots[(r, c)] = slot
 
         #@! general idea for a text wrapper
         # self.label_wrapper = QFrame()
