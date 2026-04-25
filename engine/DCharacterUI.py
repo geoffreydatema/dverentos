@@ -10,6 +10,7 @@ from engine.DComponentSlot import DComponentSlot
 from engine.DWeaponSlot import DWeaponSlot
 from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
+from engine.DCharacterValue import DCharacterValue
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -50,6 +51,13 @@ class DCharacterUI(DScreen):
         # character values ========================================================
         self.character_values_container = DGridContainer(5, 0)
         self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 3)
+
+        self.character_values_layout = QVBoxLayout(self.character_values_container)
+        self.character_values_layout.setContentsMargins(0, 0, 0, 0)
+        self.character_values_layout.setSpacing(0)
+
+        self.vitality_widget = DCharacterValue(self.character_values_container, "VITALITY")
+        self.character_values_layout.addWidget(self.vitality_widget)
 
         # component slots =========================================================
         self.sensors_slot = DComponentSlot(3, 8)
@@ -117,23 +125,6 @@ class DCharacterUI(DScreen):
                 slot = DVaultSlot(r, c)
                 self.grid_layout.addWidget(slot, r, c)
                 self.vault_slots[(r, c)] = slot
-
-        #===================================================================================
-        #@! general idea for a text wrapper
-        # self.label_wrapper = QFrame()
-        # self.label_wrapper.setStyleSheet("background: rgb(30, 30, 30); border: none;")
-        # self.label_wrapper.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
-        
-        # wrapper_layout = QVBoxLayout(self.label_wrapper)
-        # wrapper_layout.setContentsMargins(0, 0, 0, 0)
-        # wrapper_layout.setSpacing(0)
-
-        # self.label = QLabel("STAT PLACEHOLDER")
-        # self.label.setAlignment(Qt.AlignCenter)
-        # self.label.setStyleSheet("color: white; background: transparent;")
-        
-        # wrapper_layout.addWidget(self.label)
-        # self.grid_layout.addWidget(self.label_wrapper, 5, 2, 1, 3)
 
     def resizeEvent(self, event):
         super().resizeEvent(event)
