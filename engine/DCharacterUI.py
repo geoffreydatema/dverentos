@@ -10,7 +10,7 @@ from engine.DComponentSlot import DComponentSlot
 from engine.DWeaponSlot import DWeaponSlot
 from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
-from engine.DCharacterValue import DCharacterValue
+from engine.DCharacterValuePanel import DCharacterValuePanel
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -50,14 +50,32 @@ class DCharacterUI(DScreen):
 
         # character values ========================================================
         self.character_values_container = DGridContainer(5, 0)
-        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 3)
-
         self.character_values_layout = QVBoxLayout(self.character_values_container)
-        self.character_values_layout.setContentsMargins(0, 0, 0, 0)
-        self.character_values_layout.setSpacing(0)
+        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
 
-        self.vitality_widget = DCharacterValue(self.character_values_container, "VITALITY")
-        self.character_values_layout.addWidget(self.vitality_widget)
+        self.character_value_panel = DCharacterValuePanel(self.character_values_container)
+        self.character_values_layout.addWidget(self.character_value_panel)
+
+        r = 0
+        for stat in ["VITALITY", "CONSTITUTION", "AGILITY", "DEXTERITY", "PERCEPTION", "RATIONALITY"]:
+            self.character_value_panel.add_stat_row(r, stat)
+            r += 1
+
+        self.character_value_panel.add_spacer(r)
+        r += 1
+
+        for skill in ["SALVAGING", "HARVESTING", "HUNTING", "MINING", "LOCKPICKING", 
+                    "CRYPTOGRAPHY", "ENGINEERING", "STEALTH", "ALCHEMY", 
+                    "WEAPONCRAFTING", "TOOLSMITHING", "NEURALFORGING"]:
+            self.character_value_panel.add_stat_row(r, skill)
+            r += 1
+
+        self.character_value_panel.add_spacer(r)
+        r += 1
+
+        for mastery in ["LIGHT MELEE", "HEAVY MELEE", "HAND CANNONS", "BIG GUNS", "ENERGY", "TELEKINESIS"]:
+            self.character_value_panel.add_stat_row(r, mastery)
+            r += 1
 
         # component slots =========================================================
         self.sensors_slot = DComponentSlot(3, 8)
@@ -80,14 +98,14 @@ class DCharacterUI(DScreen):
 
         # weapon slots ============================================================
         self.primary_weapon_slot = DWeaponSlot(12, 5)
-        self.grid_layout.addWidget(self.primary_weapon_slot, 12, 5, 2, 5)
+        self.grid_layout.addWidget(self.primary_weapon_slot, 12, 6, 2, 5)
 
         self.secondary_weapon_slot = DWeaponSlot(12, 12)
         self.grid_layout.addWidget(self.secondary_weapon_slot, 12, 12, 2, 5)
 
         # statuses ================================================================
         self.statuses = {}
-        for c in range(5, 9):
+        for c in range(6, 10):
             for r in range(15, 18):
                 status = DStatus(r, c)
                 self.grid_layout.addWidget(status, r, c)

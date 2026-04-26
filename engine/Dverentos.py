@@ -32,6 +32,9 @@ class Dverentos(QMainWindow):
 
         self.installEventFilter(self)
 
+        # default screen
+        self.account_ui_manager.toggle()
+
     def eventFilter(self, watched, event):
         if event.type() == QEvent.KeyPress:
             key = event.key()
