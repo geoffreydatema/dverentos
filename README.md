@@ -324,3 +324,14 @@ The Archive contains a ton of information about the game.
 # Account item transfer tool
 - Accounts are encrypted
 - A dedicated feature lets you load two files and transfer items such that they cannot be duplicated
+
+# Keys
+- Keys can be found or purchased which can open specific doors or containers in dungeons
+
+# Bosses
+- The general gameplay loop for any given destination is that the destination has one or more bosses to defeat (inspired by boss rush games)
+- There is a final boss for that destination which always has some special mechanic, often tied to the destination itself which presents a meaningful gear up requirement before the boss can be defeated and the destination fully cleared
+- There may also be side bosses on the destination
+
+# Special mobs
+- Very rarely you will encounter a special (think shiny) variant of a normal enemy or animal which drops special items

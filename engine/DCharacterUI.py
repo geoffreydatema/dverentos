@@ -11,6 +11,7 @@ from engine.DWeaponSlot import DWeaponSlot
 from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
 from engine.DCharacterValuePanel import DCharacterValuePanel
+from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -38,15 +39,21 @@ class DCharacterUI(DScreen):
 
         # attributes ==============================================================
         self.attributes_container = DGridContainer(2, 0)
-        self.grid_layout.addWidget(self.attributes_container, 2, 0, 1, 4)
+        self.attributes_layout = QVBoxLayout(self.attributes_container)
+        self.grid_layout.addWidget(self.attributes_container, 2, 0, 2, 5)
+
+        self.attributes_panel = DCharacterAttributesPanel(self.attributes_container)
+        self.attributes_layout.addWidget(self.attributes_panel)
+
+        self.attributes_panel.build()
 
         # inventory preview =======================================================
-        self.inventory_preview_container = DGridContainer(3, 0)
-        self.grid_layout.addWidget(self.inventory_preview_container, 3, 0, 1, 4)
+        self.inventory_preview_container = DGridContainer(4, 0)
+        self.grid_layout.addWidget(self.inventory_preview_container, 4, 0, 1, 4)
 
         # statuses preview ========================================================
-        self.statuses_preview_container = DGridContainer(3, 4)
-        self.grid_layout.addWidget(self.statuses_preview_container, 3, 4, 1, 1)
+        self.statuses_preview_container = DGridContainer(4, 4)
+        self.grid_layout.addWidget(self.statuses_preview_container, 4, 4, 1, 1)
 
         # character values ========================================================
         self.character_values_container = DGridContainer(5, 0)
