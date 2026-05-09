@@ -13,6 +13,7 @@ from engine.DStatus import DStatus
 from engine.DCharacterValuePanel import DCharacterValuePanel
 from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
 from engine.DInventoryPreviewPanel import DInventoryPreviewPanel
+from engine.DStatusesPreviewPanel import DStatusesPreviewPanel
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -54,13 +55,19 @@ class DCharacterUI(DScreen):
         self.inventory_preview_layout.setContentsMargins(8, 0, 0, 0)
         self.grid_layout.addWidget(self.inventory_preview_container, 4, 0, 1, 4)
 
-        self.inventory_preview_panel = DInventoryPreviewPanel(self.attributes_container)
+        self.inventory_preview_panel = DInventoryPreviewPanel(self.inventory_preview_container)
         self.inventory_preview_layout.addWidget(self.inventory_preview_panel)
         self.inventory_preview_panel.build()
 
         # statuses preview ========================================================
         self.statuses_preview_container = DGridContainer(4, 4)
+        self.statuses_preview_layout = QVBoxLayout(self.statuses_preview_container)
+        self.statuses_preview_layout.setContentsMargins(0, 0, 0, 0)
         self.grid_layout.addWidget(self.statuses_preview_container, 4, 4, 1, 1)
+
+        self.statuses_preview_panel = DStatusesPreviewPanel(self.statuses_preview_container)
+        self.statuses_preview_layout.addWidget(self.statuses_preview_panel)
+        self.statuses_preview_panel.build()
 
         # character values ========================================================
         self.character_values_container = DGridContainer(5, 0)
