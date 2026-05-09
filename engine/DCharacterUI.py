@@ -15,6 +15,7 @@ from engine.DCharacterValuePanel import DCharacterValuePanel
 from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
 from engine.DInventoryPreviewPanel import DInventoryPreviewPanel
 from engine.DStatusesPreviewPanel import DStatusesPreviewPanel
+from engine.DCurrencyWidget import DCurrencyWidget
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -108,6 +109,19 @@ class DCharacterUI(DScreen):
         for mastery in ["LIGHT MELEE", "HEAVY MELEE", "HAND CANNONS", "BIG GUNS", "ENERGY", "TELEKINESIS"]:
             self.character_value_panel.add_stat_row(r, mastery)
             r += 1
+
+        # currency widgets ========================================================
+        self.krezhna_widget = DCurrencyWidget()
+        self.grid_layout.addWidget(self.krezhna_widget, 1, 15)
+
+        self.currency2_widget = DCurrencyWidget()
+        self.grid_layout.addWidget(self.currency2_widget, 1, 16)
+
+        self.currency3_widget = DCurrencyWidget()
+        self.grid_layout.addWidget(self.currency3_widget, 1, 17)
+
+        self.currency4_widget = DCurrencyWidget()
+        self.grid_layout.addWidget(self.currency4_widget, 1, 18)
 
         # component slots =========================================================
         self.sensors_slot = DComponentSlot(3, 9)
