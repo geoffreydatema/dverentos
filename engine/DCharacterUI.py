@@ -10,6 +10,7 @@ from engine.DComponentSlot import DComponentSlot
 from engine.DWeaponSlot import DWeaponSlot
 from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
+from engine.DCharacterNamePanel import DCharacterNamePanel
 from engine.DCharacterValuePanel import DCharacterValuePanel
 from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
 from engine.DInventoryPreviewPanel import DInventoryPreviewPanel
@@ -36,8 +37,14 @@ class DCharacterUI(DScreen):
     def build_ui(self):
         
         # name plate ==============================================================
-        self.name_plate_container = DGridContainer(0, 0)
-        self.grid_layout.addWidget(self.name_plate_container, 0, 0, 2, 8)
+        self.name_container = DGridContainer(0, 0)
+        self.name_layout = QVBoxLayout(self.name_container)
+        self.name_layout.setContentsMargins(8, 4, 0, 4)
+        self.grid_layout.addWidget(self.name_container, 0, 0, 2, 8)
+
+        self.name_panel = DCharacterNamePanel(self.name_container)
+        self.name_layout.addWidget(self.name_panel)
+        self.name_panel.build()
 
         # attributes ==============================================================
         self.attributes_container = DGridContainer(2, 0)
