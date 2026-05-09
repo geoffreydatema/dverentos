@@ -103,51 +103,51 @@ class DCharacterUI(DScreen):
             r += 1
 
         # component slots =========================================================
-        self.sensors_slot = DComponentSlot(3, 8)
-        self.grid_layout.addWidget(self.sensors_slot, 3, 8)
+        self.sensors_slot = DComponentSlot(3, 9)
+        self.grid_layout.addWidget(self.sensors_slot, 3, 9)
 
-        self.neural_network = DComponentSlot(3, 13)
-        self.grid_layout.addWidget(self.neural_network, 3, 13)
+        self.neural_network = DComponentSlot(3, 14)
+        self.grid_layout.addWidget(self.neural_network, 3, 14)
 
-        self.reactor_core = DComponentSlot(4, 10)
-        self.grid_layout.addWidget(self.reactor_core, 4, 10)
+        self.reactor_core = DComponentSlot(4, 11)
+        self.grid_layout.addWidget(self.reactor_core, 4, 11)
 
-        self.nano_fibres = DComponentSlot(5, 8)
-        self.grid_layout.addWidget(self.nano_fibres, 5, 8)
+        self.nano_fibres = DComponentSlot(5, 9)
+        self.grid_layout.addWidget(self.nano_fibres, 5, 9)
 
-        self.actuators = DComponentSlot(5, 13)
-        self.grid_layout.addWidget(self.actuators, 5, 13)
+        self.actuators = DComponentSlot(5, 14)
+        self.grid_layout.addWidget(self.actuators, 5, 14)
 
-        self.power_transport = DComponentSlot(6, 11)
-        self.grid_layout.addWidget(self.power_transport, 6, 11)
+        self.power_transport = DComponentSlot(6, 12)
+        self.grid_layout.addWidget(self.power_transport, 6, 12)
 
         # weapon slots ============================================================
-        self.primary_weapon_slot = DWeaponSlot(12, 5)
-        self.grid_layout.addWidget(self.primary_weapon_slot, 12, 6, 2, 5)
+        self.primary_weapon_slot = DWeaponSlot(11, 5)
+        self.grid_layout.addWidget(self.primary_weapon_slot, 11, 6, 2, 5)
 
-        self.secondary_weapon_slot = DWeaponSlot(12, 12)
-        self.grid_layout.addWidget(self.secondary_weapon_slot, 12, 12, 2, 5)
+        self.secondary_weapon_slot = DWeaponSlot(11, 12)
+        self.grid_layout.addWidget(self.secondary_weapon_slot, 11, 12, 2, 5)
 
         # statuses ================================================================
         self.statuses = {}
         for c in range(6, 10):
-            for r in range(15, 18):
+            for r in range(14, 18):
                 status = DStatus(r, c)
                 self.grid_layout.addWidget(status, r, c)
                 self.statuses[(r, c)] = status
 
         # tools ===================================================================
-        self.scanner = DToolSlot(16, 13)
-        self.grid_layout.addWidget(self.scanner, 16, 13)
+        self.scanner = DToolSlot(14, 13)
+        self.grid_layout.addWidget(self.scanner, 14, 13)
 
-        self.harvesting_knife = DToolSlot(16, 14)
-        self.grid_layout.addWidget(self.harvesting_knife, 16, 14)
+        self.harvesting_knife = DToolSlot(14, 14)
+        self.grid_layout.addWidget(self.harvesting_knife, 14, 14)
 
-        self.hunting_javelin = DToolSlot(16, 15)
-        self.grid_layout.addWidget(self.hunting_javelin, 16, 15)
+        self.hunting_javelin = DToolSlot(14, 15)
+        self.grid_layout.addWidget(self.hunting_javelin, 14, 15)
 
-        self.mining_laser = DToolSlot(16, 16)
-        self.grid_layout.addWidget(self.mining_laser, 16, 16)
+        self.mining_laser = DToolSlot(14, 16)
+        self.grid_layout.addWidget(self.mining_laser, 14, 16)
 
         # character sheet inventory ===============================================
         self.inventory_slots = {}
