@@ -12,6 +12,7 @@ from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
 from engine.DCharacterValuePanel import DCharacterValuePanel
 from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
+from engine.DInventoryPreviewPanel import DInventoryPreviewPanel
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
@@ -40,16 +41,22 @@ class DCharacterUI(DScreen):
         # attributes ==============================================================
         self.attributes_container = DGridContainer(2, 0)
         self.attributes_layout = QVBoxLayout(self.attributes_container)
+        self.attributes_layout.setContentsMargins(8, 4, 0, 4)
         self.grid_layout.addWidget(self.attributes_container, 2, 0, 2, 5)
 
         self.attributes_panel = DCharacterAttributesPanel(self.attributes_container)
         self.attributes_layout.addWidget(self.attributes_panel)
-
         self.attributes_panel.build()
 
         # inventory preview =======================================================
         self.inventory_preview_container = DGridContainer(4, 0)
+        self.inventory_preview_layout = QVBoxLayout(self.inventory_preview_container)
+        self.inventory_preview_layout.setContentsMargins(8, 0, 0, 0)
         self.grid_layout.addWidget(self.inventory_preview_container, 4, 0, 1, 4)
+
+        self.inventory_preview_panel = DInventoryPreviewPanel(self.attributes_container)
+        self.inventory_preview_layout.addWidget(self.inventory_preview_panel)
+        self.inventory_preview_panel.build()
 
         # statuses preview ========================================================
         self.statuses_preview_container = DGridContainer(4, 4)
@@ -58,12 +65,16 @@ class DCharacterUI(DScreen):
         # character values ========================================================
         self.character_values_container = DGridContainer(5, 0)
         self.character_values_layout = QVBoxLayout(self.character_values_container)
+        self.character_values_layout.setContentsMargins(8, 0, 1, 10)
         self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
 
         self.character_value_panel = DCharacterValuePanel(self.character_values_container)
         self.character_values_layout.addWidget(self.character_value_panel)
 
         r = 0
+        self.character_value_panel.add_spacer(r)
+        r += 1
+
         for stat in ["VITALITY", "CONSTITUTION", "AGILITY", "DEXTERITY", "PERCEPTION", "RATIONALITY"]:
             self.character_value_panel.add_stat_row(r, stat)
             r += 1
