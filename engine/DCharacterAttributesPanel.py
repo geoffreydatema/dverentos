@@ -56,28 +56,38 @@ class DCharacterAttributesPanel(QWidget):
         self.layout.addWidget(value_label, 3, 1)
         self.attributes["hp"] = value_label
 
-    def build_damage_resistance(self):
-        name_label = QLabel("DAMAGE RESISTANCE")
+    def build_kinetic_resistance(self):
+        name_label = QLabel("KINETIC RESISTANCE")
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        value_label = QLabel("0")
+        value_label = QLabel("9999")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         self.layout.addWidget(name_label, 4, 0)
         self.layout.addWidget(value_label, 4, 1)
-        self.attributes["damage_resistance"] = value_label
+        self.attributes["kinetic_resistance"] = value_label
 
-    def build_status_resistance(self):
-        name_label = QLabel("STATUS RESISTANCE")
+    def build_energy_resistance(self):
+        name_label = QLabel("ENERGY RESISTANCE")
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        value_label = QLabel("0")
+        value_label = QLabel("9999")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         self.layout.addWidget(name_label, 5, 0)
         self.layout.addWidget(value_label, 5, 1)
-        self.attributes["status_resistance"] = value_label
+        self.attributes["energy_resistance"] = value_label
+
+    def build_chemical_resistance(self):
+        name_label = QLabel("CHEMICAL RESISTANCE")
+        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        value_label = QLabel("9999")
+        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        self.layout.addWidget(name_label, 6, 0)
+        self.layout.addWidget(value_label, 6, 1)
+        self.attributes["chemical_resistance"] = value_label
 
     def build(self):
         self.build_rank()
         self.build_location()
         self.build_date()
         self.build_hp()
-        self.build_damage_resistance()
-        self.build_status_resistance()
+        self.build_kinetic_resistance()
+        self.build_energy_resistance()
+        self.build_chemical_resistance()

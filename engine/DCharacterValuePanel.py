@@ -24,10 +24,10 @@ class DCharacterValuePanel(QWidget):
         name_label = QLabel(name)
         name_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         
-        base_label = self.create_val_label("999")
-        minus_label = self.create_val_label("-999", "red")
-        plus_label = self.create_val_label("+999", "green")
-        total_label = self.create_val_label("999", "white")
+        base_label = self.create_val_label("9999")
+        minus_label = self.create_val_label("-9999", "red")
+        plus_label = self.create_val_label("+9999", "green")
+        total_label = self.create_val_label("9999", "white")
 
         # Add to the Master Grid
         self.layout.addWidget(name_label, row_index, 0)
