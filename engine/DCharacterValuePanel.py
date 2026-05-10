@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QWidget, QLabel, QGridLayout
 from PySide6.QtCore import Qt
+from data.engine_constants import CharacterValues
 
 class DCharacterValuePanel(QWidget):
     def __init__(self, parent=None):
@@ -19,6 +20,29 @@ class DCharacterValuePanel(QWidget):
             self.layout.setColumnStretch(i, 2)
 
         self.stats = {}
+
+    def build(self):
+        row = 0
+        self.add_spacer(row)
+        row += 1
+
+        for stat in CharacterValues.STATS:
+            self.add_stat_row(row, stat.upper())
+            row += 1
+
+        self.add_spacer(row)
+        row += 1
+
+        for skill in CharacterValues.SKILLS:
+            self.add_stat_row(row, skill.upper())
+            row += 1
+
+        self.add_spacer(row)
+        row += 1
+
+        for mastery in CharacterValues.MASTERY:
+            self.add_stat_row(row, mastery.upper())
+            row += 1
 
     def add_stat_row(self, row_index, name):
         name_label = QLabel(name)
@@ -50,9 +74,6 @@ class DCharacterValuePanel(QWidget):
     def create_val_label(self, text, color=None):
         label = QLabel(text)
         label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        # Force a minimum width based on '888' to reserve space for 3 digits
-        # metrics = label.fontMetrics()
-        # label.setMinimumWidth(metrics.horizontalAdvance("888") + 10)
         if color:
             label.setStyleSheet(f"color: {color};")
         return label

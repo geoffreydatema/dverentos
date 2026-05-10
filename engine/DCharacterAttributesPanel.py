@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QWidget, QLabel, QGridLayout
 from PySide6.QtCore import Qt
+from data.engine_constants import CharacterValues
 
 class DCharacterAttributesPanel(QWidget):
     def __init__(self, parent=None):
@@ -21,7 +22,7 @@ class DCharacterAttributesPanel(QWidget):
         self.stats = {}
 
     def build_rank(self):
-        name_label = QLabel("RANK")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[0].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("0")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -30,7 +31,7 @@ class DCharacterAttributesPanel(QWidget):
         self.attributes["rank"] = value_label
 
     def build_location(self):
-        name_label = QLabel("LOCATION")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[1].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("<DESTINATION> [0, 0]")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -39,7 +40,7 @@ class DCharacterAttributesPanel(QWidget):
         self.attributes["location"] = value_label
 
     def build_date(self):
-        name_label = QLabel("コᴋ DATETIME")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[2].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("00:00:00|00:00:00")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -48,7 +49,7 @@ class DCharacterAttributesPanel(QWidget):
         self.attributes["date"] = value_label
         
     def build_hp(self):
-        name_label = QLabel("HP")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[3].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("0")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -57,7 +58,7 @@ class DCharacterAttributesPanel(QWidget):
         self.attributes["hp"] = value_label
 
     def build_kinetic_resistance(self):
-        name_label = QLabel("KINETIC RESISTANCE")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[4].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("9999")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -66,7 +67,7 @@ class DCharacterAttributesPanel(QWidget):
         self.attributes["kinetic_resistance"] = value_label
 
     def build_energy_resistance(self):
-        name_label = QLabel("ENERGY RESISTANCE")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[5].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("9999")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
@@ -75,7 +76,7 @@ class DCharacterAttributesPanel(QWidget):
         self.attributes["energy_resistance"] = value_label
 
     def build_chemical_resistance(self):
-        name_label = QLabel("CHEMICAL RESISTANCE")
+        name_label = QLabel(CharacterValues.ATTRIBUTES[6].upper())
         name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         value_label = QLabel("9999")
         value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)

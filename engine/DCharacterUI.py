@@ -42,7 +42,6 @@ class DCharacterUI(DScreen):
         self.name_layout = QVBoxLayout(self.name_container)
         self.name_layout.setContentsMargins(8, 4, 0, 4)
         self.grid_layout.addWidget(self.name_container, 0, 0, 2, 8)
-
         self.name_panel = DCharacterNamePanel(self.name_container)
         self.name_layout.addWidget(self.name_panel)
         self.name_panel.build()
@@ -52,7 +51,6 @@ class DCharacterUI(DScreen):
         self.attributes_layout = QVBoxLayout(self.attributes_container)
         self.attributes_layout.setContentsMargins(8, 4, 0, 4)
         self.grid_layout.addWidget(self.attributes_container, 2, 0, 2, 5)
-
         self.attributes_panel = DCharacterAttributesPanel(self.attributes_container)
         self.attributes_layout.addWidget(self.attributes_panel)
         self.attributes_panel.build()
@@ -62,7 +60,6 @@ class DCharacterUI(DScreen):
         self.inventory_preview_layout = QVBoxLayout(self.inventory_preview_container)
         self.inventory_preview_layout.setContentsMargins(8, 0, 0, 0)
         self.grid_layout.addWidget(self.inventory_preview_container, 4, 0, 1, 4)
-
         self.inventory_preview_panel = DInventoryPreviewPanel(self.inventory_preview_container)
         self.inventory_preview_layout.addWidget(self.inventory_preview_panel)
         self.inventory_preview_panel.build()
@@ -72,7 +69,6 @@ class DCharacterUI(DScreen):
         self.statuses_preview_layout = QVBoxLayout(self.statuses_preview_container)
         self.statuses_preview_layout.setContentsMargins(0, 0, 0, 0)
         self.grid_layout.addWidget(self.statuses_preview_container, 4, 4, 1, 1)
-
         self.statuses_preview_panel = DStatusesPreviewPanel(self.statuses_preview_container)
         self.statuses_preview_layout.addWidget(self.statuses_preview_panel)
         self.statuses_preview_panel.build()
@@ -82,33 +78,9 @@ class DCharacterUI(DScreen):
         self.character_values_layout = QVBoxLayout(self.character_values_container)
         self.character_values_layout.setContentsMargins(8, 0, 1, 10)
         self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
-
         self.character_value_panel = DCharacterValuePanel(self.character_values_container)
         self.character_values_layout.addWidget(self.character_value_panel)
-
-        r = 0
-        self.character_value_panel.add_spacer(r)
-        r += 1
-
-        for stat in ["VITALITY", "CONSTITUTION", "AGILITY", "DEXTERITY", "PERCEPTION", "RATIONALITY"]:
-            self.character_value_panel.add_stat_row(r, stat)
-            r += 1
-
-        self.character_value_panel.add_spacer(r)
-        r += 1
-
-        for skill in ["SALVAGING", "HARVESTING", "HUNTING", "MINING", "LOCKPICKING", 
-                    "CRYPTOGRAPHY", "ENGINEERING", "STEALTH", "ALCHEMY", 
-                    "WEAPONCRAFTING", "TOOLSMITHING", "NEURALFORGING"]:
-            self.character_value_panel.add_stat_row(r, skill)
-            r += 1
-
-        self.character_value_panel.add_spacer(r)
-        r += 1
-
-        for mastery in ["LIGHT MELEE", "HEAVY MELEE", "HAND CANNONS", "BIG GUNS", "ENERGY", "TELEKINESIS"]:
-            self.character_value_panel.add_stat_row(r, mastery)
-            r += 1
+        self.character_value_panel.build()
 
         # currency widgets ========================================================
         self.krezhna_widget = DCurrencyWidget()
