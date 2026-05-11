@@ -1,5 +1,5 @@
 from utils import *
-from PySide6.QtWidgets import QWidget, QGridLayout, QLabel, QFrame, QSizePolicy, QVBoxLayout
+from PySide6.QtWidgets import QWidget, QGridLayout, QVBoxLayout
 from PySide6.QtCore import Qt
 from data.engine_constants import DFontSize
 from engine.DScreen import DScreen
@@ -18,8 +18,9 @@ from engine.DStatusesPreviewPanel import DStatusesPreviewPanel
 from engine.DCurrencyWidget import DCurrencyWidget
 
 class DCharacterUI(DScreen):
-    def __init__(self, parent=None, engine_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
+    def __init__(self, parent=None, game_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
         super().__init__(parent, image_path)
+        self.game_manager = game_manager
 
         self.grid_container = QWidget(self)
         self.grid_layout = QGridLayout(self.grid_container)
@@ -74,12 +75,17 @@ class DCharacterUI(DScreen):
         self.statuses_preview_panel.build()
 
         # character values ========================================================
-        self.character_values_container = DGridContainer(5, 0)
-        self.character_values_layout = QVBoxLayout(self.character_values_container)
-        self.character_values_layout.setContentsMargins(8, 0, 1, 10)
-        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
-        self.character_value_panel = DCharacterValuePanel(self.character_values_container)
-        self.character_values_layout.addWidget(self.character_value_panel)
+        # self.character_values_container = DGridContainer(5, 0)
+        # self.character_values_layout = QVBoxLayout(self.character_values_container)
+        # self.character_values_layout.setContentsMargins(8, 0, 1, 10)
+        # self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
+        # self.character_value_panel = DCharacterValuePanel(self.character_values_container)
+        # self.character_values_layout.addWidget(self.character_value_panel)
+        # self.character_value_panel.build()
+
+        #@! need to go through and eliminate containers like this which should show background image through
+        self.character_value_panel = DCharacterValuePanel(self, self.game_manager)
+        self.grid_layout.addWidget(self.character_value_panel, 5, 0, 13, 4)
         self.character_value_panel.build()
 
         # currency widgets ========================================================

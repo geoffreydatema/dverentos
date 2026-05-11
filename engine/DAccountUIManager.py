@@ -40,7 +40,7 @@ class DAccountUIManager(QFrame):
         
         self.build_navigation() 
 
-        self.character_ui = DCharacterUI(parent=self.account_ui_stack)
+        self.character_ui = DCharacterUI(parent=self.account_ui_stack, game_manager=self.game_manager)
         self.vault_ui = DVaultUI(parent=self.account_ui_stack)
         self.crafting_ui = DCraftingUI(parent=self.account_ui_stack)
         self.archive_ui = DArchiveUI(parent=self.account_ui_stack)

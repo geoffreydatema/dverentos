@@ -7,7 +7,7 @@ from engine.DGameplayUIManager import DGameplayUIManager
 from engine.DAccountUIManager import DAccountUIManager
 from engine.DEscapeMenu import DEscapeMenu
 from engine.DConsole import DConsole
-from core import DGameManager
+from core.GameManager import GameManager
 
 class Dverentos(QMainWindow):
     def __init__(self):
@@ -20,7 +20,7 @@ class Dverentos(QMainWindow):
                            """)
 
         self.engine_manager = DEngineManager(engine=self)
-        self.game_manager = DGameManager()
+        self.game_manager = GameManager()
         self.gameplay_ui_manager = DGameplayUIManager(parent=self, game_manager=self.game_manager)
         self.account_ui_manager = DAccountUIManager(parent=self, game_manager=self.game_manager)
         self.setCentralWidget(self.gameplay_ui_manager)

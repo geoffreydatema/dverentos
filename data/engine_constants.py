@@ -1,5 +1,9 @@
 from enum import IntEnum, auto
 
+class DType(IntEnum):
+    INT = auto()
+    STR = auto()
+
 class DScreenID(IntEnum):
     MAIN_MENU = auto()
     PLACEHOLDER = auto()
