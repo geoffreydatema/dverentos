@@ -75,17 +75,12 @@ class DCharacterUI(DScreen):
         self.statuses_preview_panel.build()
 
         # character values ========================================================
-        # self.character_values_container = DGridContainer(5, 0)
-        # self.character_values_layout = QVBoxLayout(self.character_values_container)
-        # self.character_values_layout.setContentsMargins(8, 0, 1, 10)
-        # self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
-        # self.character_value_panel = DCharacterValuePanel(self.character_values_container)
-        # self.character_values_layout.addWidget(self.character_value_panel)
-        # self.character_value_panel.build()
-
-        #@! need to go through and eliminate containers like this which should show background image through
-        self.character_value_panel = DCharacterValuePanel(self, self.game_manager)
-        self.grid_layout.addWidget(self.character_value_panel, 5, 0, 13, 4)
+        self.character_values_container = DGridContainer(5, 0)
+        self.character_values_layout = QVBoxLayout(self.character_values_container)
+        self.character_values_layout.setContentsMargins(8, 0, 1, 10)
+        self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
+        self.character_value_panel = DCharacterValuePanel(self.character_values_container, self.game_manager)
+        self.character_values_layout.addWidget(self.character_value_panel)
         self.character_value_panel.build()
 
         # currency widgets ========================================================
