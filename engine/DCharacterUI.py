@@ -11,7 +11,7 @@ from engine.DWeaponSlot import DWeaponSlot
 from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
 from engine.DCharacterNamePanel import DCharacterNamePanel
-from engine.DCharacterValuePanel import DCharacterValuePanel
+from engine.DCharacterValuesPanel import DCharacterValuesPanel
 from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
 from engine.DInventoryPreviewPanel import DInventoryPreviewPanel
 from engine.DStatusesPreviewPanel import DStatusesPreviewPanel
@@ -79,7 +79,7 @@ class DCharacterUI(DScreen):
         self.character_values_layout = QVBoxLayout(self.character_values_container)
         self.character_values_layout.setContentsMargins(8, 0, 1, 10)
         self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
-        self.character_value_panel = DCharacterValuePanel(self.character_values_container, self.game_manager)
+        self.character_value_panel = DCharacterValuesPanel(self.character_values_container, self.game_manager)
         self.character_values_layout.addWidget(self.character_value_panel)
         self.character_value_panel.build()
 
