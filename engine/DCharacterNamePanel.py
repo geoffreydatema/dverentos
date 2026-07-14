@@ -29,7 +29,7 @@ class DCharacterNamePanel(QWidget):
     def build_angloslav_name(self):
         angloslav_rank_label = QLabel("0")
         angloslav_rank_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        angloslav_name_label = QLabel("hゼラнλм")
+        angloslav_name_label = QLabel("yპвэтaнλм")
         angloslav_name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         self.layout.addWidget(angloslav_rank_label, 1, 0)
         self.layout.addWidget(angloslav_name_label, 1, 1)
