@@ -7,7 +7,7 @@
     - **Mastery:** All weapon Mastery is summed and added to Rank.
     - **Integrated Weapons:** When a weapon is fully integrated, all it's stats are summed and added to Rank.
     - **Integrated Components:** When a suit component is fully integrated all its stats are summed and added to Rank.
-    - **Integrated Suits:** When a suit is fully integrated, all its stats are summed and added to Rank. In a sense, you are getting double Rank contribution from the components that you already integrated in order to integrate the suit. However this is balanced by the fact that the components cannot be sold or scrapped after being integrated into the suit, so that benefit is lost.
+    - **Integrated Suits:** When a suit is fully integrated, all its stats are summed and added to Rank. In a sense, you are getting double Rank contribution from the components that you already integrated in order to integrate the suit. However this is balanced by the fact that the components cannot be sold or scrapped after being integrated into the suit.
 
 # Stats
 - **Vitality (VIT):**
@@ -15,7 +15,7 @@
     - Sets HP
     - Affects how quickly HP is recovered
     - Sets carry weight
-    - Sets how many inventory slots are available (max 56)
+    - Sets how many inventory slots are available (max 64)
     - Scales Heavy Melee damage
     - Scales Weapon Critical Multiplier
     - Primarily affected by Reactor Core components
@@ -57,6 +57,8 @@
 
 At all times, your stat totals reflect individual stat contributions from all components weapons, and tools. Stats change as you swap out different equipment, and are not permanently increased
 
+#! i would be open to a maximum of two more stats since I think we are leaning away from having stats scale a particular weapon damage and more towards a hardcore, your stats are what they are, it's a grind to build into anything in particular, and you're really just trying to make the best of it type game. likely would need to increase Skills to 16 to keep the math and balancing easy with skill bonuses from stats
+
 # Skills
 Skills are separated into four subcategories: 4 gathering skills, 4 activity skills, and 4 crafting skills. Unlike Stats, Skills are permanent scores stored on the account. Generally speaking, exercising a skill levels it up. Each Stat also provides bonuses to two Skills. Some Skills provide permanent bonuses to other Skills.
 
@@ -64,32 +66,36 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Anything related to exploration, looting equipment, collecting resources, and dismantling items
     - This is the main skill that affects how much and the rarety of resources you get from collecting resources and dismantling items
     - DEX provides a slight bonus
+    - #! If Salvaging gives a bonus to how much and the rarety of resources you get from collecting and dismantling, it will have to be calculated against the level of the tile i imagine, since at a certain point with salvaging at a ceiling, you'll just always be getting the best possible loot rng on any tile which is not balanced
 - **Harvesting**
     - Anything related to gathering resources that isn’t mining, so gathering natural resources and cutting wood
     - This is the main skill that affects how much and the rarety of resources you get from harvesting resource nodes
     - CON provides a significant bonus
+    - #! this skill is questionable because legit how much wood cutting and "harvesting" will we be doing in this game. maybe can be repurposed into a broader category
 - **Hunting**
     - Hunting has the broadest range of encounters per location as you could be hunting anything from a small animal that is literally terrified of you and running away, to large dangerous animals which pose a large threat
     - The Hunting skill would also apply to bounty hunting if that ever gets added to the game
+    - A fun detail is that some enemies when defeated and depending on the environment and circumstances will give Hunting XP, because it required a bit of a hunt to get them
     - PER provides a significant bonus
 - **Mining**
-    - Metals and various minerals are vital components of every component, weapon and tool, so you will need to mine lots of it to level up this skill and your crafting skills
+    - Metals and various minerals are vital components of every component, weapon and tool, so you mining will be involved in this game
     - This is the main skill that affects how much and the rarety of resources you get from mining resource nodes
     - VIT provides a significant bonus
+    - #! I think going off the vibe of remote controlling a suit and exploring dangerous environments, mining is a fun concept but I think it will be most fun when it's a genuinely rare experience to find some mineral or substance to gather (maybe combine with Harvesting?)
 - **Lockpicking**
-    - Physical locks are only available if you pass a Lockpicking check
-    - While picking the lock, higher Lockpicking offers a higher chance of success
+    - Many doors or containers are secured with a physical lock
+    - While attempting to pick the lock, higher Lockpicking offers a higher chance of success
     - DEX provides a significant bonus
 - **Cryptography**
     - Access to some areas are only available if you pass a Cryptography check (think of this as your hacking skill)
-    - While hacking digital locks, a higher Engineering skill offers a higher chance of success
+    - While hacking digital locks, a higher Cryptography skill offers a higher chance of success
     - Equally increases chance of successfully decrypting a Protoform along with Alchemy
     - RAT provides a significant bonus
 - **Engineering**
     - Anything related to machinery and electronics
     - Similar to how certain areas are blocked by Lockpicking or Cryptography checks, Engineering checks can require a mechanical system to be repaired to open a door or container (it's a nontraditional third lockpicking/hacking type skill)
-    - Engineering uniquely provides bonuses to Weaponcrafting, Toolsmithing, and Neuralforging
     - AGI provides a slight bonus
+    - #! Engineering uniquely provides bonuses to Weaponcrafting, Toolsmithing, and Neuralforging (it should only be like one of these crafting skills, other skills should boost the other ones)
 - **Stealth**
     - Stealth is a mechanic available on some tiles providing options to sneak past enemies or avoid detection
     - If the Threat mechanic causes an enemy to appear on a quiet tile, a Stealth check determines if you are detected
@@ -106,21 +112,24 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Certain weapon blueprints are locked behind a Weaponcrafting stat check
     - If your Weaponcrafting is high compared to the tier or weapon you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second weapon
     - VIT provides a slight bonus
+    - #! if we remove tools, then this becomes guncrafting
 - **Toolsmithing**
     - Anything related to crafting tools
     - Certain tool blueprints are locked behind a Toolsmithing stat check
     - If your Toolsmithing is high compared to the tier of tool you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second tool
     - This is an incredibly important skill and many will want to prioritize levelling toolsmithing as opposed to weaponcrafting since tools can carry more (and better) stat bonuses and perks which affect the entire build.
     - CON provides a slight bonus
+    - #! if we remove tools this becomes bladesmithing
 - **Neuralforging**
     - Anything related to crafting suits and components
     - Certain component blueprints are locked behind a Neuralforging stat check
-    - If your Neuralforging is high compared to the tier of tool you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second component
+    - If your Neuralforging is high compared to the tier of component you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second component
     - RAT provides a slight bonus
 
 # Mastery
 - There is a Mastery score for each weapon type. When a weapon levels up, the corresponding mastery score increments. When a weapon hits full integration, the corresponding mastery score gets a +16 boost.
-- Some weapon crafts and vendor sales are locked behind a Mastery check
+- Some weapon crafts and vendor sales are locked behind a Mastery 
+- #! this whole section probably changes if we remove stat contribution to weapon type damage but the principle should stay the same with every weapon archetype receiving a mastery catetory for stuff like vendor checks and long term number go up progression
 
 # Weapon Categories
 - **Melee:**
