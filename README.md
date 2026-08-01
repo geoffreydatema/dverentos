@@ -148,9 +148,19 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Telekinetic
         - Damage scales with RAT (because in the lore, telekenesis involves using brain computer interfaces to calculate the wave functions of objects at the macro scale in order to move them with your mind)
 
+    - #! the more I think about the weapon options the more it seems oddly fantasy like to have full melee and caster builds. while in this universe there are basically space wizards running around casting plasma beams and using telekenesis it feels more grounded to have the player character mainly using rifles
+
+    - #! even if only for the aesthetic, i really like the idea of being able to carry a melee either as a sidearm or as a second weapon. i also frickin love medeval looking greatswords so even if theyre completely ridiculous and not practical as weapons, i want to include swords
+
+    - #! do we need a Range mechanic (close, mid, long range) and does that play into weapon effectiveness?
+        - close: melee very effective, knife somewhat effective, shotgun very effective, other guns not effective
+        - mid: melee and knife not effective at all, shotgun not effective, hand cannons and rifles very effective
+        - long: melee knife and hand cannon not effective, rifle somewhat effective, only range a sniper is effective
+        - in general i'm not sure what this does to encounter types and reasons to carry the different weapon types
+
 # Tile Threat Level
 - **Tile Level:**
-    - Every tile has a tier indicating the threat level in absolute terms (@! need to decide how to calculate this)
+    - Every tile has a tier indicating the threat level in absolute terms (#! need to decide how to calculate this)
 - **Tile Threat:**
     - Indicates how much danger the character is in on a specific tile.
     - Possible calculation: `(<num enemy actions> * <enemy damage per action>) / HP = <whether or not you can die during encounter>`
