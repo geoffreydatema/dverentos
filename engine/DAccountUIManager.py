@@ -5,6 +5,7 @@ from engine.DCharacterUI import DCharacterUI
 from engine.DVaultUI import DVaultUI
 from engine.DCraftingUI import DCraftingUI
 from engine.DArchiveUI import DArchiveUI
+from engine.DFont import DFont
 from data.engine_constants import DScreenID, DFontSize
 
 class DAccountUIManager(QFrame):
@@ -16,15 +17,6 @@ class DAccountUIManager(QFrame):
         self.setStyleSheet("""
             DAccountUIManager {
                 background: rgb(10, 10, 10);
-            }
-            QPushButton {
-                background: rgb(60, 60, 60);
-                color: white;
-                border: 1px solid rgb(80, 80, 80);
-                padding: 8px 12px;
-                font-family: "Arial";
-                font-weight: 600;
-                border-radius: 2px;
             }
             QPushButton:hover {
                 background: rgb(80, 80, 80);
@@ -58,17 +50,22 @@ class DAccountUIManager(QFrame):
 
         self.switch(DScreenID.CHARACTER)
 
+    def build_navigation_button(self, text):
+        button = QPushButton(text)
+        button.setFont(DFont.SANS_BOLD)
+        return button
+
     def build_navigation(self):
         self.navigation_bar = QWidget(self)
         self.navigation_layout = QHBoxLayout(self.navigation_bar)
         self.navigation_layout.setContentsMargins(0, 0, 10, 0)
         self.navigation_layout.setSpacing(10)
         
-        self.map_button = QPushButton("MAP")
-        self.character_button = QPushButton("CHARACTER")
-        self.vault_button = QPushButton("VAULT")
-        self.crafting_button = QPushButton("CRAFTING")
-        self.archive_button = QPushButton("ARCHIVE")
+        self.map_button = self.build_navigation_button("MAP")
+        self.character_button = self.build_navigation_button("CHARACTER")
+        self.vault_button = self.build_navigation_button("VAULT")
+        self.crafting_button = self.build_navigation_button("CRAFTING")
+        self.archive_button = self.build_navigation_button("ARCHIVE")
 
         self.navigation_layout.addStretch()
 

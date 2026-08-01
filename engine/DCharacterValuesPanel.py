@@ -3,6 +3,7 @@ from PySide6.QtWidgets import QWidget, QLabel, QGridLayout
 from PySide6.QtCore import Qt
 from data.engine_constants import CharacterValues
 from data.engine_constants import DType
+from engine.DFont import DFont
 
 class DCharacterValuesPanel(QWidget):
     def __init__(self, parent=None, game_manager=None):
@@ -23,6 +24,19 @@ class DCharacterValuesPanel(QWidget):
             self.layout.setColumnStretch(i, 2)
 
         self.stats = {}
+    
+    def add_spacer(self, row_index, height=16):
+        spacer = QWidget()
+        spacer.setMinimumHeight(height)
+        self.layout.addWidget(spacer, row_index, 0, 1, 5)
+
+    def build_label(self, text, color=None):
+        label = QLabel(text)
+        label.setFont(DFont.SANS_REGULAR)
+        label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        if color:
+            label.setStyleSheet(f"color: {color};")
+        return label
 
     def build(self):
         stats = self.game_manager.player.get_stats(DType.STR)
@@ -52,7 +66,7 @@ class DCharacterValuesPanel(QWidget):
             row += 1
 
     def add_simple_value(self, row_index, name, total):
-        name_label = QLabel(name)
+        name_label = self.build_label(name, "white")
         name_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         
         total_label = self.build_label(total, "white")
@@ -61,7 +75,7 @@ class DCharacterValuesPanel(QWidget):
         self.layout.addWidget(total_label, row_index, 4)
 
     def add_complex_value(self, row_index, name, base, boost, penalty, total):
-        name_label = QLabel(name)
+        name_label = self.build_label(name, "white")
         name_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         
         base_label = self.build_label(base)
@@ -81,15 +95,3 @@ class DCharacterValuesPanel(QWidget):
             "base": base_label, "minus": minus_label, 
             "plus": plus_label, "total": total_label
         }
-
-    def add_spacer(self, row_index, height=16):
-        spacer = QWidget()
-        spacer.setMinimumHeight(height)
-        self.layout.addWidget(spacer, row_index, 0, 1, 5)
-
-    def build_label(self, text, color=None):
-        label = QLabel(text)
-        label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        if color:
-            label.setStyleSheet(f"color: {color};")
-        return label

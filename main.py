@@ -26,13 +26,15 @@ def load_all_fonts(font_dir: Path) -> str:
     return family_name
 
 if __name__ == "__main__":
+    from engine.DFont import DFont
+
     application = QApplication(sys.argv)
     fonts_directory = Path(__file__).parent / "assets" / "fonts"
     font_family = load_all_fonts(fonts_directory)
 
     if font_family:
-        application.setFont(QFont("Noto Sans"))
-
+        application.setFont(DFont.SANS_REGULAR)
+        
     window = Dverentos()
     window.show()
     sys.exit(application.exec())

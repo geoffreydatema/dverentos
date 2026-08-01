@@ -21,6 +21,7 @@ class DCharacterNamePanel(QWidget):
 
     def build_english_name(self):
         nameplate_rank_label = QLabel("0")
+        nameplate_rank_label.setFont(DFont.SANS_LIGHT)
         nameplate_rank_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         english_name_label = QLabel("username")
         english_name_label.setFont(DFont.SANS_LIGHT)
@@ -30,6 +31,7 @@ class DCharacterNamePanel(QWidget):
 
     def build_tezhnor_name(self):
         tezhnor_rank_label = QLabel("0")
+        tezhnor_rank_label.setFont(DFont.SANS_LIGHT)
         tezhnor_rank_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         tezhnor_name_label = QLabel("yპвэтэzнa")
         tezhnor_name_label.setFont(DFont.SERIF_LIGHT)
