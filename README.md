@@ -2,7 +2,7 @@
 - **High Level Concept:** Dverentos is a 2D, looter RPG focused on account progression through dungeon crawling, grinding combat encounters, gathering resources, and upgrading your character and equipment.
 - **Game Objectives:** It's a looter - the goal is basically to gear up to be able to take on harder challenges, which rewards you with better gear so you can take on even harder challenges. The goal of the game is what you decide to grind for, be that a specific piece of maxed out equipment, collectables, or just to be able to speedrun endgame content.
 
-# Rank (Global Account Rank)
+# Rank
 - **Definition:** Rank is the primary measure of account progress. The following things contribute to Rank:
     - **Mastery:** All weapon Mastery is summed and added to Rank.
     - **Integrated Weapons:** When a weapon is fully integrated, all it's stats are summed and added to Rank.
@@ -10,78 +10,71 @@
     - **Integrated Suits:** When a suit is fully integrated, all its stats are summed and added to Rank. In a sense, you are getting double Rank contribution from the components that you already integrated in order to integrate the suit. However this is balanced by the fact that the components cannot be sold or scrapped after being integrated into the suit.
 
 # Stats
+- **Strength (STR):**
+    - Sets carry weight
+    - Sets base kinetic damage resistance
+    - Defines the threshold for how heavy a weapon you can carry
+    - Sets how many inventory slots are available (max 64)
 - **Vitality (VIT):**
     - Generally affects bodily strength and health
+    - Sets base chemical damage resistance
     - Sets HP
     - Affects how quickly HP is recovered
-    - Sets carry weight
-    - Sets how many inventory slots are available (max 64)
-    - Scales Heavy Melee damage
-    - Scales Weapon Critical Multiplier
     - Primarily affected by Reactor Core components
 - **Constitution (CON):**
     - Generally affects restistance to adverse effects
-    - Sets Defense
+    - Sets base energy damage resistance
     - Sets resistance to Statuses
     - Sets how much Durability your non integrated equipment loses when it's used
-    - Scales Energy damage
     - Primarily affected by Power Transport components
 - **Agility (AGI):**
     - Generally affects things related to speed and reaction time
-    - Scales Light Melee damage
     - During combat, AGI affects how fast the timeline moves (high agility makes you move quicker, meaning that the timeline moves slower)
     - Contributes equally to the Stealth skill along with PER
     - Some nodes will be locked behind an AGI check (you had to leap precisely to gain access to something)
     - Primarily affected by Actuator components
 - **Dexterity (DEX):**
     - Generally affects things related to fine motor skills
-    - Scales Big Gun damage
     - During combat, DEX affects how many actions you can take across the entire timeline (high dexterity means you were able to use your hands more precisely and fit in more actions)
     - Some nodes will be locked behind a DEX check (it wasn't quite a lockpick, but you had to fiddle with a container to get it open)
     - Primarily affected by Nano Fiber components
 - **Perception (PER):**
     - Generally affects the senses and awareness
-    - Scales Hand Cannon damage
-    - Scales Weapon Effectiveness
     - Contributes to your chances of being able to leave a combat encounter without taking damage while fleeing
     - Contributes equally to the Stealth skill along with AGI
     - Contrbitues to the Threat mechanic where you may get a warning before an enemy appears on a quiet tile (high Perception gives you more warning and a chance to leave before the threat appears)
     - Some nodes will be locked behind a PER check, showing you that if the Stat had been higher, you would have seen the node and had access to it
     - Primarily affected by Sensor components
+- **Intelligence (INT):**
+    - Cleverness and insight
+    - Charisma and speech related skills
+    - Knowledge of technical topics and history
+    - Some nodes will be locked behind a INT check if knowledge about some topic would realistically provide access to the node
 - **Rationality (RAT):**
-    - Generally affects the mind, intelligence, and mental fortitude
-    - Scales Telekenetic damage
-    - Scales Weapon Critical Chance
-    - Some nodes will be locked behind a RAT check if intelligence and problem solving would realistically provide access to the node
+    - Logical reasoning
+    - Systems thinking
+    - Mental fortitutde and ability to stay calm under pressure
+    - Some nodes will be locked behind a RAT check if reasoning and problem solving would realistically provide access to the node
     - Primarily affected by Neural Network components
 
-At all times, your stat totals reflect individual stat contributions from all components weapons, and tools. Stats change as you swap out different equipment, and are not permanently increased
-
-#! i would be open to a maximum of two more stats since I think we are leaning away from having stats scale a particular weapon damage and more towards a hardcore, your stats are what they are, it's a grind to build into anything in particular, and you're really just trying to make the best of it type game. likely would need to increase Skills to 16 to keep the math and balancing easy with skill bonuses from stats
+At all times, your stat totals reflect individual stat contributions from your equipped suit and components. Stats change as you swap out different equipment, and are not permanently increased
 
 # Skills
 Skills are separated into four subcategories: 4 gathering skills, 4 activity skills, and 4 crafting skills. Unlike Stats, Skills are permanent scores stored on the account. Generally speaking, exercising a skill levels it up. Each Stat also provides bonuses to two Skills. Some Skills provide permanent bonuses to other Skills.
 
 - **Salvaging**
     - Anything related to exploration, looting equipment, collecting resources, and dismantling items
-    - This is the main skill that affects how much and the rarety of resources you get from collecting resources and dismantling items
+    - This is the main skill that affects how much and the rarety of resources you get from collecting resources and dismantling items, balanced relatively against the level of the tile
     - DEX provides a slight bonus
-    - #! If Salvaging gives a bonus to how much and the rarety of resources you get from collecting and dismantling, it will have to be calculated against the level of the tile i imagine, since at a certain point with salvaging at a ceiling, you'll just always be getting the best possible loot rng on any tile which is not balanced
-- **Harvesting**
-    - Anything related to gathering resources that isn’t mining, so gathering natural resources and cutting wood
-    - This is the main skill that affects how much and the rarety of resources you get from harvesting resource nodes
-    - CON provides a significant bonus
-    - #! this skill is questionable because legit how much wood cutting and "harvesting" will we be doing in this game. maybe can be repurposed into a broader category
 - **Hunting**
     - Hunting has the broadest range of encounters per location as you could be hunting anything from a small animal that is literally terrified of you and running away, to large dangerous animals which pose a large threat
     - The Hunting skill would also apply to bounty hunting if that ever gets added to the game
     - A fun detail is that some enemies when defeated and depending on the environment and circumstances will give Hunting XP, because it required a bit of a hunt to get them
     - PER provides a significant bonus
-- **Mining**
+- **Resources**
     - Metals and various minerals are vital components of every component, weapon and tool, so you mining will be involved in this game
     - This is the main skill that affects how much and the rarety of resources you get from mining resource nodes
-    - VIT provides a significant bonus
-    - #! I think going off the vibe of remote controlling a suit and exploring dangerous environments, mining is a fun concept but I think it will be most fun when it's a genuinely rare experience to find some mineral or substance to gather (maybe combine with Harvesting?)
+    - INT provides a significant bonus
 - **Lockpicking**
     - Many doors or containers are secured with a physical lock
     - While attempting to pick the lock, higher Lockpicking offers a higher chance of success
@@ -94,8 +87,8 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 - **Engineering**
     - Anything related to machinery and electronics
     - Similar to how certain areas are blocked by Lockpicking or Cryptography checks, Engineering checks can require a mechanical system to be repaired to open a door or container (it's a nontraditional third lockpicking/hacking type skill)
-    - AGI provides a slight bonus
-    - #! Engineering uniquely provides bonuses to Weaponcrafting, Toolsmithing, and Neuralforging (it should only be like one of these crafting skills, other skills should boost the other ones)
+    - RAT provides a slight bonus
+    - Increases when repairing weapons
 - **Stealth**
     - Stealth is a mechanic available on some tiles providing options to sneak past enemies or avoid detection
     - If the Threat mechanic causes an enemy to appear on a quiet tile, a Stealth check determines if you are detected
@@ -106,25 +99,37 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - This is not a throwaway skill. A completely viable way to play the game is to walk around in high level areas embarrassingly underlevelled and just continuously popping consumables to stay alive and win fights. If you have high Alchemy, you can craft all the consumables you need very economically.
     - If your Alchemy is high compared to the tier of consumable you’re crafting, you get advantages like bonus quantity crafted or higher tier of consumable crafted, if applicable
     - Equally increases chance of successfully decrypting a Protoform along with Cryptography
-    - PER provides a slight bonus
-- **Weaponcrafting**
+    - PER provides a significant bonus
+- **Gunsmithing**
     - Anything related to crafting weapons
     - Certain weapon blueprints are locked behind a Weaponcrafting stat check
     - If your Weaponcrafting is high compared to the tier or weapon you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second weapon
     - VIT provides a slight bonus
-    - #! if we remove tools, then this becomes guncrafting
-- **Toolsmithing**
-    - Anything related to crafting tools
-    - Certain tool blueprints are locked behind a Toolsmithing stat check
-    - If your Toolsmithing is high compared to the tier of tool you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second tool
-    - This is an incredibly important skill and many will want to prioritize levelling toolsmithing as opposed to weaponcrafting since tools can carry more (and better) stat bonuses and perks which affect the entire build.
+- **Bladecasting**
+    - Anything related to crafting melee weapons
     - CON provides a slight bonus
-    - #! if we remove tools this becomes bladesmithing
 - **Neuralforging**
     - Anything related to crafting suits and components
     - Certain component blueprints are locked behind a Neuralforging stat check
     - If your Neuralforging is high compared to the tier of component you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second component
-    - RAT provides a slight bonus
+    - INT provides a slight bonus
+- **Armorcrafting**
+    - Anything related to crafting armor
+    - STR provides a slight bonus
+- **Navigation**
+    - Anything related to moving through environments
+    - AGI provides a slight bonus
+- **Bartering**
+    - Anything related to buying and selling items
+    - Reduces or even eliminates special item taxes
+    - PER provides a slight bonus
+- **Recovery**
+    - Anything related to using healing items
+    - Increases when repairing armor
+    - VIT provides a significant bonus
+- **Combat**
+    - Anything related to fighting enemies
+    - STR provides a significant bonus
 
 # Mastery
 - There is a Mastery score for each weapon type. When a weapon levels up, the corresponding mastery score increments. When a weapon hits full integration, the corresponding mastery score gets a +16 boost.
@@ -132,31 +137,26 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 - #! this whole section probably changes if we remove stat contribution to weapon type damage but the principle should stay the same with every weapon archetype receiving a mastery catetory for stuff like vendor checks and long term number go up progression
 
 # Weapon Categories
-- **Melee:**
-    - Light Melee
-        - Damage scales with AGI (because fighting with blades and smaller weapons requires a lot of movement)
-    - Heavy Melee
-        - Damage scales with VIT (because of the strength required to wield heavy melee weapons)
-- **Ranged:**
-    - Hand Cannons
-        - Damage scales with PER (because you need good aim)
-    - Big Guns
-        - Damage scales with DEX (because you need fast hands to reload quickly and manage recoil)
-- **Cast:**
-    - Energy (Plasma/Electricity)
-        - Damage scales with CON (because having to withstand the amount of energy and heat you're projecting from your suit)
-    - Telekinetic
-        - Damage scales with RAT (because in the lore, telekenesis involves using brain computer interfaces to calculate the wave functions of objects at the macro scale in order to move them with your mind)
+- probably
+    - rifle (or maybe not)
+    - carbine
+    - smg
+    - dmr
+    - shotgun
+    - slug shotgun (need name for it)
+    - hand cannon
+    - lmg
+    - launcher
+    - greatsword
+    - knife
 
-    - #! the more I think about the weapon options the more it seems oddly fantasy like to have full melee and caster builds. while in this universe there are basically space wizards running around casting plasma beams and using telekenesis it feels more grounded to have the player character mainly using rifles
 
-    - #! even if only for the aesthetic, i really like the idea of being able to carry a melee either as a sidearm or as a second weapon. i also frickin love medeval looking greatswords so even if theyre completely ridiculous and not practical as weapons, i want to include swords
-
-    - #! do we need a Range mechanic (close, mid, long range) and does that play into weapon effectiveness?
-        - close: melee very effective, knife somewhat effective, shotgun very effective, other guns not effective
-        - mid: melee and knife not effective at all, shotgun not effective, hand cannons and rifles very effective
-        - long: melee knife and hand cannon not effective, rifle somewhat effective, only range a sniper is effective
-        - in general i'm not sure what this does to encounter types and reasons to carry the different weapon types
+# Range Mechanic
+- #! do we need a Range mechanic (close, mid, long range) and does that play into weapon effectiveness?
+    - close: melee very effective, knife somewhat effective, shotgun very effective, other guns not effective
+    - mid: melee and knife not effective at all, shotgun not effective, hand cannons and rifles very effective
+    - long: melee knife and hand cannon not effective, rifle somewhat effective, only range a sniper is effective
+    - in general i'm not sure what this does to encounter types and reasons to carry the different weapon types
 
 # Tile Threat Level
 #! we likely need an internal level for each tile but on second thought the hardcore nature of this game probably means that you shouldn't know whether a tile can kill you, but only gain that knowledge through experience
