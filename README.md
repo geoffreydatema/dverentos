@@ -159,6 +159,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - in general i'm not sure what this does to encounter types and reasons to carry the different weapon types
 
 # Tile Threat Level
+#! we likely need an internal level for each tile but on second thought the hardcore nature of this game probably means that you shouldn't know whether a tile can kill you, but only gain that knowledge through experience
 - **Tile Level:**
     - Every tile has a tier indicating the threat level in absolute terms (#! need to decide how to calculate this)
 - **Tile Threat:**
@@ -166,11 +167,13 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Possible calculation: `(<num enemy actions> * <enemy damage per action>) / HP = <whether or not you can die during encounter>`
         - If the number is < 1, you technically cannot die even if enemy attacked on every round and landed every attack
         - If the number is > 1, the enemy technically could kill you, but evasion, self buffing, consumables, etc. could allow you to win
-        - To be accurate, it would need to take into account stuff like damage over time statuses the enemy may be able to apply
+        - To be accurate, it would need to take into account stuff like damage over time statuses the enemy may be able to apply, so I think the calculation simply needs to include the maximum potential damage that can be dealt by the maximum number of enemies that can appear
 
 # Suits
 - **Suit Stats:**
     - Suits have fixed base stats. Alternate versions of Suits could have slightly different or better base stat rolls. The general idea is that you'd expect a tanky build to be based on certain Suits, and a stealth build to be based on others, but there are also unexpected ways to build.
+    - #! my new idea here is actually that suits are a blank slate, or built when you craft one from components, where the suit you end up with is based on the components you use to build it, like different combinations of components give you a recipe of an ancient mindspawn!!
+    - #! the question is can you still swap out the initial components? I don't see an issue with that: you craft the initial body out of specific recipes of components giving it base stats, level it using whatever collection of components you find (these are sort of like mods), then once fully levelled you integrate the suit with whatever components you want, locking those stats on top of the base stats and getting a boost to all stats
 - **Suit Leveling:**
     - The Suit gains XP whenever an action is performed while wearing it
     - Each level provides a tiny stat increase
@@ -185,6 +188,8 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Once a Suit is integrated, a currency can be applied to increment individual stats, but it's extremely expensive and slow, and capped at +10, giving a final long term grind goal for an integrated suit
 
 # Components
+#! it might be too complex and ultimately unecessary to have components level and go through integration. The unique gameplay loop of components could be just the star rerolling and trying to collect rare versions
+#! you don't lose components on death, but you can't swap them out mid run
 - **Component Stats:**
     - Components don't have base Stat rolls. Components roll with random Stats with the Component's prime stat usually being the highest (for example, Reactor Core prime stat is VIT, Power Transport's prime stat is CON, etc.)
     - There is an unofficial tier system for Components:
@@ -204,6 +209,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - During rerolls, the rare corruption or double stat thing can happen, which could turn a decent Component into an amazing buildcrafting option
 
 # Weapons
+#! ideas for weapon levelling: you do lose weapons on death, but having a weapon "integrated" (call it something else) is based on consuming weapon mastery of the matching type to "insure" the weapon from being lost on death. like the weapon comes back to your vault
 - **Weapon Stats:**
     - Weapons have fixed combat stats
     - Weapon variation comes from Traits which are randomly rolled
@@ -215,6 +221,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - Melee Weapons have Range
         - Ranged Weapons have Accuracy
         - Caster Weapons have Targetting
+    - #! having effectiveness scale with PER would feel terrible if you happen to not be built into PER. Likely this gets replaced with the new Range mechanic
     - **Critical Chance:**
         - Chance to perform a Critical hit which applies the Critical Multiplier to Base Damage
         - Scales with RAT
@@ -235,7 +242,14 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - Subsequent integrations by consuming another base version of the weapon allow for a targeted Trait reroll
         - If you integrate by consuming another integrated version of the weapon, it adds a third Trait, but any subsequent integrations will require consuming a fully integrated version of the weapon, causing the process to become very expensive and meaning that it is a committment to double integrate it. Three Traits is the limit.
 
+# Armor
+- **Armor Mechanics:**
+    - Armor is always lost on death and is one of the long term currency sinks since it cannot be insured
+    - Armor can often be looted off of enemy corpses, but it will likely be damaged
+    - Armor can be repaired
+
 # Tools
+#! i think the dedicated knife slot should replace all tools and be the primary trade skill item, knives are automatically insured
 - **Tool Slots:**
     - Resource Scanner
     - Harvesting Knife
@@ -260,7 +274,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Resources which are known to be plentiful on a particular location will be worth less by Vendors on that location. It is best to haul resources to location where they are more scarce to make more money on them. 
     - Flooding a local economy with one particular resource reduces the demand and therefore price for that item. Likewise, buying a ton of one particular item increases the demand and price of that item.
     - RNG events can flood a market with one particular item or create a high demand for something for a period of time
-- Most Vendors deal in either the interstellar currency or a local currency
+- Most Vendors deal in either krezhna or one of the other more specialized currencies
 - Some Vendors offer some or all items for barter only
 - Some tiles offer gamble mechanics to gamble either resources or sacrifice equipment for potential rewards. These are still considered Vendors even if there isn't a character selling stuff
 - The economy is always changing between different Locations and Destinations and it can be fun and rewarding in and of itself to just buy, sell, and craft your way between the different markets for a profit or for a particular item you want
@@ -291,22 +305,21 @@ Every screen in the game exists at one of four location "layers"
 - Normal items blueprints can be unlocked by bringing multiple copies of the item to a specific vendor and trading them for the blueprint:
     - Consumables: 5-10
     - Weapons: 2-5
-    - Suits: 2
-- Components and Tools cannot be crafted due to them rolling with random Traits (craftable items, especially Weapons, are designed to support the idea that you may very well need multiple of them while Components and Tools present a different aquisition challenge and potential reward due to the RNG Traits)
+    - Armor: 2-5
+- Other blueprints can be learned by dismantling the item and getting a higher and higher change of learning the blueprint
+- Components cannot be crafted due to them rolling with random Traits (craftable items, especially Weapons, are designed to support the idea that you may very well need multiple of them while Components and Tools present a different aquisition challenge and potential reward due to the RNG Traits)
 - Protoform items also cannot be crafted due to their unique and rare nature
-- Blueprints are learned by dismantling a certain number of the item
-- Some blueprints can be bought from Vendors
 
 # Protoforms
-These are the highest tier endgame loot chase items. Protoforms drop as unidentified masses of encrypted matter, and can be "resolved" into an item in the following ways:
-    - The primary way of resolving Protoforms is to run a specific activity on a Destination. This activity will have you slot a Protoform into a device and then defeat waves of enemies while it decrypts.
-    - If you leave an encrypted Protoform in your inventory, it passively picks up XP from any Encounter, and will, given enought time, gain enough to decrypt on its own. This is very time consuming however and the normal way to decrypt is to run a decrypt activity. However, the waves of enemies scales with how much XP needs to be absorbed by the Protoform, so you can reduce the number of enemy Encounters by slotting a partially decrypted Protoform.
-Once the Protoform is decrypted, you can attempt to resolve it into a weapon. The Cryptography and Alchemy Skills equally contribute to your chances at a successful resolution. If the resolution is unsuccessful, the Protoform may revert to its encrypted state where you'll need to try again, be lost entirely, or even split into two encrypted protoforms which is quite rare. The mechanic is designed to be unpredictable, high effort, often high risk, and high potential reward.
+- **Resolving Protoforms:**
+    - Protoforms drop as unidentified masses of encrypted matter, and can be "resolved" into an item in the following ways:
+        - The primary way of resolving Protoforms is to run a specific activity on a Destination. This activity will have you slot a Protoform into a device and then defeat waves of enemies while it decrypts.
+        - Additionally, if you leave an encrypted Protoform in your inventory, it passively picks up XP from any Encounter, and will, given enough time, gain enough XP to decrypt on its own. This is very time consuming however and the normal way to decrypt is to run a decrypt activity. However, the waves of enemies scales with how much XP needs to be absorbed by the Protoform, so you can reduce the number of enemy Encounters by slotting a partially decrypted Protoform.
+        - Once the Protoform is decrypted, you can attempt to resolve it into an item. The Cryptography and Alchemy Skills equally contribute to your chances at a successful resolution. If the resolution is unsuccessful, the Protoform may revert to its encrypted state where you'll need to try again, be lost entirely, or even split into two encrypted protoforms which is quite rare. The mechanic is designed to be unpredictable, high effort, often high risk, and high potential reward.
 - **Protoform Components:**
-    - Protoform Components considered integrated and can be slotted into Suits
-    - They roll with five Stats, often with wild distributions
+    - Protoform components roll with five Stats, often with wild distributions
     - They are the only Components that can roll with negative stats
-    - They cannot be rerolled like normal integrated Components
+    - They cannot be rerolled like normal Components
 - **Protoform Weapons:**
     - Protoform Weapons are considered integrated don't level
     - Their Specs are randomly rolled, often with wild distributions
@@ -322,9 +335,10 @@ Once the Protoform is decrypted, you can attempt to resolve it into a weapon. Th
 The Archive contains a ton of information about the game.
 - Explanations of all stats information important to understanding builds
 - Library of all enemies, animals, locations etc. discovered by the account
-- Progress on crafting blueprints
+- Displays the current probability of unlocking a blueprint on the next dismantle of an item
 
 # Equipment Durability
+#! not sure what to do with durability
 - Anytime you use non integrated equipment during an encounter, its Durability decreases
 - If a piece of equipment hits 0 Durability, you lose it forever
 - Equipment can be repaired for a small cost or resource
@@ -333,9 +347,11 @@ The Archive contains a ton of information about the game.
 - Integrated equipment does not lose durability anymore so it's sort of a way of graduating to more endgame content which is extremely challenging and you will die a lot but at least you're not worried about constantly reparinging equipment
 
 # What happens when you die?
-- You keep your Suit, Components, Weapons, and Tools
-- Any non integrated equipment loses a significant amount of Durability
-- You lose your current inventory including all consumables and loot currently held
+- You keep your suit and slotted components
+- Any non integrated equipments lose a significant amount of Durability
+- You lose all armor
+- You lose any non insured weapons
+- You lose your current inventory
  
 # Threat mechanic
 - PER contrbitues to the Threat mechanic where you may get a warning before an enemy appears on a quiet Tile or after you've killed enemies and are lingering on a Tile (high PER gives you more warning and a chance to leave before the threat appears)
