@@ -134,40 +134,66 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 # Mastery
 - There is a Mastery score for each weapon type. When a weapon levels up, the corresponding mastery score increments. When a weapon hits full integration, the corresponding mastery score gets a +16 boost.
 - Some weapon crafts and vendor sales are locked behind a Mastery 
-- #! this whole section probably changes if we remove stat contribution to weapon type damage but the principle should stay the same with every weapon archetype receiving a mastery catetory for stuff like vendor checks and long term number go up progression
 
 # Weapon Categories
-- probably
-    - rifle (or maybe not)
-    - carbine
-    - smg
-    - dmr
-    - shotgun
-    - slug shotgun (need name for it)
-    - hand cannon
-    - lmg
-    - launcher
-    - greatsword
-    - knife
-
+- **Carbine**
+    - Assault rifle style class
+- **Short Rifle**
+    - SMG style rifle class
+- **Long Rifle**
+    - DMR style rifle class
+- **Heavy Rifle**
+    - LMG style class
+- **Hand Cannon**
+    - Revolver/Pistol class
+- **Breacher**
+    - Slug shotgun heavy weapon class
+- **Launcher**
+    - Grenade/Rocket launcher class
+- **Greatsword**
+    - Big sword class
+- **Knife**
+    - Awesome knife sidearm class
 
 # Range Mechanic
-- #! do we need a Range mechanic (close, mid, long range) and does that play into weapon effectiveness?
-    - close: melee very effective, knife somewhat effective, shotgun very effective, other guns not effective
-    - mid: melee and knife not effective at all, shotgun not effective, hand cannons and rifles very effective
-    - long: melee knife and hand cannon not effective, rifle somewhat effective, only range a sniper is effective
-    - in general i'm not sure what this does to encounter types and reasons to carry the different weapon types
+- Different weapons areeffective at different ranges.
+    - **Close Range**
+        - Carbines:      medium
+        - Long Rifles:   medium
+        - Short Rifles:  high
+        - Heavy Rifles:  high
+        - Hand Cannons:  high
+        - Breachers:     high
+        - Launchers:     unusable
+        - Greatswords:   high
+        - Knives:        high
+    - **Mid Range**
+        - Carbines:      high
+        - Long Rifles:   high
+        - Short Rifles:  medium
+        - Heavy Rifles:  medium
+        - Hand Cannons:  medium
+        - Breachers:     medium
+        - Launchers:     high
+        - Greatswords:   unusable
+        - Knives:        unusable
+    - **Long Range**
+        - Carbines:      medium
+        - Long Rifles:   high
+        - Short Rifles:  low
+        - Heavy Rifles:  low
+        - Hand Cannons:  low
+        - Breachers:     low
+        - Launchers:     medium
+        - Greatswords:   unusable
+        - Knives:        unusable
 
-# Tile Threat Level
-#! we likely need an internal level for each tile but on second thought the hardcore nature of this game probably means that you shouldn't know whether a tile can kill you, but only gain that knowledge through experience
-- **Tile Level:**
-    - Every tile has a tier indicating the threat level in absolute terms (#! need to decide how to calculate this)
-- **Tile Threat:**
-    - Indicates how much danger the character is in on a specific tile.
-    - Possible calculation: `(<num enemy actions> * <enemy damage per action>) / HP = <whether or not you can die during encounter>`
-        - If the number is < 1, you technically cannot die even if enemy attacked on every round and landed every attack
-        - If the number is > 1, the enemy technically could kill you, but evasion, self buffing, consumables, etc. could allow you to win
-        - To be accurate, it would need to take into account stuff like damage over time statuses the enemy may be able to apply, so I think the calculation simply needs to include the maximum potential damage that can be dealt by the maximum number of enemies that can appear
+# Tile Level
+- Each tile has a level value set internally which defines:
+    - Enemy difficulty
+    - Environmental hazard check difficulty
+    - Node access check difficulty
+    - Rarity of loot dropped on the tile
 
 # Suits
 - **Suit Stats:**
