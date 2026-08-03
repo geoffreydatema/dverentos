@@ -15,6 +15,7 @@
     - Sets base kinetic damage resistance
     - Defines the threshold for how heavy a weapon you can carry
     - Sets how many inventory slots are available (max 64)
+    - Primarily affected by Tensile Fibres components
 - **Vitality (VIT):**
     - Generally affects bodily strength and health
     - Sets base chemical damage resistance
@@ -50,12 +51,13 @@
     - Charisma and speech related skills
     - Knowledge of technical topics and history
     - Some nodes will be locked behind a INT check if knowledge about some topic would realistically provide access to the node
+    - Primarily affected by Neural Network components
 - **Rationality (RAT):**
     - Logical reasoning
     - Systems thinking
     - Mental fortitutde and ability to stay calm under pressure
     - Some nodes will be locked behind a RAT check if reasoning and problem solving would realistically provide access to the node
-    - Primarily affected by Neural Network components
+    - Primarily affected by Logic Registers components
 
 At all times, your stat totals reflect individual stat contributions from your equipped suit and components. Stats change as you swap out different equipment, and are not permanently increased
 
@@ -109,7 +111,7 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Anything related to crafting melee weapons
     - CON provides a slight bonus
 - **Neuralforging**
-    - Anything related to crafting suits and components
+    - Anything related to crafting bodies and components
     - Certain component blueprints are locked behind a Neuralforging stat check
     - If your Neuralforging is high compared to the tier of component you’re crafting, you get advantages like better stats, higher rarity and even the possibility of crafting additional scraps or even an entire second component
     - INT provides a slight bonus
@@ -158,8 +160,8 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
 # Range Mechanic
 - Different weapons areeffective at different ranges.
     - **Close Range**
-        - Carbines:      medium
         - Long Rifles:   medium
+        - Carbines:      medium
         - Short Rifles:  high
         - Heavy Rifles:  high
         - Hand Cannons:  high
@@ -168,8 +170,8 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - Greatswords:   high
         - Knives:        high
     - **Mid Range**
-        - Carbines:      high
         - Long Rifles:   high
+        - Carbines:      high
         - Short Rifles:  medium
         - Heavy Rifles:  medium
         - Hand Cannons:  medium
@@ -178,8 +180,8 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - Greatswords:   unusable
         - Knives:        unusable
     - **Long Range**
-        - Carbines:      medium
         - Long Rifles:   high
+        - Carbines:      medium
         - Short Rifles:  low
         - Heavy Rifles:  low
         - Hand Cannons:  low
@@ -195,27 +197,26 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
     - Node access check difficulty
     - Rarity of loot dropped on the tile
 
-# Suits
-- **Suit Stats:**
-    - Suits have fixed base stats. Alternate versions of Suits could have slightly different or better base stat rolls. The general idea is that you'd expect a tanky build to be based on certain Suits, and a stealth build to be based on others, but there are also unexpected ways to build.
-    - #! my new idea here is actually that suits are a blank slate, or built when you craft one from components, where the suit you end up with is based on the components you use to build it, like different combinations of components give you a recipe of an ancient mindspawn!!
-    - #! the question is can you still swap out the initial components? I don't see an issue with that: you craft the initial body out of specific recipes of components giving it base stats, level it using whatever collection of components you find (these are sort of like mods), then once fully levelled you integrate the suit with whatever components you want, locking those stats on top of the base stats and getting a boost to all stats
-- **Suit Leveling:**
-    - The Suit gains XP whenever an action is performed while wearing it
+# Bodies
+- **Body Gameplay Loop:**
+    - The bodies that you remotely control as you explore have fixed base stats and a specific name
+        - In the lore, the body is actually a replicated body of an ancient Mindspawn which is why they have fixed starter components and base stats
+    - Unlocking a new body permanently adds it to your account
+    - Bodies are not found or bought in entirety, they are crafted by visiting a particular vendor tile and handing in 8 components which complete the blueprint for a particular body
+    - After that, you receive the body which has its base stats, but has no components slotted in (they were consumed to make the body)
+    - The base stats are still determined by the components used to craft the body, so because component stats are randomly rolled, different freshly crafted bodies get differently rolled stats
+        - This creates an interesting situation where you may hold on to specific high stat components to craft a new copy of a body you really like, just to get high base stat rolls
+- **Body Leveling:**
+    - The body gains XP whenever an action is performed while wearing it
     - Each level provides a tiny stat increase
-    - You can slot any non integrated components into a suit. A low level suit does not prevent you from slotting high level components as long as they are not integrated. This allows you to equip a new suit to start levelling it up while still keeping the benefits of high level components.
-- **Suit Integration:**
-    - Fully integrating a suit provides a significant stat bonus
-    - In order to integrate a Suit, you must slot in 6 integrated Components
-    - Suit integration locks the Component selection - you cannot change them moving forward
+    - You can slot any components into a body as you level it
+- **Body Integration:**
+    - Fully integrating a body provides a significant stat bonus
+    - Integrating a body locks in its 8 slotted components, so it is a commitment
     - Integrated Suits can be sold to vendors who will accept them
     - There is also a gamble mechanic to sacrifice a fully integrated Suit for a shot at high value rewards
-- **Suit Post Integration Grind:**
-    - Once a Suit is integrated, a currency can be applied to increment individual stats, but it's extremely expensive and slow, and capped at +10, giving a final long term grind goal for an integrated suit
 
 # Components
-#! it might be too complex and ultimately unecessary to have components level and go through integration. The unique gameplay loop of components could be just the star rerolling and trying to collect rare versions
-#! you don't lose components on death, but you can't swap them out mid run
 - **Component Stats:**
     - Components don't have base Stat rolls. Components roll with random Stats with the Component's prime stat usually being the highest (for example, Reactor Core prime stat is VIT, Power Transport's prime stat is CON, etc.)
     - There is an unofficial tier system for Components:
@@ -224,30 +225,34 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - Even fewer roll with five stats
     - There is a rare RNG which can cause any tier of Component to roll where it's prime stat is not its highest. In this "corrupted" scenario, the Component will actually have two other stats at quite high value within 3 of each other. These Components are extremely rare and valuable with the potential for making broken builds.
     - There is an even rarer RNG where any tier of Component can roll with two stat of the same stats, doubling up the contribution to that stat
-- **Component Leveling:**
-    - Slotted Components gain XP whenever an action is performed while they are equipped
-    - Each level provides a tiny stat increase
-- **Suit Integration:**
-    - Getting a Component to max level and therefore fully integrating it provides a significant stat bonus
-    - Unlike Suits, Components integrate automatically as there is no commitment involved in choosing to integrate one (you always want your Components to be integrated)
 - **Component Post Integration Grind:**
     - Once a Component is integrated, a currency can be applied which will lock in its highest stat, but reroll the rest. The total of all rerolled stats will not change, meaning that realistically you'll save the currency for rerolling Components with high base rolls.
     - During rerolls, the rare corruption or double stat thing can happen, which could turn a decent Component into an amazing buildcrafting option
+- **Component Gameplay Loop:**
+    - You don't lose components on death
+    - Components also stay locked on your body unless you are in your base
+    - Component management is entirely done off tile, so if you do loot components you want to keep, you really do need to stay alive to get back to base with them
 
 # Weapons
-#! ideas for weapon levelling: you do lose weapons on death, but having a weapon "integrated" (call it something else) is based on consuming weapon mastery of the matching type to "insure" the weapon from being lost on death. like the weapon comes back to your vault
+- **Weapon Gameplay Loop:**
+    - Generally the goal with weapons is integrate them, however the result of integration with weapons is different than with suits
+    - Any non integrated weapons are lost on death but integrated weapons are permanent additions to your account (unless you sell them) and are retained on death
+    - As you use a weapon, you gain mastery in its particular category
+    - You can effectively "spend" mastery to integrate a weapon that you particularly like and no longer risk losing it on risky activities
 - **Weapon Stats:**
     - Weapons have fixed combat stats
     - Weapon variation comes from Traits which are randomly rolled
-    - Each archetype has its own pool of traits
-    - Generally weapon damage scales with the level of Tile it was dropped on with very little variation between weapon categories. No weapon category is strictly better than another. It's the possible traits that can roll on that weapon category that make or break it for your build.
+    - Some traits are shared between archetypes, and some are unique to specific archetypes
+    - Generally speaking because weapons have fixed base damage and crit stats, the higher the stats the better the weapon is, but the traits that roll on the weapon make or break it, especially when you take your entire build into consideration
+    - As such, there simply are many low tier weapons that have low base stats, and even if rolled with the best possible traits for the particular weapon, is still not going to be as good as a higher tier weapon with its higher base stats rolling with that same best possible trait (a completionist would try to integrate one copy of it probably as a collectors item and just move on)
+    - **Range:**
+        - Each weapon archetype has different effectiveness at close, mid, and long range
+        - Effectiveness is a simple fixed multiplier which scales the final calculated damage of an attack action, meaning that you can have an amazing roll on a weapon, but it just does significantly reduced damage when used at the wrong range
+        - It's a hardcore game with realistic tradeoffs, as well as unbalanced mechanics that just are what they are
+            - Long Rifles and Carbines are simply the best weapon archetypes for covering all ranges, meaning that you will struggle with the range mechanic if you build into other weapon archetypes
+            - The game will not prevent you from playing melee only, but you will not be able to deal damage at mid and long range (just like in a realistic scenario, you will have to rely on evasion and stealth to deal with those sort of combat scenarios)
     - **Base Damage:**
-        - Each character Stat scales the base damage of one weapon category
-    - **Effectiveness:** Each of the three weapon archetypes has an Effectiveness stat which can affect whether you hit or miss a target. Although the name of the stat is different on each archetype and relevant to the weapon itself, the combat mechanic of hitting or missing is the same on all archetypes. Effectivenss scales with PER.
-        - Melee Weapons have Range
-        - Ranged Weapons have Accuracy
-        - Caster Weapons have Targetting
-    - #! having effectiveness scale with PER would feel terrible if you happen to not be built into PER. Likely this gets replaced with the new Range mechanic
+        - Weapon base damage scales by the sum of all your stats
     - **Critical Chance:**
         - Chance to perform a Critical hit which applies the Critical Multiplier to Base Damage
         - Scales with RAT
@@ -255,43 +260,18 @@ Skills are separated into four subcategories: 4 gathering skills, 4 activity ski
         - How much Base Damage is multiplied during a Critical hit
         - Scales with VIT
 - **Weapon Traits:**
-    - Weapon Traits only affect the weapon's own combat stats
-- **Weapon Leveling:**
-    - Equipped Weapons gain XP whenever you kill an enemy using one. Doing damage doesn't count, only the kill.
-    - The two equipped weapons uniquely share XP. The weapon that got the kill gets 2/3 of the XP and the passive weapon gets 1/3 of the XP. It is standard procedure to use a high power build of an integrated Suit and integrated primary Weapon to speedrun encounters to passively level up a secondary equipped weapon. The passive XP gain is lower than if you used the weapon itself to get kills, but you get to multitask and do other things at the same time.
-    - Each level provides a tiny Weapon stat increase (damage, crit chance, crit multiplier)
-    - Getting a Weapon to max level provides a significant bonus to its stats
+    - Weapon Traits are not limited to affecting only the weapon's stats, they can also affect other parts of your build
+        - Equipping a secondary weapon is often a crucial part of buildcrafting just for the weapon's passive traits, even if you don't generally use the weapon in raid
 - **Weapon Integration:**
-    - To integrate a Weapon, you need a second copy of it. You consume the one you don't want, and use it to "rebuild" the good one as an integrated version.
-    - Weapon integration feels different from other equipment
-        - The Weapon's stats are already boosted at max level, so integration adds an extra RNG Trait
-        - Subsequent integrations by consuming another base version of the weapon allow for a targeted Trait reroll
-        - If you integrate by consuming another integrated version of the weapon, it adds a third Trait, but any subsequent integrations will require consuming a fully integrated version of the weapon, causing the process to become very expensive and meaning that it is a committment to double integrate it. Three Traits is the limit.
+    - To integrate a Weapon, you spend an amount of mastery from that weapon category
+    - Weapon integration randomly rolls an extra trait on that weapon
+    - A rare currency can be used to perform targeted trait rerolls on integrated weapons
 
 # Armor
 - **Armor Mechanics:**
     - Armor is always lost on death and is one of the long term currency sinks since it cannot be insured
     - Armor can often be looted off of enemy corpses, but it will likely be damaged
     - Armor can be repaired
-
-# Tools
-#! i think the dedicated knife slot should replace all tools and be the primary trade skill item, knives are automatically insured
-- **Tool Slots:**
-    - Resource Scanner
-    - Harvesting Knife
-    - Hunting Javelin
-    - Mining Laser
-- **Tool Effects:**
-    - Every Tool equipped gives AGI -1 (because you're slower and clumsier when carrying them)
-    - Every Tool equipped gives DEX +1 (because for example while doing something mechanical, having a tool around would make it easier to fix something or open something)
-    - Every equipped Tool uses carry weight, meaning that for combat runs you might consider leaving your Tools behind (unless you want the DEX boost)
-- **Tool Levelling:**
-    - Tools are not levelled
-    - The progression related to Tools is the gathering Skills which increase when you successfully gather resources
-- **Tool Traits:**
-    - Tools roll with one or two random Tool Traits which only affect Skills (for example, a Scanner might roll with a perk that increases Cryptography because the Scanner helps with hacking)
-- **Tool Integration:**
-    - Tools don't have an integration mechanic
 
 # Vendors
 - Permanent Vendors are available on overworld maps. They are the main way to sell unwanted equipment and resources to earn primary currencies
@@ -363,20 +343,11 @@ The Archive contains a ton of information about the game.
 - Library of all enemies, animals, locations etc. discovered by the account
 - Displays the current probability of unlocking a blueprint on the next dismantle of an item
 
-# Equipment Durability
-#! not sure what to do with durability
-- Anytime you use non integrated equipment during an encounter, its Durability decreases
-- If a piece of equipment hits 0 Durability, you lose it forever
-- Equipment can be repaired for a small cost or resource
-- If you die during an encounter, your non integrated equipment loses a significant amount of Durability (like a third or so)
-- Higher CON reduces the amount of Durability your equipment loses during use or when you die
-- Integrated equipment does not lose durability anymore so it's sort of a way of graduating to more endgame content which is extremely challenging and you will die a lot but at least you're not worried about constantly reparinging equipment
-
 # What happens when you die?
-- You keep your suit and slotted components
-- Any non integrated equipments lose a significant amount of Durability
+- You keep your body and slotted components
+- You keep any integrated weapons
+- You lose any non integrated weapons
 - You lose all armor
-- You lose any non insured weapons
 - You lose your current inventory
  
 # Threat mechanic
@@ -396,3 +367,11 @@ The Archive contains a ton of information about the game.
 
 # Special mobs
 - Very rarely you will encounter a special (think shiny) variant of a normal enemy or animal which drops special items
+
+# Progression and Endgame
+- Progression is fundamentally tied to looting and rerolling components
+- Generally speaking a progression loop involves starting on a new destination and grinding out the new components available on that destination to:
+    - Craft new bodies available from those components
+    - Get the best in slot components which increases your damage and survivability
+    - Reroll stats on those components to fit your build
+    - Integrate a body using your choice of components for a final stat boost
