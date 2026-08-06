@@ -17,7 +17,7 @@ class DFontSize():
     CHARACTER_UI_STATS = 0.3
 
 class CharacterValues():
-    ATTRIBUTES = ["rank", "location", "ᴋᴋ datetime", "hp", "kinetic resistance", "energy resistance", "chemical resistance"]
-    STATS = ["vitality", "constitution", "agility", "dexterity", "perception", "rationality"]
-    SKILLS = ["salvaging", "harvesting", "hunting", "mining", "lockpicking", "cryptography", "engineering", "stealth", "alchemy", "weaponcrafting", "toolsmithing", "neuralforging"]
-    MASTERY = ["light melee", "heavy melee", "hand cannons", "big guns", "energy", "telekinesis"]
+    ATTRIBUTES = ["rank", "location", "datetime", "hp", "kinetic resistance", "energy resistance", "chemical resistance"]
+    STATS = ["vitality", "constitution", "strength", "agility", "dexterity", "perception", "intelligence", "rationality"]
+    SKILLS = ["navigation", "stealth", "combat", "hunting", "recovery", "salvaging", "resources", "alchemy", "bartering", "lockpicking", "cryptography", "engineering", "gunsmithing", "bladecasting", "neuralforging", "armorcrafting"]
+    MASTERY = ["carbines", "subcarbines", "lancers", "suppressors", "handcanons", "breachers", "launchers", "greatswords", "knives"]

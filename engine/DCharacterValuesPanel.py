@@ -17,7 +17,7 @@ class DCharacterValuesPanel(QWidget):
                             """)
         self.layout = QGridLayout(self)
         self.layout.setContentsMargins(0, 0, 0, 0)
-        self.layout.setSpacing(4)
+        self.layout.setSpacing(2)
         
         self.layout.setColumnStretch(0, 4) 
         for i in range(1, 5):
@@ -44,43 +44,42 @@ class DCharacterValuesPanel(QWidget):
         mastery = self.game_manager.player.get_mastery(DType.STR)
         row = 0
         
-        # Add the 6 stats
         self.add_spacer(row)
         row += 1
         for i in range(len(CharacterValues.STATS)):
-            self.add_complex_value(row, CharacterValues.STATS[i].upper(), stats[CharacterValues.STATS[i]][0], stats[CharacterValues.STATS[i]][1], stats[CharacterValues.STATS[i]][2], stats[CharacterValues.STATS[i]][3])
+            self.add_4_value(row, CharacterValues.STATS[i].upper(), stats[CharacterValues.STATS[i]][0], stats[CharacterValues.STATS[i]][1], stats[CharacterValues.STATS[i]][2], stats[CharacterValues.STATS[i]][3])
             row += 1
         
-        # Add the 12 skills
         self.add_spacer(row)
         row += 1
         for i in range(len(CharacterValues.SKILLS)):
-            self.add_complex_value(row, CharacterValues.SKILLS[i].upper(), skills[CharacterValues.SKILLS[i]][0], skills[CharacterValues.SKILLS[i]][1], skills[CharacterValues.SKILLS[i]][2], skills[CharacterValues.SKILLS[i]][3])
+            self.add_4_value(row, CharacterValues.SKILLS[i].upper(), skills[CharacterValues.SKILLS[i]][0], skills[CharacterValues.SKILLS[i]][1], skills[CharacterValues.SKILLS[i]][2], skills[CharacterValues.SKILLS[i]][3])
             row += 1
 
-        # Add the 6 masteries
         self.add_spacer(row)
         row += 1
         for i in range(len(CharacterValues.MASTERY)):
-            self.add_simple_value(row, CharacterValues.MASTERY[i].upper(), mastery[CharacterValues.MASTERY[i]])
+            self.add_2_value(row, CharacterValues.MASTERY[i].upper(), mastery[CharacterValues.MASTERY[i]][0], mastery[CharacterValues.MASTERY[i]][1])
             row += 1
 
-    def add_simple_value(self, row_index, name, total):
+    def add_2_value(self, row_index, name, current, total):
         name_label = self.build_label(name, "white")
         name_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         
+        current_label = self.build_label(f"{current}", "white")
         total_label = self.build_label(total, "white")
         
         self.layout.addWidget(name_label, row_index, 0)
+        self.layout.addWidget(current_label, row_index, 3)
         self.layout.addWidget(total_label, row_index, 4)
 
-    def add_complex_value(self, row_index, name, base, boost, penalty, total):
+    def add_4_value(self, row_index, name, base, boost, penalty, total):
         name_label = self.build_label(name, "white")
         name_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
         
         base_label = self.build_label(base)
         plus_label = self.build_label(f"+{boost}", "green")
-        minus_label = self.build_label(penalty, "red")
+        minus_label = self.build_label(f"-{penalty}", "red")
         total_label = self.build_label(total, "white")
 
         # Add to the Master Grid

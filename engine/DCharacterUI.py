@@ -41,7 +41,7 @@ class DCharacterUI(DScreen):
         # name plate ==============================================================
         self.name_container = DGridContainer(0, 0)
         self.name_layout = QVBoxLayout(self.name_container)
-        self.name_layout.setContentsMargins(8, 4, 0, 4)
+        self.name_layout.setContentsMargins(4, 4, 0, 4)
         self.grid_layout.addWidget(self.name_container, 0, 0, 2, 8)
         self.name_panel = DCharacterNamePanel(self.name_container)
         self.name_layout.addWidget(self.name_panel)
@@ -50,7 +50,7 @@ class DCharacterUI(DScreen):
         # attributes ==============================================================
         self.attributes_container = DGridContainer(2, 0)
         self.attributes_layout = QVBoxLayout(self.attributes_container)
-        self.attributes_layout.setContentsMargins(8, 4, 0, 4)
+        self.attributes_layout.setContentsMargins(4, 4, 0, 4)
         self.grid_layout.addWidget(self.attributes_container, 2, 0, 2, 5)
         self.attributes_panel = DCharacterAttributesPanel(self.attributes_container)
         self.attributes_layout.addWidget(self.attributes_panel)
@@ -59,7 +59,7 @@ class DCharacterUI(DScreen):
         # inventory preview =======================================================
         self.inventory_preview_container = DGridContainer(4, 0)
         self.inventory_preview_layout = QVBoxLayout(self.inventory_preview_container)
-        self.inventory_preview_layout.setContentsMargins(8, 0, 0, 0)
+        self.inventory_preview_layout.setContentsMargins(4, 0, 0, 0)
         self.grid_layout.addWidget(self.inventory_preview_container, 4, 0, 1, 4)
         self.inventory_preview_panel = DInventoryPreviewPanel(self.inventory_preview_container)
         self.inventory_preview_layout.addWidget(self.inventory_preview_panel)
@@ -77,7 +77,7 @@ class DCharacterUI(DScreen):
         # character values ========================================================
         self.character_values_container = DGridContainer(5, 0)
         self.character_values_layout = QVBoxLayout(self.character_values_container)
-        self.character_values_layout.setContentsMargins(8, 0, 1, 10)
+        self.character_values_layout.setContentsMargins(4, 0, 1, 2)
         self.grid_layout.addWidget(self.character_values_container, 5, 0, 13, 4)
         self.character_value_panel = DCharacterValuesPanel(self.character_values_container, self.game_manager)
         self.character_values_layout.addWidget(self.character_value_panel)
