@@ -85,16 +85,16 @@ class DCharacterUI(DScreen):
 
         # currency widgets ========================================================
         self.krezhna_widget = DCurrencyWidget()
-        self.grid_layout.addWidget(self.krezhna_widget, 1, 15)
+        self.grid_layout.addWidget(self.krezhna_widget, 1, 28)
 
         self.currency2_widget = DCurrencyWidget()
-        self.grid_layout.addWidget(self.currency2_widget, 1, 16)
+        self.grid_layout.addWidget(self.currency2_widget, 1, 29)
 
         self.currency3_widget = DCurrencyWidget()
-        self.grid_layout.addWidget(self.currency3_widget, 1, 17)
+        self.grid_layout.addWidget(self.currency3_widget, 1, 30)
 
         self.currency4_widget = DCurrencyWidget()
-        self.grid_layout.addWidget(self.currency4_widget, 1, 18)
+        self.grid_layout.addWidget(self.currency4_widget, 1, 31)
 
         # component slots =========================================================
         self.sensors_slot = DComponentSlot(3, 9)
@@ -115,6 +115,12 @@ class DCharacterUI(DScreen):
         self.power_transport = DComponentSlot(6, 12)
         self.grid_layout.addWidget(self.power_transport, 6, 12)
 
+        self.tensile_fibres = DComponentSlot(7, 9)
+        self.grid_layout.addWidget(self.tensile_fibres, 7, 9)
+
+        self.logic_registers = DComponentSlot(7, 14)
+        self.grid_layout.addWidget(self.logic_registers, 7, 14)
+
         # weapon slots ============================================================
         self.primary_weapon_slot = DWeaponSlot(11, 5)
         self.grid_layout.addWidget(self.primary_weapon_slot, 11, 6, 2, 5)
@@ -130,19 +136,6 @@ class DCharacterUI(DScreen):
                 self.grid_layout.addWidget(status, r, c)
                 self.statuses[(r, c)] = status
 
-        # tools ===================================================================
-        self.scanner = DToolSlot(14, 13)
-        self.grid_layout.addWidget(self.scanner, 14, 13)
-
-        self.harvesting_knife = DToolSlot(14, 14)
-        self.grid_layout.addWidget(self.harvesting_knife, 14, 14)
-
-        self.hunting_javelin = DToolSlot(14, 15)
-        self.grid_layout.addWidget(self.hunting_javelin, 14, 15)
-
-        self.mining_laser = DToolSlot(14, 16)
-        self.grid_layout.addWidget(self.mining_laser, 14, 16)
-
         # character sheet inventory ===============================================
         self.inventory_slots = {}
         self.carry_weight_container = DGridContainer(1, 19)
@@ -156,7 +149,7 @@ class DCharacterUI(DScreen):
         # character sheet vault ===================================================
         self.vault_slots = {}
         self.vault_tab_container = DGridContainer(1, 24)
-        self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 8)
+        self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 4)
         for c in range(24, 32):
             for r in range(2, 18):
                 slot = DVaultSlot(r, c)
