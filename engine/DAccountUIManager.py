@@ -6,7 +6,7 @@ from engine.DVaultUI import DVaultUI
 from engine.DCraftingUI import DCraftingUI
 from engine.DArchiveUI import DArchiveUI
 from engine.DFont import DFont
-from data.engine_constants import DScreenID, DFontSize
+from data.engine_constants import DScreenID
 
 class DAccountUIManager(QFrame):
     def __init__(self, parent, game_manager):
@@ -108,16 +108,6 @@ class DAccountUIManager(QFrame):
         dynamic_bar_height = canvas_h // 18 
         
         self.navigation_bar.setGeometry(x_offset, y_offset, canvas_w, dynamic_bar_height)
-        
-        font_size = int(dynamic_bar_height * DFontSize.ACCOUNT_UI_NAVBAR)
-
-        for i in range(self.navigation_layout.count()):
-            item = self.navigation_layout.itemAt(i)
-            widget = item.widget()
-            if isinstance(widget, QPushButton):
-                font = widget.font()
-                font.setPixelSize(font_size)
-                widget.setFont(font)
                 
         self.navigation_bar.raise_()
 

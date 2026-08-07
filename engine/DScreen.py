@@ -26,3 +26,20 @@ class DScreen(QWidget):
             x_offset = (self.width() - self.scaled_background_pixmap.width()) // 2
             y_offset = (self.height() - self.scaled_background_pixmap.height()) // 2
             painter.drawPixmap(x_offset, y_offset, self.scaled_background_pixmap)
+
+    def update_geometry(self):
+        if not self.fullres_background_pixmap.isNull():
+            self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
+                self.size(), 
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
+            )
+
+        if self.scaled_background_pixmap:
+            bg_w = self.scaled_background_pixmap.width()
+            bg_h = self.scaled_background_pixmap.height()
+            
+            x_offset = (self.width() - bg_w) // 2
+            y_offset = (self.height() - bg_h) // 2
+
+            self.grid_container.setGeometry(x_offset, y_offset, bg_w, bg_h)

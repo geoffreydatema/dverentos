@@ -1,7 +1,7 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QGridLayout, QVBoxLayout
 from PySide6.QtCore import Qt
-from data.engine_constants import DFontSize
+# from data.engine_constants import DFontSize
 from engine.DScreen import DScreen
 from engine.DGridContainer import DGridContainer
 from engine.DVaultSlot import DVaultSlot
@@ -160,38 +160,3 @@ class DCharacterUI(DScreen):
         super().resizeEvent(event)
 
         self.update_geometry()
-        
-    def update_geometry(self):
-        # @! likely we will move this function (and possibly update_fonts) as well to DScreen if most of it can be inherited
-
-        if not self.fullres_background_pixmap.isNull():
-            self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
-                self.size(), 
-                Qt.KeepAspectRatio,
-                Qt.SmoothTransformation
-            )
-
-        if self.scaled_background_pixmap:
-            bg_w = self.scaled_background_pixmap.width()
-            bg_h = self.scaled_background_pixmap.height()
-            
-            x_offset = (self.width() - bg_w) // 2
-            y_offset = (self.height() - bg_h) // 2
-
-            self.grid_container.setGeometry(x_offset, y_offset, bg_w, bg_h)
-            
-            if bg_h > 0:
-                self.update_fonts()
-
-    def update_fonts(self):
-        h = self.grid_container.height()
-        if h <= 0: return
-
-        cell_height = h / 18
-        new_size = int(cell_height * DFontSize.CHARACTER_UI_STATS)
-        
-        new_size = max(1, new_size) 
-        
-        # font = self.label.font()
-        # font.setPixelSize(new_size)
-        # self.label.setFont(font)

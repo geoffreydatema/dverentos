@@ -12,10 +12,6 @@ class DScreenID(IntEnum):
     CRAFTING = auto()
     ARCHIVE = auto()
 
-class DFontSize():
-    ACCOUNT_UI_NAVBAR = 0.25
-    CHARACTER_UI_STATS = 0.3
-
 class CharacterValues():
     ATTRIBUTES = ["rank", "location", "datetime", "hp", "kinetic resistance", "energy resistance", "chemical resistance"]
     STATS = ["vitality", "constitution", "strength", "agility", "dexterity", "perception", "intelligence", "rationality"]
