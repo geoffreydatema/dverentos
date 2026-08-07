@@ -2,7 +2,8 @@ from utils import *
 import sys
 from pathlib import Path
 from PySide6.QtWidgets import QApplication
-from PySide6.QtGui import QFontDatabase, QFont
+from PySide6.QtGui import QFontDatabase
+from PySide6.QtCore import Qt
 from engine import Dverentos
 
 def load_all_fonts(font_dir: Path) -> str:
@@ -26,12 +27,15 @@ def load_all_fonts(font_dir: Path) -> str:
     return family_name
 
 if __name__ == "__main__":
-    from engine.DFont import DFont
+    QApplication.setHighDpiScaleFactorRoundingPolicy(
+        Qt.HighDpiScaleFactorRoundingPolicy.PassThrough
+    )
 
     application = QApplication(sys.argv)
     fonts_directory = Path(__file__).parent / "assets" / "fonts"
     font_family = load_all_fonts(fonts_directory)
 
+    from engine.DFont import DFont
     if font_family:
         application.setFont(DFont.SANS_REGULAR)
         
