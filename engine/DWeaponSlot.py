@@ -20,9 +20,9 @@ class DWeaponSlot(QFrame):
         self.col = c
         self.item = None
         
-        self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)
 
     def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             print(f"weapon slot at {self.row}, {self.col}")
         super().mousePressEvent(event)

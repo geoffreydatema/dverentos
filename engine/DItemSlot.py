@@ -19,4 +19,4 @@ class DItemSlot(QFrame):
         self.col = c
         self.item = None
         
-        self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)

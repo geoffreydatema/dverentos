@@ -2,7 +2,7 @@ from utils import *
 from PySide6.QtCore import QCoreApplication
 
 class DEngineManager():
-    def __init__(self, engine=None):
+    def __init__(self, engine):
         self.engine = engine
         self.commands = [
             "quit"

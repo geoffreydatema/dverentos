@@ -12,12 +12,12 @@ class DCharacterAttributesPanel(QWidget):
                                 background: rgb(60, 60, 60);
                             }
                             """)
-        self.layout = QGridLayout(self)
-        self.layout.setContentsMargins(0, 0, 0, 0)
-        self.layout.setSpacing(4)
+        self.grid_layout = QGridLayout(self)
+        self.grid_layout.setContentsMargins(0, 0, 0, 0)
+        self.grid_layout.setSpacing(4)
         
-        self.layout.setColumnStretch(0, 1) 
-        self.layout.setColumnStretch(1, 1) 
+        self.grid_layout.setColumnStretch(0, 1) 
+        self.grid_layout.setColumnStretch(1, 1) 
 
         self.attributes = {}
         self.stats = {}
@@ -25,70 +25,70 @@ class DCharacterAttributesPanel(QWidget):
     def build_label(self, text):
         label = QLabel(text)
         label.setFont(DFont.SANS_REGULAR)
-        label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         return label
 
     def build_rank(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[0].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("0")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 0, 0)
-        self.layout.addWidget(value_label, 0, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 0, 0)
+        self.grid_layout.addWidget(value_label, 0, 1)
         self.attributes["rank"] = value_label
 
     def build_location(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[1].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("<DESTINATION> [0, 0]")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 1, 0)
-        self.layout.addWidget(value_label, 1, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 1, 0)
+        self.grid_layout.addWidget(value_label, 1, 1)
         self.attributes["location"] = value_label
 
     def build_date(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[2].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("00:00:00|00:00:00")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 2, 0)
-        self.layout.addWidget(value_label, 2, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 2, 0)
+        self.grid_layout.addWidget(value_label, 2, 1)
         self.attributes["date"] = value_label
         
     def build_hp(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[3].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("0")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 3, 0)
-        self.layout.addWidget(value_label, 3, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 3, 0)
+        self.grid_layout.addWidget(value_label, 3, 1)
         self.attributes["hp"] = value_label
 
     def build_kinetic_resistance(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[4].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("9999")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 4, 0)
-        self.layout.addWidget(value_label, 4, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 4, 0)
+        self.grid_layout.addWidget(value_label, 4, 1)
         self.attributes["kinetic_resistance"] = value_label
 
     def build_energy_resistance(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[5].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("9999")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 5, 0)
-        self.layout.addWidget(value_label, 5, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 5, 0)
+        self.grid_layout.addWidget(value_label, 5, 1)
         self.attributes["energy_resistance"] = value_label
 
     def build_chemical_resistance(self):
         name_label = self.build_label(CharacterValues.ATTRIBUTES[6].upper())
-        name_label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("9999")
-        value_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
-        self.layout.addWidget(name_label, 6, 0)
-        self.layout.addWidget(value_label, 6, 1)
+        value_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
+        self.grid_layout.addWidget(name_label, 6, 0)
+        self.grid_layout.addWidget(value_label, 6, 1)
         self.attributes["chemical_resistance"] = value_label
 
     def build(self):

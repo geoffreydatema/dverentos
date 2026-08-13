@@ -1,10 +1,12 @@
 from utils import *
-from PySide6.QtWidgets import QFrame, QVBoxLayout, QPushButton
+from PySide6.QtWidgets import QWidget, QFrame, QVBoxLayout, QPushButton
 from PySide6.QtGui import Qt
 
 class DEscapeMenu(QFrame):
-    def __init__(self, parent=None, engine_manager=None):
+    def __init__(self, parent: QWidget, engine_manager):
         super().__init__(parent)
+
+        self.parent_widget = parent
         self.engine_manager = engine_manager
 
         self.setVisible(False)
@@ -26,17 +28,17 @@ class DEscapeMenu(QFrame):
                                 background: rgb(50, 50, 50);
                            }
                            """)
-        self.layout = QVBoxLayout(self)
+        self.box_layout = QVBoxLayout(self)
 
         self.exit_button = QPushButton("Exit")
         self.exit_button.setFixedWidth(100)
 
-        self.layout.addWidget(self.exit_button, alignment=Qt.AlignCenter)
+        self.box_layout.addWidget(self.exit_button, alignment=Qt.AlignmentFlag.AlignCenter)
 
         self.exit_button.clicked.connect(self.handle_exit)
 
     def update_geometry(self):
-        self.setGeometry(0, 0, self.parent().width(), self.parent().height())
+        self.setGeometry(0, 0, self.parent_widget.width(), self.parent_widget.height())
 
     def handle_exit(self):
         self.engine_manager.quit()
@@ -44,6 +46,6 @@ class DEscapeMenu(QFrame):
     def toggle(self):
         if self.isVisible():
             self.setVisible(False)
-            self.parent().setFocus()
+            self.parent_widget.setFocus()
         else:
             self.setVisible(True)

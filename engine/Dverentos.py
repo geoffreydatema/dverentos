@@ -20,7 +20,7 @@ class Dverentos(QMainWindow):
                            """)
 
         self.engine_manager = DEngineManager(engine=self)
-        self.game_manager = GameManager()
+        self.game_manager = GameManager(engine=self)
         self.gameplay_ui_manager = DGameplayUIManager(parent=self, game_manager=self.game_manager)
         self.account_ui_manager = DAccountUIManager(parent=self, game_manager=self.game_manager)
         self.setCentralWidget(self.gameplay_ui_manager)
@@ -36,16 +36,16 @@ class Dverentos(QMainWindow):
         self.account_ui_manager.toggle()
 
     def eventFilter(self, watched, event):
-        if event.type() == QEvent.KeyPress:
+        if event.type() == QEvent.Type.KeyPress:
             key = event.key()
 
-            if key == Qt.Key_Escape:
+            if key == Qt.Key.Key_Escape:
                 self.escape_menu.toggle()
 
-            elif key == Qt.Key_QuoteLeft:
+            elif key == Qt.Key.Key_QuoteLeft:
                 self.console.toggle()
 
-            elif key == Qt.Key_Tab:
+            elif key == Qt.Key.Key_Tab:
                 self.account_ui_manager.toggle()
         
         return super().eventFilter(watched, event)
@@ -80,8 +80,8 @@ class Dverentos(QMainWindow):
         self.center_window()
 
     def changeEvent(self, event):
-        if event.type() == QEvent.WindowStateChange:
-            if self.isMaximized() or self.windowState() == Qt.WindowNoState:
+        if event.type() == QEvent.Type.WindowStateChange:
+            if self.isMaximized() or self.windowState() == Qt.WindowState.WindowNoState:
                 self.account_ui_manager.update_geometry()
         
         super().changeEvent(event)

@@ -13,4 +13,4 @@ class DGridContainer(QFrame):
         self.row = r
         self.col = c
         
-        self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+        self.setSizePolicy(QSizePolicy.Policy.Ignored, QSizePolicy.Policy.Ignored)

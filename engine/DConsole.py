@@ -1,14 +1,17 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
 from PySide6.QtGui import Qt
+from engine.DEngineManager import DEngineManager
 
 class DConsole(QWidget):
-    def __init__(self, parent=None, engine_manager=None):
+    def __init__(self, parent: QWidget, engine_manager: DEngineManager):
         super().__init__(parent)
+
+        self.parent_widget = parent
         self.engine_manager = engine_manager
 
         self.update_geometry()
-        self.layout = QVBoxLayout(self)
+        self.box_layout = QVBoxLayout(self)
         
         self.input_field = QLineEdit()
         self.input_field.setFixedHeight(24)
@@ -18,15 +21,15 @@ class DConsole(QWidget):
                                        border: 1px solid rgb(255, 255, 255);
                                        """)
         
-        self.layout.addStretch()
-        self.layout.addWidget(self.input_field)
+        self.box_layout.addStretch()
+        self.box_layout.addWidget(self.input_field)
 
         self.input_field.returnPressed.connect(self.parse)
 
         self.setVisible(False)
 
     def update_geometry(self):
-        self.setGeometry(0, 0, self.parent().width(), self.parent().height())
+        self.setGeometry(0, 0, self.parent_widget.width(), self.parent_widget.height())
 
     def parse(self):
         raw_command = self.input_field.text().split(" ")
@@ -40,7 +43,7 @@ class DConsole(QWidget):
             info("Hi right back at ya")
         elif operation == "close":
             self.setVisible(False)
-            self.parent().setFocus()
+            self.parent_widget.setFocus()
         elif operation == "quit" or operation == "exit":
             self.engine_manager.quit()
         elif operation == "set":
@@ -75,12 +78,12 @@ class DConsole(QWidget):
     def toggle(self):
         if self.isVisible():
             self.setVisible(False)
-            self.parent().setFocus()
+            self.parent_widget.setFocus()
         else:
             self.setVisible(True)
             self.input_field.setFocus()
 
     def keyPressEvent(self, event):
-        if event.key() == Qt.Key_Escape:
+        if event.key() == Qt.Key.Key_Escape:
             self.setVisible(False)
-            self.parent().setFocus()
+            self.parent_widget.setFocus()

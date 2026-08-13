@@ -6,12 +6,14 @@ from engine.DVaultUI import DVaultUI
 from engine.DCraftingUI import DCraftingUI
 from engine.DArchiveUI import DArchiveUI
 from engine.DFont import DFont
+from engine.DScreen import DScreen
 from data.engine_constants import DScreenID
 
 class DAccountUIManager(QFrame):
-    def __init__(self, parent, game_manager):
+    def __init__(self, parent: QWidget, game_manager):
         super().__init__(parent)
-        
+
+        self.parent_widget = parent
         self.game_manager = game_manager
         
         self.setStyleSheet("""
@@ -71,7 +73,7 @@ class DAccountUIManager(QFrame):
 
         for btn in [self.map_button, self.character_button, self.vault_button, 
                     self.crafting_button, self.archive_button]:
-            btn.setFocusPolicy(Qt.NoFocus)
+            btn.setFocusPolicy(Qt.FocusPolicy.NoFocus)
             self.navigation_layout.addWidget(btn)
         
         self.map_button.clicked.connect(self.toggle)
@@ -88,7 +90,7 @@ class DAccountUIManager(QFrame):
             error(f"Screen ID {screen_id} not recognized by Account Manager")
 
     def update_geometry(self):
-        parent_size = self.parent().size()
+        parent_size = self.parent_widget.size()
         self.setGeometry(0, 0, parent_size.width(), parent_size.height())
         self.account_ui_stack.setGeometry(0, 0, self.width(), self.height())
 
@@ -112,13 +114,13 @@ class DAccountUIManager(QFrame):
         self.navigation_bar.raise_()
 
         active_screen = self.account_ui_stack.currentWidget()
-        if active_screen:
+        if isinstance(active_screen, DScreen):
             active_screen.update_geometry()
 
     def toggle(self):
         if self.isVisible():
             self.setVisible(False)
-            self.parent().setFocus()
+            self.parent_widget.setFocus()
         else:
             self.setVisible(True)
             self.update_geometry()

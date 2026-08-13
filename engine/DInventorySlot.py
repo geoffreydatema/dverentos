@@ -7,6 +7,6 @@ class DInventorySlot(DItemSlot):
         super().__init__(r, c, parent)
 
     def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
+        if event.button() == Qt.MouseButton.LeftButton:
             print(f"inventory slot at {self.row}, {self.col}")
         super().mousePressEvent(event)
