@@ -19,7 +19,7 @@ from engine.DCurrencyWidget import DCurrencyWidget
 
 class DCharacterUI(DScreen):
     def __init__(self, parent=None, game_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
-        super().__init__(image_path, parent)
+        super().__init__(parent, image_path)
         self.game_manager = game_manager
 
         self.grid_container = QWidget(self)

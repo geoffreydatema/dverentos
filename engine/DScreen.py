@@ -4,20 +4,20 @@ from PySide6.QtGui import QPixmap, QPainter
 from PySide6.QtCore import Qt
 
 class DScreen(QWidget):
-    def __init__(self, image_path: str, parent=None):
+    def __init__(self, parent=None, image_path=None):
         super().__init__(parent)
         self.fullres_background_pixmap = QPixmap(image_path)
         self.scaled_background_pixmap = None
-        self.box_layout = QVBoxLayout(self)
-        self.box_layout.setContentsMargins(0, 0, 0, 0)
+        self.layout = QVBoxLayout(self)
+        self.layout.setContentsMargins(0, 0, 0, 0)
     
     def resizeEvent(self, event):
         super().resizeEvent(event)
         if not self.fullres_background_pixmap.isNull():
             self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
                 self.size(), 
-                Qt.AspectRatioMode.KeepAspectRatio,
-                Qt.TransformationMode.SmoothTransformation
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
             )
 
     def paintEvent(self, event):
@@ -31,8 +31,8 @@ class DScreen(QWidget):
         if not self.fullres_background_pixmap.isNull():
             self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
                 self.size(), 
-                Qt.AspectRatioMode.KeepAspectRatio,
-                Qt.TransformationMode.SmoothTransformation
+                Qt.KeepAspectRatio,
+                Qt.SmoothTransformation
             )
 
         if self.scaled_background_pixmap:
@@ -42,4 +42,4 @@ class DScreen(QWidget):
             x_offset = (self.width() - bg_w) // 2
             y_offset = (self.height() - bg_h) // 2
 
-            # self.grid_container.setGeometry(x_offset, y_offset, bg_w, bg_h)
+            self.grid_container.setGeometry(x_offset, y_offset, bg_w, bg_h)
