@@ -1,6 +1,7 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QGridLayout, QVBoxLayout
 from PySide6.QtCore import Qt
+from PySide6.QtGui import QResizeEvent
 # from data.engine_constants import DFontSize
 from engine.DScreen import DScreen
 from engine.DGridContainer import DGridContainer
@@ -8,7 +9,7 @@ from engine.DVaultSlot import DVaultSlot
 from engine.DInventorySlot import DInventorySlot
 from engine.DComponentSlot import DComponentSlot
 from engine.DWeaponSlot import DWeaponSlot
-from engine.DToolSlot import DToolSlot
+# from engine.DToolSlot import DToolSlot
 from engine.DStatus import DStatus
 from engine.DCharacterNamePanel import DCharacterNamePanel
 from engine.DCharacterValuesPanel import DCharacterValuesPanel
@@ -16,15 +17,16 @@ from engine.DCharacterAttributesPanel import DCharacterAttributesPanel
 from engine.DInventoryPreviewPanel import DInventoryPreviewPanel
 from engine.DStatusesPreviewPanel import DStatusesPreviewPanel
 from engine.DCurrencyWidget import DCurrencyWidget
+from core.GameManager import GameManager
 
 class DCharacterUI(DScreen):
-    def __init__(self, parent=None, game_manager=None, image_path="assets/character_ui/character_ui_grid_v001.png"):
+    def __init__(self, parent: QWidget | None = None, game_manager: GameManager | None = None, image_path: str="assets/character_ui/character_ui_grid_v001.png") -> None:
         super().__init__(parent, image_path)
+
         self.game_manager = game_manager
 
         self.grid_container = QWidget(self)
         self.grid_layout = QGridLayout(self.grid_container)
-
         self.grid_layout.setContentsMargins(0, 0, 0, 0)
         self.grid_layout.setSpacing(0)
 
@@ -129,7 +131,7 @@ class DCharacterUI(DScreen):
         self.grid_layout.addWidget(self.secondary_weapon_slot, 11, 12, 2, 5)
 
         # statuses ================================================================
-        self.statuses = {}
+        self.statuses: dict[tuple[int, int], DStatus] = {}
         for c in range(6, 10):
             for r in range(14, 18):
                 status = DStatus(r, c)
@@ -137,7 +139,7 @@ class DCharacterUI(DScreen):
                 self.statuses[(r, c)] = status
 
         # character sheet inventory ===============================================
-        self.inventory_slots = {}
+        self.inventory_slots: dict[tuple[int, int], DInventorySlot] = {}
         self.carry_weight_container = DGridContainer(1, 19)
         self.grid_layout.addWidget(self.carry_weight_container, 1, 19, 1, 4)
         for c in range(19, 23):
@@ -147,7 +149,7 @@ class DCharacterUI(DScreen):
                 self.inventory_slots[(r, c)] = slot
 
         # character sheet vault ===================================================
-        self.vault_slots = {}
+        self.vault_slots: dict[tuple[int, int], DVaultSlot] = {}
         self.vault_tab_container = DGridContainer(1, 24)
         self.grid_layout.addWidget(self.vault_tab_container, 1, 24, 1, 4)
         for c in range(24, 32):
@@ -156,7 +158,24 @@ class DCharacterUI(DScreen):
                 self.grid_layout.addWidget(slot, r, c)
                 self.vault_slots[(r, c)] = slot
 
-    def resizeEvent(self, event):
+    def resizeEvent(self, event: QResizeEvent):
         super().resizeEvent(event)
 
         self.update_geometry()
+
+    def update_geometry(self):
+            if not self.fullres_background_pixmap.isNull():
+                self.scaled_background_pixmap = self.fullres_background_pixmap.scaled(
+                    self.size(), 
+                    Qt.AspectRatioMode.KeepAspectRatio,
+                    Qt.TransformationMode.SmoothTransformation
+                )
+    
+            if self.scaled_background_pixmap:
+                bg_w = self.scaled_background_pixmap.width()
+                bg_h = self.scaled_background_pixmap.height()
+                
+                x_offset = (self.width() - bg_w) // 2
+                y_offset = (self.height() - bg_h) // 2
+    
+                self.grid_container.setGeometry(x_offset, y_offset, bg_w, bg_h)

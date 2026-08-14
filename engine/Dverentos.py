@@ -1,7 +1,7 @@
 from utils import *
 from PySide6.QtWidgets import QMainWindow
-from PySide6.QtGui import QGuiApplication, Qt
-from PySide6.QtCore import QEvent
+from PySide6.QtGui import QGuiApplication, Qt, QKeyEvent, QResizeEvent
+from PySide6.QtCore import QObject, QEvent
 from engine.DEngineManager import DEngineManager
 from engine.DGameplayUIManager import DGameplayUIManager
 from engine.DAccountUIManager import DAccountUIManager
@@ -10,7 +10,7 @@ from engine.DConsole import DConsole
 from core.GameManager import GameManager
 
 class Dverentos(QMainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setWindowTitle("DVERENTOS")
         self.setStyleSheet("""
@@ -35,8 +35,8 @@ class Dverentos(QMainWindow):
         # default screen
         self.account_ui_manager.toggle()
 
-    def eventFilter(self, watched, event):
-        if event.type() == QEvent.Type.KeyPress:
+    def eventFilter(self, watched: QObject, event: QEvent) -> bool:
+        if isinstance(event, QKeyEvent) and event.type() == QEvent.Type.KeyPress:
             key = event.key()
 
             if key == Qt.Key.Key_Escape:
@@ -50,20 +50,20 @@ class Dverentos(QMainWindow):
         
         return super().eventFilter(watched, event)
     
-    def center_window(self):
+    def center_window(self) -> None:
         screen = QGuiApplication.primaryScreen().availableGeometry()
         size = self.frameGeometry()
         center_point = screen.center()
         size.moveCenter(center_point)
         self.move(size.topLeft())
 
-    def resizeEvent(self, event):
+    def resizeEvent(self, event: QResizeEvent) -> None:
         super().resizeEvent(event)
         self.account_ui_manager.update_geometry()
         self.escape_menu.update_geometry()
         self.console.update_geometry()
 
-    def update_geometry(self, w=1280, h=720, fullscreen=False, fullscreen_windowed=False):
+    def update_geometry(self, w: int=1280, h: int=720, fullscreen: bool=False, fullscreen_windowed: bool=False) -> None:
         final_width = w
         final_height = h
 
@@ -79,7 +79,7 @@ class Dverentos(QMainWindow):
         self.setGeometry(0, 0, final_width, final_height)
         self.center_window()
 
-    def changeEvent(self, event):
+    def changeEvent(self, event: QEvent) -> None:
         if event.type() == QEvent.Type.WindowStateChange:
             if self.isMaximized() or self.windowState() == Qt.WindowState.WindowNoState:
                 self.account_ui_manager.update_geometry()

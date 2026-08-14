@@ -8,9 +8,10 @@ from engine.DArchiveUI import DArchiveUI
 from engine.DFont import DFont
 from engine.DScreen import DScreen
 from data.engine_constants import DScreenID
+from core.GameManager import GameManager
 
 class DAccountUIManager(QFrame):
-    def __init__(self, parent: QWidget, game_manager):
+    def __init__(self, parent: QWidget | None = None, game_manager: GameManager | None = None) -> None:
         super().__init__(parent)
 
         self.parent_widget = parent
@@ -43,7 +44,7 @@ class DAccountUIManager(QFrame):
         self.account_ui_stack.addWidget(self.crafting_ui)
         self.account_ui_stack.addWidget(self.archive_ui)
 
-        self.screen_map = {
+        self.screen_map: dict[DScreenID, QWidget] = {
             DScreenID.CHARACTER: self.character_ui,
             DScreenID.VAULT: self.vault_ui,
             DScreenID.CRAFTING: self.crafting_ui,
@@ -52,12 +53,12 @@ class DAccountUIManager(QFrame):
 
         self.switch(DScreenID.CHARACTER)
 
-    def build_navigation_button(self, text):
+    def build_navigation_button(self, text: str) -> QPushButton:
         button = QPushButton(text)
         button.setFont(DFont.SANS_BOLD)
         return button
 
-    def build_navigation(self):
+    def build_navigation(self) -> None:
         self.navigation_bar = QWidget(self)
         self.navigation_layout = QHBoxLayout(self.navigation_bar)
         self.navigation_layout.setContentsMargins(0, 0, 10, 0)
@@ -82,14 +83,14 @@ class DAccountUIManager(QFrame):
         self.crafting_button.clicked.connect(lambda: self.switch(DScreenID.CRAFTING))
         self.archive_button.clicked.connect(lambda: self.switch(DScreenID.ARCHIVE))
 
-    def switch(self, screen_id):
+    def switch(self, screen_id: DScreenID) -> None:
         target_widget = self.screen_map.get(screen_id)
         if target_widget:
             self.account_ui_stack.setCurrentWidget(target_widget)
         else:
             error(f"Screen ID {screen_id} not recognized by Account Manager")
 
-    def update_geometry(self):
+    def update_geometry(self) -> None:
         parent_size = self.parent_widget.size()
         self.setGeometry(0, 0, parent_size.width(), parent_size.height())
         self.account_ui_stack.setGeometry(0, 0, self.width(), self.height())
@@ -117,7 +118,7 @@ class DAccountUIManager(QFrame):
         if isinstance(active_screen, DScreen):
             active_screen.update_geometry()
 
-    def toggle(self):
+    def toggle(self) -> None:
         if self.isVisible():
             self.setVisible(False)
             self.parent_widget.setFocus()
