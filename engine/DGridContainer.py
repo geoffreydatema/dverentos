@@ -1,8 +1,8 @@
 from utils import *
-from PySide6.QtWidgets import QFrame, QSizePolicy
+from PySide6.QtWidgets import QWidget, QFrame, QSizePolicy
 
 class DGridContainer(QFrame):
-    def __init__(self, r, c, parent=None):
+    def __init__(self, parent: QWidget, r: int, c: int) -> None:
         super().__init__(parent)
         self.setStyleSheet("""
                             QFrame {

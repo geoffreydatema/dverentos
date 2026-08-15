@@ -1,10 +1,11 @@
-from utils import *
-from PySide6.QtWidgets import QFrame, QSizePolicy
+from PySide6.QtWidgets import QWidget, QFrame, QSizePolicy
 from PySide6.QtGui import QMouseEvent
 from PySide6.QtCore import Qt
 
+from utils import *
+
 class DWeaponSlot(QFrame):
-    def __init__(self, r, c, parent=None):
+    def __init__(self, parent: QWidget, r: int, c: int) -> None:
         super().__init__(parent)
         self.setStyleSheet("""
                             QFrame {

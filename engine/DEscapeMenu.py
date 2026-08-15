@@ -1,9 +1,11 @@
-from utils import *
 from PySide6.QtWidgets import QWidget, QFrame, QVBoxLayout, QPushButton
 from PySide6.QtGui import Qt
 
+from utils import *
+from engine.DEngineManager import DEngineManager
+
 class DEscapeMenu(QFrame):
-    def __init__(self, parent: QWidget, engine_manager):
+    def __init__(self, parent: QWidget, engine_manager: DEngineManager):
         super().__init__(parent)
 
         self.parent_widget = parent

@@ -4,7 +4,7 @@ from PySide6.QtGui import QPixmap, QPainter, QResizeEvent
 from PySide6.QtCore import Qt, QEvent
 
 class DScreen(QWidget):
-    def __init__(self, parent: QWidget | None = None, image_path: str | None = None) -> None:
+    def __init__(self, parent: QWidget, image_path: str | None = None) -> None:
         super().__init__(parent)
 
         if isinstance(image_path, str):

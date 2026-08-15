@@ -4,7 +4,7 @@ from data.engine_constants import CharacterValues
 from engine.DFont import DFont
 
 class DCharacterAttributesPanel(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent: QWidget) -> None:
         super().__init__(parent)
         
         self.setStyleSheet("""
@@ -19,16 +19,15 @@ class DCharacterAttributesPanel(QWidget):
         self.grid_layout.setColumnStretch(0, 1) 
         self.grid_layout.setColumnStretch(1, 1) 
 
-        self.attributes = {}
-        self.stats = {}
+        self.attributes: dict[str, QLabel] = {}
 
-    def build_label(self, text):
+    def build_label(self, text: str) -> QLabel:
         label = QLabel(text)
         label.setFont(DFont.SANS_REGULAR)
         label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         return label
 
-    def build_rank(self):
+    def build_rank(self) -> None:
         name_label = self.build_label(CharacterValues.ATTRIBUTES[0].upper())
         name_label.setAlignment(Qt.AlignmentFlag.AlignLeft | Qt.AlignmentFlag.AlignVCenter)
         value_label = self.build_label("0")

@@ -11,7 +11,7 @@ from data.engine_constants import DScreenID
 from core.GameManager import GameManager
 
 class DAccountUIManager(QFrame):
-    def __init__(self, parent: QWidget | None = None, game_manager: GameManager | None = None) -> None:
+    def __init__(self, parent: QWidget, game_manager: GameManager) -> None:
         super().__init__(parent)
 
         self.parent_widget = parent

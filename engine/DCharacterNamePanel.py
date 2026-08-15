@@ -3,7 +3,7 @@ from PySide6.QtCore import Qt
 from engine.DFont import DFont
 
 class DCharacterNamePanel(QWidget):
-    def __init__(self, parent: QWidget | None = None):
+    def __init__(self, parent: QWidget):
         super().__init__(parent)
         
         self.setStyleSheet("""

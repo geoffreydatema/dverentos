@@ -1,7 +1,13 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING, Literal, overload
+
+if TYPE_CHECKING:
+    from core.GameManager import GameManager
+
 from data.engine_constants import DType
 
 class Player():
-    def __init__(self, game_manager):
+    def __init__(self, game_manager: GameManager) -> None:
         self.game_manager = game_manager
         
         # Player stats
@@ -43,19 +49,27 @@ class Player():
         self.greatswords = [0, 0]
         self.knives = [0, 0]
 
-    def get_vitality(self):
+    def get_vitality(self) -> int:
         return self.vitality[3]
     
-    def update_vitality(self):
+    def update_vitality(self) -> None:
         self.vitality[0] = 4 #! hardcoded for testing
         self.vitality[1] = 3 #! hardcoded for testing
         self.vitality[2] = -1 #! hardcoded for testing        
         self.vitality[3] = self.vitality[0] + self.vitality[1] + self.vitality[2]
 
-    def update_values(self):
+    def update_values(self) -> None:
         self.update_vitality()
+
+    @overload
+    def get_stats(self, data_type: Literal[DType.INT]) -> dict[str, tuple[int, ...]]:
+        ...
+
+    @overload
+    def get_stats(self, data_type: Literal[DType.STR]) -> dict[str, tuple[int, ...]]:
+        ...
     
-    def get_stats(self, data_type):
+    def get_stats(self, data_type: DType) -> dict[str, tuple[int, ...]] | dict[str, tuple[str, ...]]:
         if data_type == DType.INT:
             return {
                 "vitality": (self.vitality[0], self.vitality[1], self.vitality[2], self.vitality[3]),
@@ -79,8 +93,16 @@ class Player():
                 "intelligence": (str(self.intelligence[0]), str(self.intelligence[1]), str(self.intelligence[2]), str(self.intelligence[3])),
                 "rationality": (str(self.rationality[0]), str(self.rationality[1]), str(self.rationality[2]), str(self.rationality[3]))
             }
-        
-    def get_skills(self, data_type):
+
+    @overload
+    def get_skills(self, data_type: Literal[DType.INT]) -> dict[str, tuple[int, ...]]:
+        ...
+
+    @overload
+    def get_skills(self, data_type: Literal[DType.STR]) -> dict[str, tuple[str, ...]]:
+        ...
+    
+    def get_skills(self, data_type: DType) -> dict[str, tuple[int, ...]] | dict[str, tuple[str, ...]]:
         if data_type == DType.INT:
             return {
                 "navigation": (self.navigation[0], self.navigation[1], self.navigation[2], self.navigation[3]),
@@ -121,9 +143,15 @@ class Player():
                 "armorcrafting": (str(self.armorcrafting[0]), str(self.armorcrafting[1]), str(self.armorcrafting[2]), str(self.armorcrafting[3]))
             }
 
-    def get_mastery(self, data_type):
-        # ["carbines", "subcarbines", "lancers", "suppressors", "handcanons", "breachers", "launchers", "greatswords", "knives"]
+    @overload
+    def get_mastery(self, data_type: Literal[DType.INT]) -> dict[str, tuple[int, ...]]:
+        ...
 
+    @overload
+    def get_mastery(self, data_type: Literal[DType.STR]) -> dict[str, tuple[str, ...]]:
+        ...
+    
+    def get_mastery(self, data_type: DType) -> dict[str, tuple[int, ...]] | dict[str, tuple[str, ...]]:
         if data_type == DType.INT:
             return {
                 "carbines": (self.carbines[0], self.carbines[1]),

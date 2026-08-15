@@ -1,10 +1,10 @@
 from utils import *
-from PySide6.QtWidgets import QFrame, QSizePolicy, QHBoxLayout, QLabel
+from PySide6.QtWidgets import QWidget, QFrame, QSizePolicy, QHBoxLayout, QLabel
 from PySide6.QtCore import Qt
 from engine.DFont import DFont
 
 class DCurrencyWidget(QFrame):
-    def __init__(self, parent=None):
+    def __init__(self, parent: QWidget):
         super().__init__(parent)
         self.setStyleSheet("""
                             QFrame {

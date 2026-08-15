@@ -4,9 +4,10 @@ from PySide6.QtCore import Qt
 from data.engine_constants import CharacterValues
 from data.engine_constants import DType
 from engine.DFont import DFont
+from core.GameManager import GameManager
 
 class DCharacterValuesPanel(QWidget):
-    def __init__(self, game_manager, parent=None):
+    def __init__(self, parent: QWidget, game_manager: GameManager) -> None:
         super().__init__(parent)
         self.game_manager = game_manager
 
@@ -23,14 +24,14 @@ class DCharacterValuesPanel(QWidget):
         for i in range(1, 5):
             self.grid_layout.setColumnStretch(i, 2)
 
-        self.stats = {}
+        self.stats: dict[str, dict[str, QLabel]] = {}
     
-    def add_spacer(self, row_index, height=16):
+    def add_spacer(self, row_index: int, height: int=16):
         spacer = QWidget()
         spacer.setMinimumHeight(height)
         self.grid_layout.addWidget(spacer, row_index, 0, 1, 5)
 
-    def build_label(self, text, color=None):
+    def build_label(self, text: str, color: str | None = None):
         label = QLabel(text)
         label.setFont(DFont.SANS_REGULAR)
         label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
@@ -39,9 +40,9 @@ class DCharacterValuesPanel(QWidget):
         return label
 
     def build(self):
-        stats = self.game_manager.player.get_stats(DType.STR)
-        skills = self.game_manager.player.get_skills(DType.STR)
-        mastery = self.game_manager.player.get_mastery(DType.STR)
+        stats = self.game_manager.player.get_stats(DType.INT)
+        skills = self.game_manager.player.get_skills(DType.INT)
+        mastery = self.game_manager.player.get_mastery(DType.INT)
         row = 0
         
         self.add_spacer(row)
@@ -62,25 +63,25 @@ class DCharacterValuesPanel(QWidget):
             self.add_2_value(row, CharacterValues.MASTERY[i].upper(), mastery[CharacterValues.MASTERY[i]][0], mastery[CharacterValues.MASTERY[i]][1])
             row += 1
 
-    def add_2_value(self, row_index, name, current, total):
+    def add_2_value(self, row_index: int, name: str, current: int, total: int):
         name_label = self.build_label(name, "white")
         name_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         
         current_label = self.build_label(f"{current}", "white")
-        total_label = self.build_label(total, "white")
+        total_label = self.build_label(str(total), "white")
         
         self.grid_layout.addWidget(name_label, row_index, 0)
         self.grid_layout.addWidget(current_label, row_index, 3)
         self.grid_layout.addWidget(total_label, row_index, 4)
 
-    def add_4_value(self, row_index, name, base, boost, penalty, total):
+    def add_4_value(self, row_index: int, name: str, base: int, boost: int, penalty: int, total: int):
         name_label = self.build_label(name, "white")
         name_label.setAlignment(Qt.AlignmentFlag.AlignRight | Qt.AlignmentFlag.AlignVCenter)
         
-        base_label = self.build_label(base)
+        base_label = self.build_label(str(base))
         plus_label = self.build_label(f"+{boost}", "green")
         minus_label = self.build_label(f"-{penalty}", "red")
-        total_label = self.build_label(total, "white")
+        total_label = self.build_label(str(total), "white")
 
         # Add to the Master Grid
         self.grid_layout.addWidget(name_label, row_index, 0)

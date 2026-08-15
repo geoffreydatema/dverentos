@@ -1,7 +1,7 @@
 from PySide6.QtWidgets import QWidget, QFrame, QGridLayout, QSizePolicy
 
 class DStatusesPreviewPanel(QWidget):
-    def __init__(self, parent=None):
+    def __init__(self, parent: QWidget) -> None:
         super().__init__(parent)
         
         self.setStyleSheet("""

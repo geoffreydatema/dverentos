@@ -1,6 +1,6 @@
 from utils import *
 from PySide6.QtWidgets import QWidget, QVBoxLayout, QLineEdit
-from PySide6.QtGui import Qt
+from PySide6.QtGui import Qt, QKeyEvent
 from engine.DEngineManager import DEngineManager
 
 class DConsole(QWidget):
@@ -32,7 +32,7 @@ class DConsole(QWidget):
         self.setGeometry(0, 0, self.parent_widget.width(), self.parent_widget.height())
 
     def parse(self):
-        raw_command = self.input_field.text().split(" ")
+        raw_command = tuple(self.input_field.text().split(" "))
         if not raw_command:
             error("No command entered")
         
@@ -53,7 +53,7 @@ class DConsole(QWidget):
         
         self.input_field.setText("")
 
-    def handle_set(self, args):
+    def handle_set(self, args: tuple[str, ...]):
         variable = args[0].lower()
         values = args[1:]
 
@@ -61,7 +61,7 @@ class DConsole(QWidget):
             if len(values) != 2:
                 error("Incorrect number of args passed for resolution change")
                 return
-            self.engine_manager.set_resolution(values[0], values[1])
+            self.engine_manager.set_resolution(int(values[0]), int(values[1]))
 
         if variable == "fullscreen":
             if len(values) != 1:
@@ -83,7 +83,7 @@ class DConsole(QWidget):
             self.setVisible(True)
             self.input_field.setFocus()
 
-    def keyPressEvent(self, event):
+    def keyPressEvent(self, event: QKeyEvent):
         if event.key() == Qt.Key.Key_Escape:
             self.setVisible(False)
             self.parent_widget.setFocus()
